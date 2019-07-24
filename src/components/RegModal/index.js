@@ -1,1 +1,1 @@
-export { default } from './RegModal'
+export { default } from './RegModal';

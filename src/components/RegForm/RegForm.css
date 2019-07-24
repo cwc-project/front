@@ -1,9 +1,9 @@
 .pass-icon {
-    width: auto;
-    height: 15px;
-    stroke-width: 1;
+  width: auto;
+  height: 15px;
+  stroke-width: 1;
 }
 .append > span {
-    border-bottom-right-radius: .25rem!important;
-    border-top-right-radius: .25rem!important;
+  border-bottom-right-radius: 0.25rem !important;
+  border-top-right-radius: 0.25rem !important;
 }

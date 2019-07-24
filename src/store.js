@@ -1,17 +1,11 @@
-import { createStore, applyMiddleware } from 'redux'
-import logger from 'redux-logger'
-import promise from 'redux-promise'
+import { createStore, applyMiddleware } from 'redux';
+import logger from 'redux-logger';
+import promise from 'redux-promise';
 
-import reducer from './reducers'
+import reducer from './reducers';
 
-const middlewares = [
-    promise,
-    logger,
-]
+const middlewares = [promise, logger];
 
-const store = createStore(
-    reducer,
-    applyMiddleware(...middlewares)
-)
+const store = createStore(reducer, applyMiddleware(...middlewares));
 
-export default store
+export default store;

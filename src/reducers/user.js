@@ -1,13 +1,13 @@
-import { LOGIN_USER } from '../actions'
+import { LOGIN_USER } from '../actions';
 
 const reducer = (state = { details: {}, status: '' }, action) => {
-    switch(action.type) {
-        case LOGIN_USER:            
-            return { ...state, details: action.user } 
+  switch (action.type) {
+    case LOGIN_USER:
+      return { ...state, details: action.user };
 
-        default:
-            return state
-    }
-}
+    default:
+      return state;
+  }
+};
 
-export default reducer
+export default reducer;

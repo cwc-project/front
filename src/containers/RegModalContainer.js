@@ -1,14 +1,17 @@
 // import React from 'react'
-import { connect } from 'react-redux'
-import { toggleModal } from '../actions'
-import RegModal from '../components/RegModal'
+import { connect } from 'react-redux';
+import { toggleModal } from '../actions';
+import RegModal from '../components/RegModal';
 
 const mapStateToProps = state => ({
-    modal: state.rsEffects.modal,  
-})
+  modal: state.rsEffects.modal,
+});
 
 const mapDispatchToProps = dispatch => ({
-    toggleModal: () => dispatch(toggleModal()), 
-})
+  toggleModal: () => dispatch(toggleModal()),
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(RegModal)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(RegModal);

@@ -1,1 +1,1 @@
-export { default } from './RegTabs'
+export { default } from './RegTabs';
