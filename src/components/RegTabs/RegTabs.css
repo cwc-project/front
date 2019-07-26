@@ -1,3 +1,36 @@
 .regNavLink {
   cursor: pointer;
 }
+
+/* test comment */
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+.foo {
+  width: 240px;
+}
+
+@media screen and (max-width: 768px) {
+  .foo {
+    width: 576px;
+  }
+}
+
+.bar {
+  width: 160px;
+}
+
+@media screen and (max-width: 768px) {
+  .bar {
+    width: 384px;
+  }
+}

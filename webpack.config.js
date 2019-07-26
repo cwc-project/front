@@ -2,6 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserJSPlugin = require('terser-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
 module.exports = (env, argv) => {
@@ -15,6 +17,14 @@ module.exports = (env, argv) => {
       filename: devMode ? '[name].bundle.js' : '[name].[hash].bundle.js',
     },
     optimization: {
+      minimizer: [
+        new TerserJSPlugin({
+          cache: true, // существенно ускоряет сборку
+          parallel: true,
+          sourceMap: true,
+        }),
+        new OptimizeCSSAssetsPlugin(),
+      ],
       splitChunks: {
         chunks: 'all',
       },
@@ -38,6 +48,7 @@ module.exports = (env, argv) => {
               loader: MiniCssExtractPlugin.loader,
             },
             'css-loader',
+            'postcss-loader',
           ],
         },
         {

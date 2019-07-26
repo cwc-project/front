@@ -3,6 +3,7 @@
   height: 15px;
   stroke-width: 1;
 }
+
 .append > span {
   border-bottom-right-radius: 0.25rem !important;
   border-top-right-radius: 0.25rem !important;
