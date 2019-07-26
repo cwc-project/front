@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --d --open",
-    "build": "webpack -p",
+    "build": "npm run prebuild && webpack -p",
+    "prebuild": "git add . && git commit -m 'build' --allow-empty",
     "prettier:all": "prettier --write **/*.{js,jsx,css,html,md}",
     "newContainer": "node dev_utilites/createContainer.js --name",
     "newComponent": "node dev_utilites/createComponent.js --name"
