@@ -1,9 +1,10 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const TerserJSPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const TerserJSPlugin = require('terser-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
 module.exports = (env, argv) => {
@@ -31,6 +32,11 @@ module.exports = (env, argv) => {
     },
     resolve: {
       extensions: ['.js', '.jsx'],
+    },
+    performance: {
+      // hints: false,
+      maxEntrypointSize: 512000,
+      // maxAssetSize: 512000,
     },
     devtool: devMode ? 'inline-source-map' : false,
     module: {
@@ -69,6 +75,7 @@ module.exports = (env, argv) => {
       new MiniCssExtractPlugin({
         filename: devMode ? '[name].css' : '[name].[hash].css',
       }),
+      new CopyWebpackPlugin([{ from: 'src/favicon.ico', to: './' }]),
       new Dotenv(),
     ],
   };
