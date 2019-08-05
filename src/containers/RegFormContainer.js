@@ -17,6 +17,7 @@ class RegFormContainer extends PureComponent {
         valid: '',
         hide: true,
       },
+      err: '',
     };
 
     this.regExps = {
@@ -24,6 +25,10 @@ class RegFormContainer extends PureComponent {
       pass: /^(?=.*\d)(?=.*[a-z])[\w!@#$%^&*]{6,}$/i,
     };
   }
+
+  handleError = err => {
+    this.setState({ err });
+  };
 
   handleChange = ({ target: { name, value } }) => {
     const { ...state } = this.state;
@@ -43,9 +48,6 @@ class RegFormContainer extends PureComponent {
   };
 
   passToggle = event => {
-    // const { pass: { hide} } = this.state
-    // this.setState({ pass: { ...this.state.pass, hide: !hide} })
-    // const pass = {...this.state.pass}
     const { pass } = this.state;
     this.setState({ pass: { ...pass, hide: !pass.hide } });
     event.preventDefault();
@@ -56,10 +58,7 @@ class RegFormContainer extends PureComponent {
     const { onLogUser } = this.props;
     event.preventDefault();
     if (email.valid && pass.valid) {
-      // console.log('good');
-      onLogUser();
-    } else {
-      // console.error('invalid');
+      onLogUser(email.value, pass.value, this.handleError);
     }
   };
 
@@ -80,14 +79,18 @@ class RegFormContainer extends PureComponent {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    onLogUser: () => dispatch(logUser()),
-  };
-}
+const mapStateToProps = state => ({
+  err: state.user.err,
+});
+
+const mapDispatchToProps = dispatch => ({
+  onLogUser: (email, password, callback) => {
+    dispatch(logUser(email, password, callback));
+  },
+});
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(RegFormContainer);
 
@@ -99,35 +102,3 @@ RegFormContainer.propTypes = {
 RegFormContainer.defaultProps = {
   validation: false,
 };
-
-// handleChange = ( { target: { name, value}} ) => {
-//     this.setState(prevState => ({
-//         ...prevState,
-//         [name]: {
-//             ...prevState[name],
-//             value,
-//         }})
-//     )
-//     this.handleCheck(name, value)
-// }
-// handleCheck(name, value) {
-//     const valid = this.regExp(name).test(value)
-//     this.setState(prevState => ({
-//         ...prevState,
-//         [name]: {
-//             ...prevState[name],
-//             valid,
-//         }})
-//     )
-// }
-
-// regExp(name) {
-//   switch (name) {
-//     case 'email':
-//       return /^[a-z0-9]+[\w-\.]*\@[a-z0-9]+[\w-\.]*\.[a-z]{2,3}/i;
-//     case 'pass':
-//       return /^(?=.*\d)(?=.*[a-z])[\w!@#$%^&*]{6,}$/i;
-//     default:
-//       break;
-//   }
-// }

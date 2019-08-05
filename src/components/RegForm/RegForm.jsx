@@ -12,6 +12,7 @@ import {
   Input,
   InputGroup,
   InputGroupAddon,
+  Alert,
 } from 'reactstrap';
 import './RegForm.css';
 
@@ -21,16 +22,18 @@ const bsUtilClasses = {
   formGroup: ['mb-1'],
   btn: ['float-right', 'mt-3'],
   passToggleBtn: ['btn', 'btn-light', 'border-0', 'shadow-none'],
+  alert: ['overflow-hidden', 'text-truncate'],
 };
 const form = classNames(bsUtilClasses.form);
 const formGroup = classNames(bsUtilClasses.formGroup);
 const btn = classNames(bsUtilClasses.btn);
 const passToggleBtn = classNames(bsUtilClasses.passToggleBtn);
+const alert = classNames(bsUtilClasses.alert);
 
 export default function RegForm(props) {
   const {
     props: { id, btnValue, validation, emailFeedback, passFeedback, emailInfo },
-    state: { email, pass },
+    state: { email, pass, err },
     handleChange,
     passToggle,
     handleSubmit,
@@ -80,14 +83,30 @@ export default function RegForm(props) {
           />
           <InputGroupAddon addonType="append" className="append">
             <span className="input-group-text p-0">
-              <button color="link" type="submit" onClick={passToggle} className={passToggleBtn}>
-                {pass.hide ? <EyeOff className="pass-icon" /> : <Eye className="pass-icon" />}
+              <button
+                color="link"
+                type="submit"
+                onClick={passToggle}
+                className={passToggleBtn}
+              >
+                {pass.hide ? (
+                  <EyeOff className="pass-icon" />
+                ) : (
+                  <Eye className="pass-icon" />
+                )}
               </button>
             </span>
           </InputGroupAddon>
           {passFeedback ? <FormFeedback>{passFeedback}</FormFeedback> : false}
         </InputGroup>
       </FormGroup>
+      {err ? (
+        <Alert color="danger" className={alert}>
+          {err}
+        </Alert>
+      ) : (
+        ''
+      )}
       <Button color="primary" outline className={btn}>
         {btnValue}
       </Button>
@@ -104,6 +123,7 @@ RegForm.propTypes = {
     emailFeedback: PropTypes.string,
     passFeedback: PropTypes.string,
     emailInfo: PropTypes.string,
+    err: PropTypes.string,
   }),
   state: PropTypes.shape({
     email: PropTypes.shape({
@@ -115,6 +135,7 @@ RegForm.propTypes = {
       valid: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
       hide: PropTypes.bool.isRequired,
     }).isRequired,
+    err: PropTypes.string,
   }).isRequired,
   handleChange: PropTypes.func.isRequired,
   passToggle: PropTypes.func.isRequired,

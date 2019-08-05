@@ -26,7 +26,11 @@ export default function Header({ onToggle }) {
   return (
     <header className={header}>
       <h5 className="font-weight-normal mb-0">CWC-project v. 2.0</h5>
-      <Button color="link" className="text-decoration-none" onClick={() => onToggle()}>
+      <Button
+        color="link"
+        className="text-decoration-none"
+        onClick={() => onToggle()}
+      >
         Log in&nbsp;
         <LogIn />
       </Button>

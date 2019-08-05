@@ -17,14 +17,24 @@ export default function Greeting({ onToggle }) {
       <Container className={greeting}>
         <h1 className="heading-greeting">CWC2</h1>
         <div>
-          <p>Todo based application. Built with ReactJS, NodeJS/Express, MongoDb.</p>
+          <p>
+            Todo based application. Built with ReactJS, NodeJS/Express, MongoDb.
+          </p>
           <p>
             For using please&nbsp;
-            <Button color="link" className="p-0 align-baseline" onClick={() => onToggle()}>
+            <Button
+              color="link"
+              className="p-0 align-baseline"
+              onClick={() => onToggle()}
+            >
               sign in
             </Button>
             &nbsp;or&nbsp;
-            <Button color="link" className="p-0 align-baseline" onClick={() => onToggle('2')}>
+            <Button
+              color="link"
+              className="p-0 align-baseline"
+              onClick={() => onToggle('2')}
+            >
               register
             </Button>
             .
