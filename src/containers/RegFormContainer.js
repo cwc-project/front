@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { bindActionCreators, compose } from 'redux';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import * as userActions from '../actions/user';
 
@@ -60,23 +61,57 @@ class RegFormContainer extends PureComponent {
   handleSubmit = event => {
     event.preventDefault();
     const { name, email, pass } = this.state;
-    if (!email.valid || !pass.valid) {
-      return;
-    }
     const {
-      userActions: { login, reg },
       type,
+      userActions: { login, reg },
     } = this.props;
-
-    if (type === 'reg' && name.valid) {
-      const trimedName = name.value.trimEnd();
-      reg(trimedName, email.value, pass.value, this.handleError);
+    if (!email.valid || !pass.valid || (!name.valid && type === 'reg')) {
       return;
     }
+
+    let account = {
+      email: email.value,
+      password: pass.value,
+    };
 
     if (type === 'log') {
-      login(email.value, pass.value, this.handleError);
+      this.submitAction(login, account);
+      return;
     }
+
+    if (type === 'reg') {
+      account = Object.assign({ name: name.value.trimEnd() }, account);
+      this.submitAction(reg, account);
+    }
+
+    // if (type === 'reg' && name.valid) {
+    //   reg(
+    //     {
+    //       name: name.value.trimEnd(),
+    //       email: email.value,
+    //       password: pass.value,
+    //     },
+    //     history,
+    //     this.handleError,
+    //   );
+    //   return;
+    // }
+
+    // if (type === 'log') {
+    //   login(
+    //     {
+    //       email: email.value,
+    //       password: pass.value,
+    //     },
+    //     history,
+    //     this.handleError,
+    //   );
+    // }
+  };
+
+  submitAction = (action, data) => {
+    const { history } = this.props;
+    action(data, history, this.handleError);
   };
 
   handleCheck = (name, value) => this.regExps[name].test(value);
@@ -102,14 +137,21 @@ const mapDispatchToProps = dispatch => ({
   userActions: bindActionCreators(userActions, dispatch),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
+export default compose(
+  withRouter,
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  ),
 )(RegFormContainer);
 
 RegFormContainer.propTypes = {
   validation: PropTypes.bool,
   type: PropTypes.oneOf(['log', 'reg']).isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+    location: PropTypes.object,
+  }).isRequired,
   userActions: PropTypes.shape({
     reg: PropTypes.func.isRequired,
     login: PropTypes.func.isRequired,

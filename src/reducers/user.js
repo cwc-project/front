@@ -2,7 +2,7 @@ import { LOGIN_USER, FETCH_USER, ERR_USER } from '../actions';
 
 const reducer = (
   state = {
-    details: {},
+    profile: {},
     loading: false,
   },
   action,
@@ -17,7 +17,7 @@ const reducer = (
     case LOGIN_USER:
       return {
         ...state,
-        details: action.details,
+        profile: action.profile,
         loading: false,
       };
     case ERR_USER:
