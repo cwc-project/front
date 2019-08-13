@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Container, Button } from 'reactstrap';
 import './Greeting.css';
+
 import RegModalContainer from '../../containers/RegModalContainer';
 
 // использование встроенных стилей bootstrap

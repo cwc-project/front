@@ -1,22 +1,28 @@
-import {
-  LOGIN_USER,
-  // ERR_USER
-} from '../actions';
+import { LOGIN_USER, FETCH_USER, ERR_USER } from '../actions';
 
 const reducer = (
   state = {
     details: {},
-    // err: '',
     loading: false,
   },
   action,
 ) => {
   switch (action.type) {
+    case FETCH_USER:
+      return {
+        ...state,
+        loading: true,
+      };
+
     case LOGIN_USER:
       return {
         ...state,
         details: action.details,
-        // err: '',
+        loading: false,
+      };
+    case ERR_USER:
+      return {
+        ...state,
         loading: false,
       };
 
@@ -24,8 +30,5 @@ const reducer = (
       return state;
   }
 };
-
-// case ERR_USER: // prettier ignore
-// return { ...state, details: {}, err: action.err, loading: false };
 
 export default reducer;

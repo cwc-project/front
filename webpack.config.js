@@ -16,6 +16,10 @@ module.exports = (env, argv) => {
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: devMode ? '[name].bundle.js' : '[name].[hash].bundle.js',
+      publicPath: '/',
+    },
+    devServer: {
+      historyApiFallback: true,
     },
     optimization: {
       minimizer: [

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import './RegModal.css';
+
 import RegTabsContainer from '../../containers/RegTabsContainer';
 
 // использование встроенных стилей bootstrap
