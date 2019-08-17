@@ -34,7 +34,27 @@ class RegFormContainer extends PureComponent {
     };
   }
 
-  handleError = err => this.setState({ err });
+  handleError = err => {
+    let error = err.response ? err.response.data : err;
+
+    if (error.formatErr) {
+      const {
+        nameErr = false,
+        emailErr = false,
+        passErr = false,
+      } = err.response.data.formatErr;
+      const { name, email, pass } = this.state;
+
+      this.setState({
+        name: { ...name, valid: !nameErr },
+        email: { ...email, valid: !emailErr },
+        pass: { ...pass, valid: !passErr },
+      });
+    } else {
+      error = typeof error.error === 'string' ? error.error : err.toString();
+      this.setState({ err: error });
+    }
+  };
 
   handleChange = ({ target: { name, value } }) => {
     const { ...state } = this.state;
@@ -70,8 +90,8 @@ class RegFormContainer extends PureComponent {
     }
 
     let account = {
-      email: email.value,
-      password: pass.value,
+      email: email.value.toLowerCase(),
+      pass: pass.value,
     };
 
     if (type === 'log') {
@@ -83,30 +103,6 @@ class RegFormContainer extends PureComponent {
       account = Object.assign({ name: name.value.trimEnd() }, account);
       this.submitAction(reg, account);
     }
-
-    // if (type === 'reg' && name.valid) {
-    //   reg(
-    //     {
-    //       name: name.value.trimEnd(),
-    //       email: email.value,
-    //       password: pass.value,
-    //     },
-    //     history,
-    //     this.handleError,
-    //   );
-    //   return;
-    // }
-
-    // if (type === 'log') {
-    //   login(
-    //     {
-    //       email: email.value,
-    //       password: pass.value,
-    //     },
-    //     history,
-    //     this.handleError,
-    //   );
-    // }
   };
 
   submitAction = (action, data) => {
@@ -161,3 +157,19 @@ RegFormContainer.propTypes = {
 RegFormContainer.defaultProps = {
   validation: false,
 };
+
+// this.setState(prevState => ({
+//   ...prevState,
+//   name: {
+//     ...prevState.name,
+//     valid: !nameErr,
+//   },
+//   email: {
+//     ...prevState.email,
+//     valid: !emailErr,
+//   },
+//   pass: {
+//     ...prevState.pass,
+//     valid: !passErr,
+//   },
+// }));

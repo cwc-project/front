@@ -54,6 +54,10 @@ export default function RegForm(props) {
     handleSubmit,
   } = props;
 
+  const nameCheck = classNames({
+    'is-valid': validation && name.valid === true,
+    'is-invalid': validation && name.valid === false,
+  });
   const emailCheck = classNames({
     'is-valid': validation && email.valid === true,
     'is-invalid': validation && email.valid === false,
@@ -61,10 +65,6 @@ export default function RegForm(props) {
   const passCheck = classNames({
     'is-valid': validation && pass.valid === true,
     'is-invalid': validation && pass.valid === false,
-  });
-  const nameCheck = classNames({
-    'is-valid': validation && name.valid === true,
-    'is-invalid': validation && name.valid === false,
   });
 
   return (
