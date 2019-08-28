@@ -7,13 +7,13 @@ export const ERR_USER = 'ERR_USER';
 
 const loginSuccess = data => ({ type: LOGIN_USER, profile: data });
 
-export const login = (profile, history, handleError) => dispatch => {
+export const login = (input, history, handleError) => dispatch => {
   dispatch({
     type: FETCH_USER,
   });
   return axios
-    .post(`${process.env.SERVER_URL}/user/login`, {
-      ...profile,
+    .post(`${process.env.SERVER_URL_LOCAL}/user/login`, {
+      ...input,
     })
     .then(({ data }) => dispatch(loginSuccess(data)))
     .then(() => history.push('/projects'))
@@ -25,13 +25,13 @@ export const login = (profile, history, handleError) => dispatch => {
     });
 };
 
-export const reg = (profile, history, handleError) => dispatch => {
+export const reg = (input, history, handleError) => dispatch => {
   dispatch({
     type: FETCH_USER,
   });
   return axios
     .post(`${process.env.SERVER_URL_LOCAL}/user/register`, {
-      ...profile,
+      ...input,
     })
     .then(({ data }) => dispatch(loginSuccess(data)))
     .then(() => history.push('/projects'))

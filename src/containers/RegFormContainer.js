@@ -35,6 +35,7 @@ class RegFormContainer extends PureComponent {
   }
 
   handleError = err => {
+    console.log(err.response);
     let error = err.response ? err.response.data : err;
 
     if (error.formatErr) {
@@ -157,19 +158,3 @@ RegFormContainer.propTypes = {
 RegFormContainer.defaultProps = {
   validation: false,
 };
-
-// this.setState(prevState => ({
-//   ...prevState,
-//   name: {
-//     ...prevState.name,
-//     valid: !nameErr,
-//   },
-//   email: {
-//     ...prevState.email,
-//     valid: !emailErr,
-//   },
-//   pass: {
-//     ...prevState.pass,
-//     valid: !passErr,
-//   },
-// }));
