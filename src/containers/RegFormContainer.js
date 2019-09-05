@@ -35,7 +35,7 @@ class RegFormContainer extends PureComponent {
   }
 
   handleError = err => {
-    console.log(err.response);
+    // console.log(err.response);
     let error = err.response ? err.response.data : err;
 
     if (error.formatErr) {
