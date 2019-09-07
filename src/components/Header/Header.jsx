@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
+// import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-// import Btn from '../Btn'
-import { LogIn } from 'react-feather';
-import { Button } from 'reactstrap';
+import {
+  LogIn,
+  // LogOut
+} from 'react-feather';
+import {
+  Button,
+  // ButtonDropdown,
+  // DropdownToggle,
+  // DropdownMenu,
+  // DropdownItem,
+} from 'reactstrap';
 import './Header.css';
 
 // использование встроенных стилей bootstrap
@@ -22,10 +31,19 @@ const bsUtilClasses = {
 };
 const header = classNames(bsUtilClasses.header, 'header');
 
-export default function Header({ onToggle }) {
-  return (
-    <header className={header}>
-      <h5 className="font-weight-normal mb-0">CWC-project v. 2.0</h5>
+export default class Header extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  render() {
+    const {
+      onToggle,
+      loggedIn,
+      // userName
+    } = this.props;
+    const logBtn = !loggedIn ? (
       <Button
         color="link"
         className="text-decoration-none"
@@ -34,10 +52,20 @@ export default function Header({ onToggle }) {
         Log in&nbsp;
         <LogIn />
       </Button>
-    </header>
-  );
+    ) : (
+      <Button>userName</Button>
+    );
+    return (
+      <header className={header}>
+        <h5 className="font-weight-normal mb-0">CWC-project v. 2.0</h5>
+        {logBtn}
+      </header>
+    );
+  }
 }
 
 Header.propTypes = {
+  loggedIn: PropTypes.bool.isRequired,
+  // userName: PropTypes.string,
   onToggle: PropTypes.func.isRequired,
 };

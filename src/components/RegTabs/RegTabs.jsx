@@ -57,11 +57,9 @@ export default function RegTabs({ activeTab, toggleTab }) {
             nameFeedback={nameFeedback}
             emailFeedback={emailFeedback}
             passFeedback={passFeedback}
-            // emailInfo={emailInfo}
           />
         </TabPane>
       </TabContent>
-      {/* <div className="feedback"></div> */}
     </div>
   );
 }

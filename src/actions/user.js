@@ -5,7 +5,7 @@ export const LOGIN_USER = 'LOGIN_USER';
 export const FETCH_USER = 'FETCH_USER';
 export const ERR_USER = 'ERR_USER';
 
-const loginSuccess = data => ({ type: LOGIN_USER, profile: data });
+const loginSuccess = data => ({ type: LOGIN_USER, user: data });
 
 export const login = (input, history, handleError) => dispatch => {
   dispatch({

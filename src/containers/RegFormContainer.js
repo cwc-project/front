@@ -35,7 +35,6 @@ class RegFormContainer extends PureComponent {
   }
 
   handleError = err => {
-    // console.log(err.response);
     let error = err.response ? err.response.data : err;
 
     if (error.formatErr) {
@@ -90,19 +89,19 @@ class RegFormContainer extends PureComponent {
       return;
     }
 
-    let account = {
+    let input = {
       email: email.value.toLowerCase(),
       pass: pass.value,
     };
 
     if (type === 'log') {
-      this.submitAction(login, account);
+      this.submitAction(login, input);
       return;
     }
 
     if (type === 'reg') {
-      account = Object.assign({ name: name.value.trimEnd() }, account);
-      this.submitAction(reg, account);
+      input = Object.assign({ name: name.value.trimEnd() }, input);
+      this.submitAction(reg, input);
     }
   };
 
