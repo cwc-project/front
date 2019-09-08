@@ -2,16 +2,13 @@ import React, { PureComponent } from 'react';
 // import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import {
-  LogIn,
-  // LogOut
-} from 'react-feather';
+import { LogIn, LogOut } from 'react-feather';
 import {
   Button,
-  // ButtonDropdown,
-  // DropdownToggle,
-  // DropdownMenu,
-  // DropdownItem,
+  ButtonDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
 } from 'reactstrap';
 import './Header.css';
 
@@ -34,8 +31,15 @@ const header = classNames(bsUtilClasses.header, 'header');
 export default class Header extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      dropdownOpen: false,
+    };
   }
+
+  toggle = () => {
+    const { dropdownOpen } = this.state;
+    this.setState({ dropdownOpen: !dropdownOpen });
+  };
 
   render() {
     const {
@@ -43,6 +47,7 @@ export default class Header extends PureComponent {
       loggedIn,
       // userName
     } = this.props;
+    const { dropdownOpen } = this.state;
     const logBtn = !loggedIn ? (
       <Button
         color="link"
@@ -53,7 +58,17 @@ export default class Header extends PureComponent {
         <LogIn />
       </Button>
     ) : (
-      <Button>userName</Button>
+      <ButtonDropdown isOpen={dropdownOpen} toggle={this.toggle}>
+        <DropdownToggle color="link" className="text-decoration-none" caret>
+          {/* {userName} */}
+        </DropdownToggle>
+        <DropdownMenu right>
+          <DropdownItem>
+            <LogOut />
+            &nbsp; Log out
+          </DropdownItem>
+        </DropdownMenu>
+      </ButtonDropdown>
     );
     return (
       <header className={header}>
