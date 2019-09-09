@@ -1,4 +1,4 @@
-import { LOGIN_USER, FETCH_USER, ERR_USER } from '../actions';
+import { LOGIN_USER, FETCH_USER, ERR_USER, LOGOUT_USER } from '../actions';
 import { loadStorageToState } from '../middleware/localStorage';
 
 const initialState = {
@@ -31,6 +31,8 @@ export default (state = localState, action) => {
         loggedIn: true,
         loading: false,
       };
+    case LOGOUT_USER:
+      return initialState;
 
     case ERR_USER:
       return {

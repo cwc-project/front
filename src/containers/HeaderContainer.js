@@ -9,8 +9,8 @@ const mapStateToProps = state => ({
   userName: state.user.info.name,
 });
 
-const mapDispatchToProps = dispatch => ({
-  onLogout: history => dispatch(logout(history)),
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  onLogout: () => dispatch(logout(ownProps.history)),
   onToggle: activeTab => {
     dispatch(toggleTab(activeTab));
     dispatch(toggleModal());

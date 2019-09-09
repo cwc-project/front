@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-// import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { LogIn, LogOut } from 'react-feather';
@@ -42,11 +41,8 @@ export default class Header extends PureComponent {
   };
 
   render() {
-    const {
-      onToggle,
-      loggedIn,
-      // userName
-    } = this.props;
+    const { onToggle, loggedIn, userName, onLogout } = this.props;
+    console.log(userName, 'userName');
     const { dropdownOpen } = this.state;
     const logBtn = !loggedIn ? (
       <Button
@@ -60,10 +56,10 @@ export default class Header extends PureComponent {
     ) : (
       <ButtonDropdown isOpen={dropdownOpen} toggle={this.toggle}>
         <DropdownToggle color="link" className="text-decoration-none" caret>
-          {/* {userName} */}
+          {userName}
         </DropdownToggle>
         <DropdownMenu right>
-          <DropdownItem>
+          <DropdownItem onClick={onLogout}>
             <LogOut />
             &nbsp; Log out
           </DropdownItem>
@@ -80,7 +76,12 @@ export default class Header extends PureComponent {
 }
 
 Header.propTypes = {
-  loggedIn: PropTypes.bool.isRequired,
-  // userName: PropTypes.string,
   onToggle: PropTypes.func.isRequired,
+  onLogout: PropTypes.func.isRequired,
+  loggedIn: PropTypes.bool.isRequired,
+  userName: PropTypes.string,
+};
+
+Header.defaultProps = {
+  userName: 'user_name',
 };
