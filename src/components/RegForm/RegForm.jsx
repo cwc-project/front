@@ -137,7 +137,7 @@ export default function RegForm(props) {
               <span className={passIconWrap}>
                 <button
                   color="link"
-                  type="submit"
+                  type="button"
                   onClick={passToggle}
                   className={passToggleBtn}
                 >
