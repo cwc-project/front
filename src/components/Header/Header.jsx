@@ -42,7 +42,6 @@ export default class Header extends PureComponent {
 
   render() {
     const { onToggle, loggedIn, userName, onLogout } = this.props;
-    console.log(userName, 'userName');
     const { dropdownOpen } = this.state;
     const logBtn = !loggedIn ? (
       <Button

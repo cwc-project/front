@@ -1,6 +1,6 @@
 export const loadStorageToState = (key = 'state') => {
   try {
-    const serializedState = localStorage.getItem(key);
+    const serializedState = sessionStorage.getItem(key);
     if (serializedState === null) {
       return undefined;
     }
@@ -16,7 +16,7 @@ export const loadStateToStorage = key => store => next => action => {
     const serializedState = JSON.stringify(
       key ? store.getState()[key] : store.getState(),
     );
-    localStorage.setItem(key || 'state', serializedState);
+    sessionStorage.setItem(key || 'state', serializedState);
   } catch (e) {
     console.error('loadStateToStorage', e);
   }

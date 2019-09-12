@@ -1,5 +1,5 @@
 import { LOGIN_USER, FETCH_USER, ERR_USER, LOGOUT_USER } from '../actions';
-import { loadStorageToState } from '../middleware/localStorage';
+import { loadStorageToState } from '../middleware/sessionStorage';
 
 const initialState = {
   auth_token: '',
