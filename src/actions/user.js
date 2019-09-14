@@ -45,17 +45,22 @@ export function reg(input, history, handleError) {
       });
   };
 }
+/* eslint-disable no-console */
+/* eslint-disable arrow-body-style */
 
 export function logout(token, history) {
-  return axios
-    .post(`${process.env.SERVER_URL_LOCAL}/user/logout`, {
-      token,
-      headers: { Authorization: `Bearer ${token}` },
+  return dispatch => {
+    return axios(`${process.env.SERVER_URL_LOCAL}/user/logout`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     })
-    .then(() => loggedOut())
-    .catch(e => {
-      console.error(`Failed to logout: ${e}`);
-      return loggedOut();
-    })
-    .finally(() => history.push('/'));
+      .then(() => dispatch(loggedOut()))
+      .catch(e => {
+        console.error(`Unable to logout: ${e}`);
+        return dispatch(loggedOut());
+      })
+      .finally(() => history.push('/'));
+  };
 }

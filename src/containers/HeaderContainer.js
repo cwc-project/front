@@ -4,23 +4,28 @@ import { compose } from 'redux';
 import Header from '../components/Header';
 import { toggleModal, toggleTab, logout } from '../actions';
 
-const mapStateToProps = state => ({
-  loggedIn: state.user.loggedIn,
-  userName: state.user.info.name,
-});
+const mapStateToProps = state => ({ user: state.user });
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  onLogout: () => dispatch(logout(ownProps.history)),
-  onToggle: activeTab => {
-    dispatch(toggleTab(activeTab));
-    dispatch(toggleModal());
-  },
-});
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+  const { authToken } = stateProps.user;
+  const { dispatch } = dispatchProps;
+  const { history } = ownProps;
+  return {
+    loggedIn: stateProps.user.loggedIn,
+    userName: stateProps.user.info.name,
+    onLogout: () => dispatch(logout(authToken, history)),
+    onToggle: activeTab => {
+      dispatch(toggleTab(activeTab));
+      dispatch(toggleModal());
+    },
+  };
+};
 
 export default compose(
   withRouter,
   connect(
     mapStateToProps,
-    mapDispatchToProps,
+    null,
+    mergeProps,
   ),
 )(Header);

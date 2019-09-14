@@ -10,5 +10,11 @@
   </head>
   <body>
     <div id="app"></div>
+    <script>
+      window.addEventListener('beforeunload', event => {
+        event.preventDefault();
+        return alert('Are you shure?');
+      });
+    </script>
   </body>
 </html>

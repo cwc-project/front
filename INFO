@@ -1,2 +1,5 @@
-- отправка формы регистрации при нажатии enter
++ отправка формы регистрации при нажатии enter
++ auth_token - camel case
+- logout при закрытии вкладки
+- убрать redux-logger на production (webpack define plugin)
 ()

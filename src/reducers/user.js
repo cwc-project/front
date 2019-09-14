@@ -2,7 +2,7 @@ import { LOGIN_USER, FETCH_USER, ERR_USER, LOGOUT_USER } from '../actions';
 import { loadStorageToState } from '../middleware/sessionStorage';
 
 const initialState = {
-  auth_token: '',
+  authToken: '',
   info: {},
   loggedIn: false,
   loading: false,
@@ -26,7 +26,7 @@ export default (state = localState, action) => {
 
     case LOGIN_USER:
       return {
-        auth_token: action.user.auth_token,
+        authToken: action.user.authToken,
         info: { ...action.user.info },
         loggedIn: true,
         loading: false,
