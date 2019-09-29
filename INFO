@@ -2,4 +2,5 @@
 + auth_token - camel case
 - logout при закрытии вкладки
 - убрать redux-logger на production (webpack define plugin)
+- автоматическую замену env при npm run build (webpack define plugin)
 ()

@@ -6,6 +6,8 @@ export const LOGOUT_USER = 'LOGOUT_USER';
 export const FETCH_USER = 'FETCH_USER';
 export const ERR_USER = 'ERR_USER';
 
+const server = process.env.SERVER_URL;
+
 const fetchUser = () => ({ type: FETCH_USER });
 const loginSuccess = data => ({ type: LOGIN_USER, user: data });
 const loggedOut = () => ({ type: LOGOUT_USER });
@@ -14,7 +16,7 @@ export function login(input, history, handleError) {
   return dispatch => {
     dispatch(fetchUser());
     return axios
-      .post(`${process.env.SERVER_URL_LOCAL}/user/login`, {
+      .post(`${server}/user/login`, {
         ...input,
       })
       .then(({ data }) => dispatch(loginSuccess(data)))
@@ -32,7 +34,7 @@ export function reg(input, history, handleError) {
   return dispatch => {
     dispatch(fetchUser());
     return axios
-      .post(`${process.env.SERVER_URL_LOCAL}/user/register`, {
+      .post(`${server}/user/register`, {
         ...input,
       })
       .then(({ data }) => dispatch(loginSuccess(data)))
@@ -50,7 +52,7 @@ export function reg(input, history, handleError) {
 
 export function logout(token, history) {
   return dispatch => {
-    return axios(`${process.env.SERVER_URL_LOCAL}/user/logout`, {
+    return axios(`${server}/user/logout`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`,
