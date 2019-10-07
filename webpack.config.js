@@ -79,7 +79,10 @@ module.exports = (env, argv) => {
       new MiniCssExtractPlugin({
         filename: devMode ? '[name].css' : '[name].[hash].css',
       }),
-      new CopyWebpackPlugin([{ from: 'src/favicon.ico', to: './' }]),
+      new CopyWebpackPlugin([
+        { from: 'src/favicon.ico', to: './' },
+        { from: 'src/404.html', to: './' },
+      ]),
       new Dotenv(),
     ],
   };

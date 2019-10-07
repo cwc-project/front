@@ -1,6 +1,10 @@
 + отправка формы регистрации при нажатии enter
 + auth_token - camel case
+- на github обновление страниц
+- cname ?
 - logout при закрытии вкладки
 - убрать redux-logger на production (webpack define plugin)
 - автоматическую замену env при npm run build (webpack define plugin)
+- mainfest webpack plugin
+- отптимизация (code Splitting, lazy loading)
 ()
