@@ -1,8 +1,12 @@
 + отправка формы регистрации при нажатии enter
 + auth_token - camel case
-- на github обновление страниц
++ на github обновление страниц
++ где д.б. nojekyll только локально или в папке dist //в dist
 - cname ?
 - logout при закрытии вкладки
+- залогиненый пользователь не получает начальной страницы
+- контент на главной в зависимости от того залогинен пользователь или нет
+- если нет, то стандартный контент,если залогинент, то кнопка projects
 - убрать redux-logger на production (webpack define plugin)
 - автоматическую замену env при npm run build (webpack define plugin)
 - mainfest webpack plugin

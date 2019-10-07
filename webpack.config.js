@@ -82,6 +82,7 @@ module.exports = (env, argv) => {
       new CopyWebpackPlugin([
         { from: 'src/favicon.ico', to: './' },
         { from: 'src/404.html', to: './' },
+        { from: '.nojekyll', to: './' },
       ]),
       new Dotenv(),
     ],

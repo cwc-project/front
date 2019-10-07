@@ -20,7 +20,7 @@ export function login(input, history, handleError) {
         ...input,
       })
       .then(({ data }) => dispatch(loginSuccess(data)))
-      .then(() => history.push('/projects'))
+      .then(() => history.replace('/projects'))
       .catch(e => {
         handleError(e);
         dispatch({
@@ -38,7 +38,7 @@ export function reg(input, history, handleError) {
         ...input,
       })
       .then(({ data }) => dispatch(loginSuccess(data)))
-      .then(() => history.push('/projects'))
+      .then(() => history.replace('/projects'))
       .catch(err => {
         handleError(err);
         dispatch({
@@ -63,6 +63,6 @@ export function logout(token, history) {
         console.error(`Unable to logout: ${e}`);
         return dispatch(loggedOut());
       })
-      .finally(() => history.push('/'));
+      .finally(() => history.replace('/'));
   };
 }
