@@ -1,5 +1,5 @@
 module.exports = {
-  '*.{js,jsx}': ['eslint --fix --color', 'git add'],
+  '*.{js,jsx}': ['eslint --fix --color --ignore-path .gitignore', 'git add'],
   '*.{css}': ['stylelint src/**/*.css --fix', 'git add'],
   '*.{html,css,json,md}': ['prettier --write', 'git add'],
 };
