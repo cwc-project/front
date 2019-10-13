@@ -4,6 +4,10 @@ import { connect } from 'react-redux';
 import { toggleModal, toggleTab } from '../actions';
 import Greeting from '../components/Greeting';
 
+const mapStateToProps = state => ({
+  loggedIn: state.user.loggedIn,
+});
+
 const mapDispatchToProps = dispatch => ({
   onToggle: activeTab => {
     dispatch(toggleTab(activeTab));
@@ -12,6 +16,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(Greeting);

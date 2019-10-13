@@ -2,7 +2,8 @@
 + auth_token - camel case
 + на github обновление страниц
 + где д.б. nojekyll только локально или в папке dist //в dist
-- cname ?
+
+- в lint-staged добавить test при npm build (посмотреть back)
 - logout при закрытии вкладки
 - залогиненый пользователь не получает начальной страницы
 - контент на главной в зависимости от того залогинен пользователь или нет
@@ -11,4 +12,6 @@
 - автоматическую замену env при npm run build (webpack define plugin)
 - mainfest webpack plugin
 - отптимизация (code Splitting, lazy loading)
+- сжимать html файлы
+- свой домен cname ?
 ()

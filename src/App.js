@@ -1,21 +1,32 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { Fragment } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import React from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import HeaderContainer from './containers/HeaderContainer';
 import GreetingContainer from './containers/GreetingContainer';
 import Footer from './components/Footer';
-import Projects from './components/Projects';
+import ProjectsContainer from './containers/ProjectsContainer';
 
-export default function App() {
+export default function App({ loggedIn }) {
   return (
-    <Fragment>
+    <>
       <HeaderContainer />
       <Switch>
-        <Route exact path="/" component={GreetingContainer} />
-        <Route path="/projects" component={Projects} />
+        <Route exact path="/">
+          {loggedIn ? (
+            <Redirect push exact from="/" to="/projects" />
+          ) : (
+            <GreetingContainer />
+          )}
+        </Route>
+        <Route exact path="/projects" component={ProjectsContainer} />
       </Switch>
       <Footer />
-    </Fragment>
+    </>
   );
 }
+
+App.propTypes = {
+  loggedIn: PropTypes.bool.isRequired,
+};

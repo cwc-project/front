@@ -100,7 +100,7 @@ class RegFormContainer extends PureComponent {
     }
 
     if (type === 'reg') {
-      input = Object.assign({ name: name.value.trimEnd() }, input);
+      input = { ...input, name: name.value.trimEnd() };
       this.submitAction(reg, input);
     }
   };
