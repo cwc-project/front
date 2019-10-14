@@ -8,7 +8,7 @@
     "build": "npm run prebuild && webpack -p",
     "test": "jest --passWithNoTests --verbose",
     "prebuild": "git add . && git commit -m 'build' --allow-empty",
-    "prettier:all": "prettier --write **/*.{js,jsx,css,html,md}",
+    "prettier:all": "prettier --write **/*.{js,jsx,css,html,md} --ignore-path .gitignore",
     "newContainer": "node dev_utilites/createContainer.js --name",
     "newComponent": "node dev_utilites/createComponent.js --name"
   },
