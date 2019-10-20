@@ -1,16 +1,10 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { Container, Button } from 'reactstrap';
+
+import { Button } from 'reactstrap';
 import './Greeting.css';
 
 import RegModalContainer from '../../containers/RegModalContainer';
-
-// использование встроенных стилей bootstrap
-const bsUtilClasses = {
-  greeting: ['text-center'],
-};
-const greeting = classNames(bsUtilClasses.greeting);
 
 export default class Greeting extends PureComponent {
   componentDidMount() {
@@ -26,7 +20,7 @@ export default class Greeting extends PureComponent {
 
     return (
       <main>
-        <Container className={greeting}>
+        <>
           <h1 className="heading-greeting">CWC2</h1>
           <div>
             <p>
@@ -54,7 +48,7 @@ export default class Greeting extends PureComponent {
             </p>
           </div>
           <RegModalContainer />
-        </Container>
+        </>
       </main>
     );
   }

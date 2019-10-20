@@ -1,8 +1,8 @@
 import { FETCH_PROJECTS, GET_PROJECTS, ERR_PROJECTS } from '../actions';
 
 const initialState = {
-  projects: [],
-  loading: true,
+  projects: [{}, {}],
+  loading: false,
 };
 
 export default (state = initialState, action) => {
