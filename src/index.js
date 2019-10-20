@@ -6,12 +6,11 @@ import store from './store';
 import App from './App';
 
 const app = document.getElementById('app');
-const { loggedIn } = store.getState().user;
 
 render(
   <Provider store={store}>
     <Router>
-      <App loggedIn={loggedIn} />
+      <App />
     </Router>
   </Provider>,
   app,
