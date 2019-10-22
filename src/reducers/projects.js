@@ -1,7 +1,16 @@
 import { FETCH_PROJECTS, GET_PROJECTS, ERR_PROJECTS } from '../actions';
 
 const initialState = {
-  projects: [{}, {}],
+  projects: [
+    {
+      title: 'First Project',
+      id: '1',
+    },
+    {
+      title: 'Second Project',
+      id: '2',
+    },
+  ],
   loading: false,
 };
 

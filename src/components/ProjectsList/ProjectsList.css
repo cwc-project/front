@@ -1,0 +1,18 @@
+.projects-list {
+  max-width: 600px;
+  left: 50%;
+  transform: translateX(-50%);
+  position: relative;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 0;
+}
+
+.projects-badge {
+  padding: 0.8rem;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.projects-select {
+  height: 2.6rem;
+}

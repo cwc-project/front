@@ -2,27 +2,26 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Plus } from 'react-feather';
 import { Spinner, Button } from 'reactstrap';
+import ProjectsList from './ProjectsList';
 
 export default function Projects(props) {
   const { projects, loading } = props;
 
   return (
-    <div className="text-center">
+    <>
       {!loading ? (
         <>
-          {projects ? (
-            <Button color="primary">
-              <Plus />
-              &nbsp;Create your first project
-            </Button>
-          ) : (
-            <h2>Test</h2>
-          )}
+          {projects && <ProjectsList projects={projects} />}
+          <Button color="primary" className="mt-4">
+            <Plus />
+            &nbsp;
+            {projects ? 'Add new project' : 'Create your first project'}
+          </Button>
         </>
       ) : (
         <Spinner color="primary" />
       )}
-    </div>
+    </>
   );
 }
 

@@ -8,6 +8,7 @@
     <title>CWC-project</title>
     <script>
       (function({ origin, search, hash }) {
+        // ограничиваем scope с помощью iffe
         if (search) {
           const firstQueryKey = search.split('=')[0];
           const slashAppear = search.indexOf('/') !== -1;
