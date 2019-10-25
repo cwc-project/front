@@ -6,7 +6,7 @@ export const LOGOUT_USER = 'LOGOUT_USER';
 export const FETCH_USER = 'FETCH_USER';
 export const ERR_USER = 'ERR_USER';
 
-const server = process.env.SERVER_URL;
+const server = process.env.SERVER_URL_LOCAL;
 
 const fetchUser = () => ({ type: FETCH_USER });
 const loginSuccess = data => ({ type: LOGIN_USER, user: data });

@@ -8,6 +8,7 @@ import HeaderContainer from './containers/HeaderContainer';
 import GreetingContainer from './containers/GreetingContainer';
 import Footer from './components/Footer';
 import ProjectsContainer from './containers/ProjectsContainer';
+import AddProjectContainer from './containers/AddProjectContainer';
 import PageNotFound from './components/PageNotFound';
 
 // использование встроенных стилей bootstrap
@@ -26,6 +27,7 @@ export default function App() {
           <Route exact path="/projects" component={ProjectsContainer} />
           <Route component={PageNotFound} />
         </Switch>
+        <Route path="/projects" component={AddProjectContainer} />
       </Container>
       <Footer />
     </>
