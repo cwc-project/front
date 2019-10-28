@@ -1,21 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { Plus } from 'react-feather';
 import { Spinner, Button } from 'reactstrap';
 import ProjectsList from './ProjectsList';
+import ErrorContainer from '../containers/ErrorContainer';
+// перенести в контейнер ?
+// использование встроенных стилей bootstrap
+const bsUtilClasses = {
+  btn: ['mt-4'],
+};
+
+const btn = classNames(bsUtilClasses.btn);
 
 export default function Projects(props) {
   const { projects, loading, toggleModal } = props;
-
   return (
     <>
       {!loading ? (
         <>
-          {projects && <ProjectsList projects={projects} />}
-          <Button color="primary" className="mt-4" onClick={toggleModal}>
+          {projects.length > 0 && <ProjectsList projects={projects} />}
+          <ErrorContainer type="projects" />
+          <Button color="primary" className={btn} onClick={toggleModal}>
             <Plus />
             &nbsp;
-            {projects ? 'Add new project' : 'Create your first project'}
+            {projects.length ? 'Add new project' : 'Create your first project'}
           </Button>
         </>
       ) : (

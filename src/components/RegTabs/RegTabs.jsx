@@ -5,6 +5,11 @@ import { User, UserPlus } from 'react-feather';
 import { Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
 import './RegTabs.css';
 
+import {
+  NAME_FORMAT_ERR,
+  EMAIL_FORMAT_ERR,
+  PASS_FORMAT_ERR,
+} from '../../constants';
 import RegFormContainer from '../../containers/RegFormContainer';
 
 // использование встроенных стилей bootstrap
@@ -16,10 +21,6 @@ const icons = classNames(bsUtilClasses.icons);
 const navLink = classNames(bsUtilClasses.navLink, 'reg-link');
 
 export default function RegTabs({ activeTab, toggleTab }) {
-  const nameFeedback = 'Use at least 1 character for name.';
-  const emailFeedback = 'Incorrect email format. Example: example@email.com';
-  const passFeedback = 'Password length should be not less than 6 characters. Please use at least one letter and one number.'; // prettier-ignore
-
   return (
     <div>
       <Nav tabs>
@@ -54,9 +55,9 @@ export default function RegTabs({ activeTab, toggleTab }) {
             btnValue="Register"
             validation
             optionFileds="name"
-            nameFeedback={nameFeedback}
-            emailFeedback={emailFeedback}
-            passFeedback={passFeedback}
+            nameFeedback={NAME_FORMAT_ERR}
+            emailFeedback={EMAIL_FORMAT_ERR}
+            passFeedback={PASS_FORMAT_ERR}
           />
         </TabPane>
       </TabContent>

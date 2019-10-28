@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux';
-import rsEffects from './rsEffects'; // эффекты библиотеки reactstrap
-import user from './user';
-import projects from './projects';
+import errors from './errorReducer';
+import rsEffects from './rsEffectsReducer'; // эффекты библиотеки reactstrap
+import user from './userReducer';
+import projects from './projectsReducer';
 
-const reducer = combineReducers({
+const rootReducer = combineReducers({
+  errors,
   rsEffects,
   user,
   projects,
 });
 
-export default reducer;
+export default rootReducer;

@@ -23,25 +23,29 @@ class AddProjectContainer extends PureComponent {
     this.addProject = props.addProject;
   }
 
-  // componentDidMount() {
-  //   // modal false при загрузке ?
-  // }
-
   render() {
     const { modal } = this.props;
-    // const { value } = this.title.current;
     return (
       <Modal isOpen={modal} fade>
         <ModalHeader toggle={this.toggleModal}>Add new project</ModalHeader>
         <ModalBody>
-          <Form>
-            <Input placeholder="Insert project title" innerRef={this.title} />
+          <Form
+            onSubmit={e => {
+              e.preventDefault();
+              this.addProject(this.title.current.value.trim());
+            }}
+          >
+            <Input
+              placeholder="Insert project title"
+              innerRef={this.title}
+              required
+            />
           </Form>
         </ModalBody>
         <ModalFooter>
           <Button
             color="primary"
-            onClick={() => this.addProject(this.title.current.value)}
+            onClick={() => this.addProject(this.title.current.value.trim())}
           >
             Submit new project
           </Button>

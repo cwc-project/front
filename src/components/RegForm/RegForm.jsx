@@ -12,11 +12,10 @@ import {
   Input,
   InputGroup,
   InputGroupAddon,
-  Alert,
   Spinner,
 } from 'reactstrap';
 import './RegForm.css';
-
+import ErrorContainer from '../../containers/ErrorContainer';
 // использование встроенных стилей bootstrap
 const bsUtilClasses = {
   form: ['p-1'],
@@ -31,7 +30,6 @@ const form = classNames(bsUtilClasses.form);
 const formGroup = classNames(bsUtilClasses.formGroup);
 const btn = classNames(bsUtilClasses.btn);
 const passToggleBtn = classNames(bsUtilClasses.passToggleBtn);
-const alert = classNames(bsUtilClasses.alert);
 const nameIconWrap = classNames(bsUtilClasses.nameIconWrap);
 const passIconWrap = classNames(bsUtilClasses.passIconWrap);
 
@@ -39,6 +37,7 @@ export default function RegForm(props) {
   const {
     props: {
       id,
+      type,
       btnValue,
       validation,
       optionFileds,
@@ -48,7 +47,7 @@ export default function RegForm(props) {
       emailInfo,
       loading,
     },
-    state: { name, email, pass, err },
+    state: { name, email, pass },
     handleChange,
     passToggle,
     handleSubmit,
@@ -152,13 +151,14 @@ export default function RegForm(props) {
             {passFeedback ? <FormFeedback>{passFeedback}</FormFeedback> : false}
           </InputGroup>
         </FormGroup>
-        {err ? (
+        <ErrorContainer type={type} />
+        {/* {err ? (
           <Alert color="danger" className={alert}>
             {err}
           </Alert>
         ) : (
           ''
-        )}
+        )} */}
         <Button color="primary" outline className={btn}>
           {loading ? (
             <Fragment>
@@ -177,6 +177,7 @@ export default function RegForm(props) {
 RegForm.propTypes = {
   props: PropTypes.shape({
     id: PropTypes.string.isRequired,
+    type: PropTypes.oneOf(['log', 'reg']).isRequired,
     optionFileds: PropTypes.oneOf(['name']),
     btnValue: PropTypes.string,
     validation: PropTypes.bool,

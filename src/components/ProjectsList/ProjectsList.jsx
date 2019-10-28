@@ -18,8 +18,8 @@ export default function ProjectsList({ projects }) {
         <Badge className="projects-badge">{projects.length}</Badge>
 
         <Input className="projects-select" type="select" name="select">
-          {projects.map(project => (
-            <option key={project.id}>{project.title}</option>
+          {projects.map(({ _id: id, title }) => (
+            <option key={id}>{title}</option>
           ))}
         </Input>
         <InputGroupAddon addonType="append">

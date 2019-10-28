@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import * as userActions from '../actions/user';
+import * as userActions from '../actions/userActions';
 
 import RegForm from '../components/RegForm';
 
@@ -24,7 +24,7 @@ class RegFormContainer extends PureComponent {
         valid: '',
         hide: true,
       },
-      err: '',
+      // err: '',
     };
 
     this.regExps = {
@@ -34,27 +34,28 @@ class RegFormContainer extends PureComponent {
     };
   }
 
-  handleError = err => {
-    let error = err.response ? err.response.data : err;
+  // handleError = err => {
+  //   const error = err.response ? err.response.data : err;
 
-    if (error.formatErr) {
-      const {
-        nameErr = false,
-        emailErr = false,
-        passErr = false,
-      } = err.response.data.formatErr;
-      const { name, email, pass } = this.state;
+  //   if (error.formatErr) {
+  //     const {
+  //       nameErr = false,
+  //       emailErr = false,
+  //       passErr = false,
+  //     } = err.response.data.formatErr;
+  //     const { name, email, pass } = this.state;
 
-      this.setState({
-        name: { ...name, valid: !nameErr },
-        email: { ...email, valid: !emailErr },
-        pass: { ...pass, valid: !passErr },
-      });
-    } else {
-      error = typeof error.error === 'string' ? error.error : err.toString();
-      this.setState({ err: error });
-    }
-  };
+  //     this.setState({
+  //       name: { ...name, valid: !nameErr },
+  //       email: { ...email, valid: !emailErr },
+  //       pass: { ...pass, valid: !passErr },
+  //     });
+  //   }
+  //   else {
+  //     error = typeof error.error === 'string' ? error.error : err.toString();
+  //     this.setState({ err: error });
+  //   }
+  // };
 
   handleChange = ({ target: { name, value } }) => {
     const { ...state } = this.state;
@@ -107,7 +108,7 @@ class RegFormContainer extends PureComponent {
 
   submitAction = (action, data) => {
     const { history } = this.props;
-    action(data, history, this.handleError);
+    action(data, history);
   };
 
   handleCheck = (name, value) => this.regExps[name].test(value);

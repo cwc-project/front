@@ -1,16 +1,12 @@
-import { FETCH_PROJECTS, GET_PROJECTS, ERR_PROJECTS } from '../actions';
+import {
+  FETCH_PROJECTS,
+  GET_PROJECTS,
+  ERR_PROJECTS,
+  ADD_PROJECT,
+} from '../actions';
 
 const initialState = {
-  projects: [
-    {
-      title: 'First Project',
-      id: '1',
-    },
-    {
-      title: 'Second Project',
-      id: '2',
-    },
-  ],
+  projects: [],
   loading: false,
 };
 
@@ -24,8 +20,14 @@ export default (state = initialState, action) => {
 
     case GET_PROJECTS:
       return {
-        projects: action.data,
+        projects: action.projects,
         loading: false,
+      };
+
+    case ADD_PROJECT:
+      return {
+        ...state,
+        projects: [...state.projects, action.project],
       };
 
     case ERR_PROJECTS:
