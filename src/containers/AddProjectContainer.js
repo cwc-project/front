@@ -16,8 +16,6 @@ import { toggleModal, addProject } from '../actions';
 class AddProjectContainer extends PureComponent {
   constructor(props) {
     super(props);
-    // const { dispatch } = props;
-    // this.toggleModal = bindActionCreators(toggleModal, dispatch);
     this.title = React.createRef();
     this.toggleModal = props.toggleModal;
     this.addProject = props.addProject;
@@ -68,9 +66,9 @@ AddProjectContainer.defaultProps = {
   modal: false,
 };
 
-const mapStateToProps = state => ({
-  modal: state.rsEffects.modal,
-  authToken: state.user.authToken,
+const mapStateToProps = ({ rsEffects, user }) => ({
+  modal: rsEffects.modal,
+  authToken: user.authToken,
 });
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
@@ -84,9 +82,6 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
   };
 };
 
-// const mapDispatchToProps = (dispatch, ownProps) => ({});
-// mapDispatchToProps,  // при использовании mapDispatchToProps,
-// значение dispatch в props = undefined
 export default connect(
   mapStateToProps,
   null,

@@ -1,12 +1,11 @@
 import axios from 'axios';
 import { TOGGLE_MODAL } from './rsEffectsActions';
+import { server } from '../constants';
 
 export const GET_PROJECTS = 'GET_PROJECTS';
 export const FETCH_PROJECTS = 'FETCH_PROJECTS';
 export const ERR_PROJECTS = 'ERR_PROJECTS';
 export const ADD_PROJECT = 'ADD_PROJECT';
-
-const server = process.env.SERVER_URL_LOCAL;
 
 const fetchProjects = () => ({ type: FETCH_PROJECTS });
 const projectsError = err => ({ type: ERR_PROJECTS, err });

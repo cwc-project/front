@@ -4,7 +4,7 @@ import { compose } from 'redux';
 import Header from '../components/Header';
 import { toggleModal, toggleTab, logout } from '../actions';
 
-const mapStateToProps = state => ({ user: state.user });
+const mapStateToProps = ({ user }) => ({ user });
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
   const { authToken } = stateProps.user;

@@ -18,10 +18,10 @@ class ProjectsContainer extends PureComponent {
     return <Projects {...this.props} />;
   }
 }
-const mapStateToProps = state => ({
-  projects: state.projects.projects,
-  loading: state.projects.loading,
-  authToken: state.user.authToken,
+const mapStateToProps = ({ projects, user }) => ({
+  projects: projects.projects,
+  loading: projects.loading,
+  authToken: user.authToken,
 });
 
 const mergeProps = (stateProps, dispatchProps) => {

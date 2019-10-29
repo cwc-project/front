@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import errors from './errorReducer';
-import rsEffects from './rsEffectsReducer'; // эффекты библиотеки reactstrap
+import rsEffects from './rsEffectsReducer';
 import user from './userReducer';
 import projects from './projectsReducer';
 

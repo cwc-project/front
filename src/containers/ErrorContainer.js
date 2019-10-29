@@ -22,9 +22,7 @@ const ErrorContainer = props => {
   );
 };
 
-const mapStateToProps = state => ({
-  err: state.errors.err,
-});
+const mapStateToProps = ({ errors }) => ({ err: errors.err });
 
 export default connect(mapStateToProps)(ErrorContainer);
 

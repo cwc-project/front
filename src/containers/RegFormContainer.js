@@ -24,7 +24,6 @@ class RegFormContainer extends PureComponent {
         valid: '',
         hide: true,
       },
-      // err: '',
     };
 
     this.regExps = {
@@ -33,29 +32,6 @@ class RegFormContainer extends PureComponent {
       pass: /^(?=.*\d)(?=.*[a-z])[\w!@#$%^&*]{6,}$/i,
     };
   }
-
-  // handleError = err => {
-  //   const error = err.response ? err.response.data : err;
-
-  //   if (error.formatErr) {
-  //     const {
-  //       nameErr = false,
-  //       emailErr = false,
-  //       passErr = false,
-  //     } = err.response.data.formatErr;
-  //     const { name, email, pass } = this.state;
-
-  //     this.setState({
-  //       name: { ...name, valid: !nameErr },
-  //       email: { ...email, valid: !emailErr },
-  //       pass: { ...pass, valid: !passErr },
-  //     });
-  //   }
-  //   else {
-  //     error = typeof error.error === 'string' ? error.error : err.toString();
-  //     this.setState({ err: error });
-  //   }
-  // };
 
   handleChange = ({ target: { name, value } }) => {
     const { ...state } = this.state;
@@ -126,9 +102,7 @@ class RegFormContainer extends PureComponent {
   }
 }
 
-const mapStateToProps = state => ({
-  loading: state.user.loading,
-});
+const mapStateToProps = ({ user }) => ({ loading: user.loading });
 
 const mapDispatchToProps = dispatch => ({
   userActions: bindActionCreators(userActions, dispatch),

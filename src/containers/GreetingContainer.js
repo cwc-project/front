@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 import { toggleModal, toggleTab } from '../actions';
 import Greeting from '../components/Greeting';
 
-const mapStateToProps = state => ({
-  loggedIn: state.user.loggedIn,
-});
+const mapStateToProps = ({ user }) => ({ loggedIn: user.loggedIn });
 
 const mapDispatchToProps = dispatch => ({
   onToggle: activeTab => {

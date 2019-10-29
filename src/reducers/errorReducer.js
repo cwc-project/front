@@ -1,4 +1,10 @@
-import { ERR_LOGIN, ERR_REG, ERR_PROJECTS, TOGGLE_MODAL } from '../actions';
+import {
+  ERR_LOGIN,
+  ERR_REG,
+  ERR_PROJECTS,
+  TOGGLE_MODAL,
+  LOGOUT_USER,
+} from '../actions';
 import {
   NAME_FORMAT_ERR,
   EMAIL_FORMAT_ERR,
@@ -28,15 +34,8 @@ const errorExtractor = err => {
     return formatError(error.formatErr);
   }
   error = typeof error.error === 'string' ? error.error : err.toString();
-  // const error = err.response ? err.response.data.error : err;
   return error;
 };
-// const errorExtractor = err => {
-//   // let error = err.response ? err.response.data : err;
-//   // error = typeof error.error === 'string' ? error.error : err.toString();
-//   // return error;
-
-// };
 
 const errorReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -51,6 +50,9 @@ const errorReducer = (state = initialState, action) => {
 
     case TOGGLE_MODAL:
       return { err: { ...state.err, log: '', reg: '' } };
+
+    case LOGOUT_USER:
+      return initialState;
 
     default:
       return state;
