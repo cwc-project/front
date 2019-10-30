@@ -18,7 +18,7 @@ export default function ProjectsList({ projects }) {
         <Badge className="projects-badge">{projects.length}</Badge>
 
         <Input className="projects-select" type="select" name="select">
-          {projects.map(({ _id: id, title }) => (
+          {projects.map(({ id, title }) => (
             <option key={id}>{title}</option>
           ))}
         </Input>

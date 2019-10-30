@@ -10,7 +10,10 @@ const initialState = {
   loading: false,
 };
 
-export default (state = initialState, action) => {
+const projectsHandler = projects =>
+  projects.map(({ _id: id, ...rest }) => ({ id, ...rest }));
+
+const projectsReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_PROJECTS:
       return {
@@ -20,7 +23,7 @@ export default (state = initialState, action) => {
 
     case GET_PROJECTS:
       return {
-        projects: action.projects,
+        projects: projectsHandler(action.projects),
         loading: false,
       };
 
@@ -40,3 +43,5 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+export default projectsReducer;

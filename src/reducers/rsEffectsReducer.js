@@ -5,7 +5,7 @@ export const initialState = {
   activeTab: '1',
 };
 
-const reducer = (state = initialState, action) => {
+const rsEffectsReducer = (state = initialState, action) => {
   switch (action.type) {
     case TOGGLE_MODAL:
       return { ...state, modal: !state.modal };
@@ -21,4 +21,4 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-export default reducer;
+export default rsEffectsReducer;

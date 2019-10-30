@@ -5,10 +5,15 @@ import { server } from '../constants';
 export const GET_PROJECTS = 'GET_PROJECTS';
 export const FETCH_PROJECTS = 'FETCH_PROJECTS';
 export const ERR_PROJECTS = 'ERR_PROJECTS';
+export const ERR_PROJECT = 'ERR_PROJECT';
 export const ADD_PROJECT = 'ADD_PROJECT';
 
+export const gotProject = (history, id) => history.push(`/projects/${id}`);
+
+export const errProject = err => ({ type: ERR_PROJECT, err });
+
+const errProjects = err => ({ type: ERR_PROJECTS, err });
 const fetchProjects = () => ({ type: FETCH_PROJECTS });
-const projectsError = err => ({ type: ERR_PROJECTS, err });
 const getProjectsSuccess = projects => ({ type: GET_PROJECTS, projects });
 const addProjectSuccess = project => ({ type: ADD_PROJECT, project });
 
@@ -25,12 +30,12 @@ export const getProjects = token => dispatch => {
     },
   })
     .then(({ data }) => dispatch(getProjectsSuccess(data.projects)))
-    .catch(err => dispatch(projectsError(err)));
+    .catch(err => dispatch(errProjects(err)));
 };
 // Добавить history
-/* eslint-disable arrow-body-style */
-export const addProject = (title, token) => dispatch => {
-  return axios({
+
+export const addProject = (title, token, history) => dispatch =>
+  axios({
     url: `${server}/projects`,
     method: 'POST',
     headers: {
@@ -40,7 +45,9 @@ export const addProject = (title, token) => dispatch => {
       title,
     },
   })
-    .then(({ data }) => dispatch(addProjectSuccess({ title, _id: data.id })))
-    .then(() => dispatch({ type: TOGGLE_MODAL }))
-    .catch(err => dispatch(projectsError(err)));
-};
+    .then(({ data }) => dispatch(addProjectSuccess({ title, id: data.id })))
+    .then(({ project }) => {
+      dispatch({ type: TOGGLE_MODAL });
+      gotProject(history, project.id);
+    })
+    .catch(err => dispatch(errProject(err)));

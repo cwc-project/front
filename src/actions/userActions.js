@@ -35,10 +35,10 @@ export const reg = (input, history) => dispatch => {
     .then(() => history.replace('/projects'))
     .catch(err => dispatch(regError(err)));
 };
+
 /* eslint-disable no-console */
-/* eslint-disable arrow-body-style */
-export const logout = (token, history) => dispatch => {
-  return axios(`${server}/user/logout`, {
+export const logout = (token, history) => dispatch =>
+  axios(`${server}/user/logout`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${token}`,
@@ -50,4 +50,3 @@ export const logout = (token, history) => dispatch => {
       return dispatch(loggedOut());
     })
     .finally(() => history.replace('/'));
-};

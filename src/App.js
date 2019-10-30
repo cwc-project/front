@@ -26,7 +26,7 @@ export default function App() {
         <Switch>
           <Route exact path="/" component={GreetingContainer} />
           <PrivateRoute exact path="/projects" component={ProjectsContainer} />
-          {/* <Route exact path="/projects" component={ProjectsContainer} /> */}
+          <Route path="/projects/:id" component={ProjectsContainer} />
           <Route component={PageNotFound} />
         </Switch>
         <Route path="/projects" component={AddProjectContainer} />

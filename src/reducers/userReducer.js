@@ -22,7 +22,7 @@ try {
   localState = initialState;
 }
 
-export default (state = localState, action) => {
+const userReducer = (state = localState, action) => {
   switch (action.type) {
     case FETCH_USER:
       return {
@@ -51,3 +51,5 @@ export default (state = localState, action) => {
       return state;
   }
 };
+
+export default userReducer;

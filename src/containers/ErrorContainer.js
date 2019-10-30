@@ -6,7 +6,7 @@ import { Alert } from 'reactstrap';
 
 // использование встроенных стилей bootstrap
 const bsUtilClasses = {
-  alert: ['overflow-hidden', 'text-truncate'],
+  alert: ['overflow-hidden', 'text-truncate', 'mt-2'],
 };
 const alert = classNames(bsUtilClasses.alert);
 
@@ -27,7 +27,7 @@ const mapStateToProps = ({ errors }) => ({ err: errors.err });
 export default connect(mapStateToProps)(ErrorContainer);
 
 ErrorContainer.propTypes = {
-  type: PropTypes.oneOf(['log', 'reg', 'projects']).isRequired,
+  type: PropTypes.oneOf(['log', 'reg', 'projects', 'project']).isRequired,
   err: PropTypes.shape({
     log: PropTypes.string.isRequired,
     reg: PropTypes.string.isRequired,
