@@ -11,7 +11,7 @@
 + залогиненый пользователь не получает начальной страницы
 или ( контент на главной в зависимости от того залогинен пользователь или нет,
 если нет, то стандартный контент,если залогинент, то кнопка projects - вариант без кувшкусе)
-- убрать redux-logger на production (webpack define plugin)
++ убрать redux-logger на production (webpack define plugin)
 - автоматическую замену env при npm run build (webpack define plugin)
 - mainfest webpack plugin
 - отптимизация (code Splitting, lazy loading)
