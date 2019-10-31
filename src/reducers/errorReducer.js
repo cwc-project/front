@@ -5,12 +5,10 @@ import {
   ERR_PROJECT,
   TOGGLE_MODAL,
   LOGOUT_USER,
-} from '../actions';
-import {
   NAME_FORMAT_ERR,
   EMAIL_FORMAT_ERR,
   PASS_FORMAT_ERR,
-} from '../constants';
+} from '../actions';
 
 const initialState = {
   err: {

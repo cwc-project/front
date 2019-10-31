@@ -1,38 +1,17 @@
-import {
-  FETCH_PROJECTS,
-  // FETCH_PROJECT,
-  GET_PROJECTS,
-  // ERR_PROJECTS,
-  ADD_PROJECT,
-} from '../actions';
+import { GET_PROJECTS, ADD_PROJECT } from '../actions';
 
-const initialState = {
-  projects: [],
-  // loading: false,
-};
+const initialState = [];
 
 const projectsHandler = projects =>
   projects.map(({ _id: id, ...rest }) => ({ id, ...rest }));
 
 const projectsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_PROJECTS:
-      return {
-        ...state,
-        // loading: true,
-      };
-
     case GET_PROJECTS:
-      return {
-        projects: projectsHandler(action.projects),
-        // loading: false,
-      };
+      return projectsHandler(action.projects);
 
     case ADD_PROJECT:
-      return {
-        ...state,
-        projects: [...state.projects, action.project],
-      };
+      return [...state, action.project];
 
     default:
       return state;
@@ -40,9 +19,3 @@ const projectsReducer = (state = initialState, action) => {
 };
 
 export default projectsReducer;
-
-// case ERR_PROJECTS:
-//   return {
-//     ...state,
-//     loading: false,
-//   };

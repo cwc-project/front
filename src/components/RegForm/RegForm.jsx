@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Eye, EyeOff, User } from 'react-feather';
 import {
-  // Button,
   Form,
   FormGroup,
   FormText,
@@ -12,7 +11,6 @@ import {
   Input,
   InputGroup,
   InputGroupAddon,
-  // Spinner,
 } from 'reactstrap';
 import './RegForm.css';
 import ErrorContainer from '../../containers/ErrorContainer';
@@ -21,7 +19,6 @@ import BtnSubmitContainer from '../../containers/BtnSubmitContainer';
 const bsUtilClasses = {
   form: ['p-1'],
   formGroup: ['mb-1'],
-  btn: ['float-right', 'mt-3'],
   passToggleBtn: ['btn', 'btn-light', 'border-0', 'shadow-none'],
   alert: ['overflow-hidden', 'text-truncate'],
   nameIconWrap: ['input-group-text'],
@@ -29,7 +26,7 @@ const bsUtilClasses = {
 };
 const form = classNames(bsUtilClasses.form);
 const formGroup = classNames(bsUtilClasses.formGroup);
-// const btn = classNames(bsUtilClasses.btn);
+
 const passToggleBtn = classNames(bsUtilClasses.passToggleBtn);
 const nameIconWrap = classNames(bsUtilClasses.nameIconWrap);
 const passIconWrap = classNames(bsUtilClasses.passIconWrap);
@@ -154,16 +151,6 @@ const RegForm = props => {
         </FormGroup>
         <ErrorContainer type={type} />
         <BtnSubmitContainer btnValue={btnValue} type="user" />
-        {/* <Button color="primary" outline className={btn}>
-          {loading ? (
-            <>
-              <Spinner color="primary" size="sm" />
-              &nbsp;Loading ...
-            </>
-          ) : (
-            btnValue
-          )}
-        </Button> */}
       </fieldset>
     </Form>
   );

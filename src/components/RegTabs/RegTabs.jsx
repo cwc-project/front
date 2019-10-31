@@ -9,7 +9,7 @@ import {
   NAME_FORMAT_ERR,
   EMAIL_FORMAT_ERR,
   PASS_FORMAT_ERR,
-} from '../../constants';
+} from '../../actions/errorActions';
 import RegFormContainer from '../../containers/RegFormContainer';
 
 // использование встроенных стилей bootstrap

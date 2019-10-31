@@ -24,7 +24,7 @@ ProjectsContainer.propTypes = {
 };
 
 const mapStateToProps = ({ projects, user, fetch }) => ({
-  projects: projects.projects,
+  projects,
   loading: fetch.loading.projects,
   authToken: user.authToken,
 });
