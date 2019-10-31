@@ -1,4 +1,4 @@
-import { TOGGLE_MODAL, TOGGLE_TAB, LOGIN_USER } from '../actions';
+import { TOGGLE_MODAL, TOGGLE_TAB, LOGIN_USER, ADD_PROJECT } from '../actions';
 
 export const initialState = {
   modal: false,
@@ -14,6 +14,7 @@ const rsEffectsReducer = (state = initialState, action) => {
       return { ...state, activeTab: action.activeTab };
 
     case LOGIN_USER:
+    case ADD_PROJECT:
       return { ...state, modal: false };
 
     default:

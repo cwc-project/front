@@ -1,9 +1,9 @@
 import {
   LOGIN_USER,
-  FETCH_USER,
+  // FETCH_USER,
   LOGOUT_USER,
-  ERR_LOGIN,
-  ERR_REG,
+  // ERR_LOGIN,
+  // ERR_REG,
 } from '../actions';
 import { loadStorageToState } from '../middleware/sessionStorage';
 
@@ -11,7 +11,7 @@ const initialState = {
   authToken: '',
   info: {},
   loggedIn: false,
-  loading: false,
+  // loading: false,
 };
 
 let localState;
@@ -24,28 +24,21 @@ try {
 
 const userReducer = (state = localState, action) => {
   switch (action.type) {
-    case FETCH_USER:
-      return {
-        ...state,
-        loading: true,
-      };
+    // case FETCH_USER:
+    //   return {
+    //     ...state,
+    //     loading: true,
+    //   };
 
     case LOGIN_USER:
       return {
         authToken: action.user.authToken,
         info: { ...action.user.info },
         loggedIn: true,
-        loading: false,
+        // loading: false,
       };
     case LOGOUT_USER:
       return initialState;
-
-    case ERR_LOGIN:
-    case ERR_REG:
-      return {
-        ...state,
-        loading: false,
-      };
 
     default:
       return state;
@@ -53,3 +46,10 @@ const userReducer = (state = localState, action) => {
 };
 
 export default userReducer;
+
+// case ERR_LOGIN:
+// case ERR_REG:
+//   return {
+//     ...state,
+//     loading: false,
+//   };

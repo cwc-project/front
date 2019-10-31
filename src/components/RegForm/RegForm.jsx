@@ -1,9 +1,9 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Eye, EyeOff, User } from 'react-feather';
 import {
-  Button,
+  // Button,
   Form,
   FormGroup,
   FormText,
@@ -12,10 +12,11 @@ import {
   Input,
   InputGroup,
   InputGroupAddon,
-  Spinner,
+  // Spinner,
 } from 'reactstrap';
 import './RegForm.css';
 import ErrorContainer from '../../containers/ErrorContainer';
+import BtnSubmitContainer from '../../containers/BtnSubmitContainer';
 // использование встроенных стилей bootstrap
 const bsUtilClasses = {
   form: ['p-1'],
@@ -28,12 +29,12 @@ const bsUtilClasses = {
 };
 const form = classNames(bsUtilClasses.form);
 const formGroup = classNames(bsUtilClasses.formGroup);
-const btn = classNames(bsUtilClasses.btn);
+// const btn = classNames(bsUtilClasses.btn);
 const passToggleBtn = classNames(bsUtilClasses.passToggleBtn);
 const nameIconWrap = classNames(bsUtilClasses.nameIconWrap);
 const passIconWrap = classNames(bsUtilClasses.passIconWrap);
 
-export default function RegForm(props) {
+const RegForm = props => {
   const {
     props: {
       id,
@@ -68,7 +69,7 @@ export default function RegForm(props) {
 
   return (
     <Form className={form} onSubmit={handleSubmit}>
-      <fieldset disabled={loading ? 'disabled' : ''}>
+      <fieldset disabled={loading}>
         {optionFileds === 'name' ? (
           <FormGroup className={formGroup}>
             <Label for={`${id}name`}>Name*</Label>
@@ -152,27 +153,21 @@ export default function RegForm(props) {
           </InputGroup>
         </FormGroup>
         <ErrorContainer type={type} />
-        {/* {err ? (
-          <Alert color="danger" className={alert}>
-            {err}
-          </Alert>
-        ) : (
-          ''
-        )} */}
-        <Button color="primary" outline className={btn}>
+        <BtnSubmitContainer btnValue={btnValue} type="user" />
+        {/* <Button color="primary" outline className={btn}>
           {loading ? (
-            <Fragment>
+            <>
               <Spinner color="primary" size="sm" />
               &nbsp;Loading ...
-            </Fragment>
+            </>
           ) : (
             btnValue
           )}
-        </Button>
+        </Button> */}
       </fieldset>
     </Form>
   );
-}
+};
 
 RegForm.propTypes = {
   props: PropTypes.shape({
@@ -201,7 +196,6 @@ RegForm.propTypes = {
       valid: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
       hide: PropTypes.bool.isRequired,
     }).isRequired,
-    err: PropTypes.string,
   }).isRequired,
   handleChange: PropTypes.func.isRequired,
   passToggle: PropTypes.func.isRequired,
@@ -213,3 +207,5 @@ RegForm.defaultProps = {
     btnValue: 'submit',
   },
 };
+
+export default RegForm;

@@ -3,17 +3,19 @@ import { bindActionCreators } from 'redux';
 import { toggleModal, addProject, errProject } from '../actions';
 import AddProject from '../components/AddProject';
 
-const mapStateToProps = ({ rsEffects, user }) => ({
+const mapStateToProps = ({ rsEffects, user, fetch }) => ({
+  loading: fetch.loading.project,
   modal: rsEffects.modal,
   authToken: user.authToken,
 });
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
-  const { authToken, modal } = stateProps;
+  const { authToken, modal, loading } = stateProps;
   const { dispatch } = dispatchProps;
   const { history } = ownProps;
   return {
     modal,
+    loading,
     toggleModal: bindActionCreators(toggleModal, dispatch),
     addProject: title => {
       const titleValue = title.current.value.trim();

@@ -11,11 +11,11 @@ const footer = classNames(bsUtilClasses.footer);
 const hr = classNames(bsUtilClasses.hr);
 const copy = classNames(bsUtilClasses.copy);
 
-export default function Footer() {
-  return (
-    <footer className={footer}>
-      <hr className={hr} />
-      <p className={copy}>&copy; 2018-2019 CWC-project</p>
-    </footer>
-  );
-}
+const Footer = () => (
+  <footer className={footer}>
+    <hr className={hr} />
+    <p className={copy}>&copy; 2018-2019 CWC-project</p>
+  </footer>
+);
+
+export default Footer;

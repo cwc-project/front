@@ -1,14 +1,15 @@
 import axios from 'axios';
 import { server } from '../constants';
+import { fetchUser } from './fetchActions';
 
 export const REG_USER = 'REG_USER';
 export const LOGIN_USER = 'LOGIN_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
-export const FETCH_USER = 'FETCH_USER';
+// export const FETCH_USER = 'FETCH_USER';
 export const ERR_LOGIN = 'ERR_LOGIN';
 export const ERR_REG = 'ERR_REG';
 
-const fetchUser = () => ({ type: FETCH_USER });
+// const fetchUser = () => ({ type: FETCH_USER });
 const loginSuccess = data => ({ type: LOGIN_USER, user: data });
 const loginError = err => ({ type: ERR_LOGIN, err });
 const regError = err => ({ type: ERR_REG, err });

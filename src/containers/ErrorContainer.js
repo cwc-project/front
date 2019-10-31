@@ -22,10 +22,6 @@ const ErrorContainer = props => {
   );
 };
 
-const mapStateToProps = ({ errors }) => ({ err: errors.err });
-
-export default connect(mapStateToProps)(ErrorContainer);
-
 ErrorContainer.propTypes = {
   type: PropTypes.oneOf(['log', 'reg', 'projects', 'project']).isRequired,
   err: PropTypes.shape({
@@ -34,3 +30,7 @@ ErrorContainer.propTypes = {
     projects: PropTypes.string.isRequired,
   }).isRequired,
 };
+
+const mapStateToProps = ({ errors }) => ({ err: errors.err });
+
+export default connect(mapStateToProps)(ErrorContainer);

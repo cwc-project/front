@@ -1,26 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Input,
-  Button,
-  Form,
-} from 'reactstrap';
-import ErrorContainer from '../containers/ErrorContainer';
+import { Modal, ModalHeader, ModalBody, Input, Form } from 'reactstrap';
 
-const AddProject = ({ modal, toggleModal, addProject }) => {
+import ErrorContainer from '../containers/ErrorContainer';
+import BtnSubmitContainer from '../containers/BtnSubmitContainer';
+
+const AddProject = ({ modal, loading, toggleModal, addProject }) => {
   const title = React.createRef();
-  // const addProject = () => {
-  //   const titleValue = title.current.value.trim();
-  //   if (titleValue) {
-  //     return props.addProject(titleValue);
-  //   }
-  //   return null;
-  // };
-  // const { modal, toggleModal } = props;
   return (
     <Modal isOpen={modal} fade>
       <ModalHeader toggle={toggleModal}>Add new project</ModalHeader>
@@ -31,24 +17,24 @@ const AddProject = ({ modal, toggleModal, addProject }) => {
             addProject(title);
           }}
         >
-          <Input placeholder="Insert project title" innerRef={title} required />
+          <fieldset disabled={loading}>
+            <Input
+              placeholder="Insert project title"
+              innerRef={title}
+              required
+            />
+            <ErrorContainer type="project" />
+            <BtnSubmitContainer type="project" btnValue="Submit new project" />
+          </fieldset>
         </Form>
-        <ErrorContainer type="project" />
       </ModalBody>
-      <ModalFooter>
-        <Button color="primary" onClick={() => addProject(title)}>
-          Submit new project
-        </Button>
-        <Button color="secondary" onClick={toggleModal}>
-          Cancel
-        </Button>
-      </ModalFooter>
     </Modal>
   );
 };
 
 AddProject.propTypes = {
   modal: PropTypes.bool,
+  loading: PropTypes.bool.isRequired,
   toggleModal: PropTypes.func.isRequired,
   addProject: PropTypes.func.isRequired,
 };

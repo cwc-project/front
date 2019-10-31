@@ -6,16 +6,15 @@ import classNames from 'classnames';
 const bsUtilClasses = {
   text: ['mb-4'],
 };
-
 const text = classNames(bsUtilClasses.text);
 
-export default function PageNotFound() {
-  return (
-    <>
-      <div className={text}>404 PAGE NOT FOUND</div>
-      <Link to="/" replace>
-        Go to Home page
-      </Link>
-    </>
-  );
-}
+const PageNotFound = () => (
+  <>
+    <div className={text}>404 PAGE NOT FOUND</div>
+    <Link to="/" replace>
+      Go to Home page
+    </Link>
+  </>
+);
+
+export default PageNotFound;

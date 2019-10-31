@@ -14,20 +14,20 @@ const bsUtilClasses = {
 const modalHeader = classNames(bsUtilClasses.modalHeader);
 const modalBody = classNames(bsUtilClasses.modalBody);
 
-export default function RegModal({ modal, toggleModal }) {
-  return (
-    <div>
-      <Modal className="reg-modal" isOpen={modal}>
-        <ModalHeader className={modalHeader} toggle={toggleModal} />
-        <ModalBody className={modalBody}>
-          <RegTabsContainer />
-        </ModalBody>
-      </Modal>
-    </div>
-  );
-}
+const RegModal = ({ modal, toggleModal }) => (
+  <div>
+    <Modal className="reg-modal" isOpen={modal}>
+      <ModalHeader className={modalHeader} toggle={toggleModal} />
+      <ModalBody className={modalBody}>
+        <RegTabsContainer />
+      </ModalBody>
+    </Modal>
+  </div>
+);
 
 RegModal.propTypes = {
   modal: PropTypes.bool.isRequired,
   toggleModal: PropTypes.func.isRequired,
 };
+
+export default RegModal;

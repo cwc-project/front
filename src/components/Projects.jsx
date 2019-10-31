@@ -10,32 +10,30 @@ import ErrorContainer from '../containers/ErrorContainer';
 const bsUtilClasses = {
   btn: ['mt-4'],
 };
-
 const btn = classNames(bsUtilClasses.btn);
 
-export default function Projects(props) {
-  const { projects, loading, toggleModal } = props;
-  return (
-    <>
-      {!loading ? (
-        <>
-          {projects.length > 0 && <ProjectsList projects={projects} />}
-          <ErrorContainer type="projects" />
-          <Button color="primary" className={btn} onClick={toggleModal}>
-            <Plus />
-            &nbsp;
-            {projects.length ? 'Add new project' : 'Create your first project'}
-          </Button>
-        </>
-      ) : (
-        <Spinner color="primary" />
-      )}
-    </>
-  );
-}
+const Projects = ({ projects, loading, toggleModal }) => (
+  <>
+    {!loading ? (
+      <>
+        {projects.length > 0 && <ProjectsList projects={projects} />}
+        <ErrorContainer type="projects" />
+        <Button color="primary" className={btn} onClick={toggleModal}>
+          <Plus />
+          &nbsp;
+          {projects.length ? 'Add new project' : 'Create your first project'}
+        </Button>
+      </>
+    ) : (
+      <Spinner color="primary" />
+    )}
+  </>
+);
 
 Projects.propTypes = {
   projects: PropTypes.array.isRequired,
   loading: PropTypes.bool.isRequired,
   toggleModal: PropTypes.func.isRequired,
 };
+
+export default Projects;

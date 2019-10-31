@@ -1,12 +1,11 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-
 import { Button } from 'reactstrap';
 import './Greeting.css';
 
 import RegModalContainer from '../../containers/RegModalContainer';
 
-export default class Greeting extends PureComponent {
+class Greeting extends PureComponent {
   componentDidMount() {
     const { history, loggedIn } = this.props;
     if (loggedIn) {
@@ -59,3 +58,5 @@ Greeting.propTypes = {
   history: PropTypes.object.isRequired,
   onToggle: PropTypes.func.isRequired,
 };
+
+export default Greeting;

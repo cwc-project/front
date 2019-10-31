@@ -27,31 +27,13 @@ const bsUtilClasses = {
 };
 const header = classNames(bsUtilClasses.header, 'header');
 
-export default class Header extends PureComponent {
+class Header extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       dropdownOpen: false,
     };
   }
-
-  // componentDidMount() {
-  //   this.setupUnloadListener();
-  // }
-
-  // setupUnloadListener = () => {
-  //   window.addEventListener('unload', ev => {
-  //     // console.log('ev', ev)
-  //     ev.preventDefault();
-  //     // return this.doSomethingBeforeUnload();
-  //     return this.testa();
-  //   });
-  // };
-
-  // testa = () => {
-  //   return this.props.test();
-  //   // fetch('http://localhost:9000/api/logout');
-  // }
 
   toggle = () => {
     const { dropdownOpen } = this.state;
@@ -102,3 +84,5 @@ Header.propTypes = {
 Header.defaultProps = {
   userName: 'user_name',
 };
+
+export default Header;

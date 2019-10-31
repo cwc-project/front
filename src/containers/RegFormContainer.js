@@ -102,20 +102,6 @@ class RegFormContainer extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ user }) => ({ loading: user.loading });
-
-const mapDispatchToProps = dispatch => ({
-  userActions: bindActionCreators(userActions, dispatch),
-});
-
-export default compose(
-  withRouter,
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  ),
-)(RegFormContainer);
-
 RegFormContainer.propTypes = {
   validation: PropTypes.bool,
   type: PropTypes.oneOf(['log', 'reg']).isRequired,
@@ -132,3 +118,17 @@ RegFormContainer.propTypes = {
 RegFormContainer.defaultProps = {
   validation: false,
 };
+
+const mapStateToProps = ({ fetch }) => ({ loading: fetch.loading.user });
+
+const mapDispatchToProps = dispatch => ({
+  userActions: bindActionCreators(userActions, dispatch),
+});
+
+export default compose(
+  withRouter,
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  ),
+)(RegFormContainer);

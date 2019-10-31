@@ -18,9 +18,14 @@ class ProjectsContainer extends PureComponent {
     return <Projects {...this.props} />;
   }
 }
-const mapStateToProps = ({ projects, user }) => ({
+
+ProjectsContainer.propTypes = {
+  getProjects: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = ({ projects, user, fetch }) => ({
   projects: projects.projects,
-  loading: projects.loading,
+  loading: fetch.loading.projects,
   authToken: user.authToken,
 });
 
@@ -40,7 +45,3 @@ export default connect(
   null,
   mergeProps,
 )(ProjectsContainer);
-
-ProjectsContainer.propTypes = {
-  getProjects: PropTypes.func.isRequired,
-};

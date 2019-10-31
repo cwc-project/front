@@ -11,27 +11,27 @@ import {
 } from 'reactstrap';
 import './ProjectsList.css';
 
-export default function ProjectsList({ projects }) {
-  return (
-    <Form className="projects-list">
-      <InputGroup>
-        <Badge className="projects-badge">{projects.length}</Badge>
+const ProjectsList = ({ projects }) => (
+  <Form className="projects-list">
+    <InputGroup>
+      <Badge className="projects-badge">{projects.length}</Badge>
 
-        <Input className="projects-select" type="select" name="select">
-          {projects.map(({ id, title }) => (
-            <option key={id}>{title}</option>
-          ))}
-        </Input>
-        <InputGroupAddon addonType="append">
-          <Button color="primary">
-            <ChevronsRight />
-          </Button>
-        </InputGroupAddon>
-      </InputGroup>
-    </Form>
-  );
-}
+      <Input className="projects-select" type="select" name="select">
+        {projects.map(({ id, title }) => (
+          <option key={id}>{title}</option>
+        ))}
+      </Input>
+      <InputGroupAddon addonType="append">
+        <Button color="primary">
+          <ChevronsRight />
+        </Button>
+      </InputGroupAddon>
+    </InputGroup>
+  </Form>
+);
 
 ProjectsList.propTypes = {
   projects: PropTypes.array.isRequired,
 };
+
+export default ProjectsList;
