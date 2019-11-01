@@ -24,16 +24,18 @@ ProjectsContainer.propTypes = {
 };
 
 const mapStateToProps = ({ projects, user, fetch }) => ({
-  projects,
+  projectsList: projects.projectsList,
+  projectsAmount: projects.projectsAmount,
   loading: fetch.loading.projects,
   authToken: user.authToken,
 });
 
 const mergeProps = (stateProps, dispatchProps) => {
-  const { authToken, projects, loading } = stateProps;
+  const { projectsList, projectsAmount, loading, authToken } = stateProps;
   const { dispatch } = dispatchProps;
   return {
-    projects,
+    projectsList,
+    projectsAmount,
     loading,
     toggleModal: () => dispatch(toggleModal()),
     getProjects: () => dispatch(getProjects(authToken)),

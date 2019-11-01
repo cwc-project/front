@@ -1,6 +1,10 @@
 export * from './errors';
 
-export const server = process.env.SERVER_URL;
+const devMode = process.env.NODE_ENV === 'development';
+export const server = devMode
+  ? process.env.SERVER_URL_LOCAL
+  : process.env.SERVER_URL;
+
 // export const server = (() => {
 //   if (process.env.NODE_ENV === 'development') {
 //     console.log(process.env.NODE_ENV)

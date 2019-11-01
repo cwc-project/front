@@ -11,13 +11,13 @@ import {
 } from 'reactstrap';
 import './ProjectsList.css';
 
-const ProjectsList = ({ projects }) => (
+const ProjectsList = ({ projectsList, projectsAmount }) => (
   <Form className="projects-list">
     <InputGroup>
-      <Badge className="projects-badge">{projects.length}</Badge>
+      <Badge className="projects-badge">{projectsAmount}</Badge>
 
       <Input className="projects-select" type="select" name="select">
-        {projects.map(({ id, title }) => (
+        {projectsList.map(({ id, title }) => (
           <option key={id}>{title}</option>
         ))}
       </Input>
@@ -31,7 +31,8 @@ const ProjectsList = ({ projects }) => (
 );
 
 ProjectsList.propTypes = {
-  projects: PropTypes.array.isRequired,
+  projectsList: PropTypes.array.isRequired,
+  projectsAmount: PropTypes.number.isRequired,
 };
 
 export default ProjectsList;

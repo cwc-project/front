@@ -12,16 +12,21 @@ const bsUtilClasses = {
 };
 const btn = classNames(bsUtilClasses.btn);
 
-const Projects = ({ projects, loading, toggleModal }) => (
+const Projects = ({ projectsAmount, projectsList, loading, toggleModal }) => (
   <>
     {!loading ? (
       <>
-        {projects.length > 0 && <ProjectsList projects={projects} />}
+        {projectsAmount > 0 && (
+          <ProjectsList
+            projectsList={projectsList}
+            projectsAmount={projectsAmount}
+          />
+        )}
         <ErrorContainer type="projects" />
         <Button color="primary" className={btn} onClick={toggleModal}>
           <Plus />
           &nbsp;
-          {projects.length ? 'Add new project' : 'Create your first project'}
+          {projectsAmount ? 'Add new project' : 'Create your first project'}
         </Button>
       </>
     ) : (
@@ -31,7 +36,8 @@ const Projects = ({ projects, loading, toggleModal }) => (
 );
 
 Projects.propTypes = {
-  projects: PropTypes.array.isRequired,
+  projectsList: PropTypes.array.isRequired,
+  projectsAmount: PropTypes.number.isRequired,
   loading: PropTypes.bool.isRequired,
   toggleModal: PropTypes.func.isRequired,
 };

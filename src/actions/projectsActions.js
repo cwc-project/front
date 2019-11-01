@@ -9,7 +9,7 @@ export const ADD_PROJECT = 'ADD_PROJECT';
 
 export const gotProject = (history, id) => history.push(`/projects/${id}`);
 
-const getProjectsSuccess = projects => ({ type: GET_PROJECTS, projects });
+const getProjectsSuccess = projects => ({ type: GET_PROJECTS, ...projects });
 const addProjectSuccess = project => ({ type: ADD_PROJECT, project });
 
 export const getProjects = token => dispatch => {
@@ -21,10 +21,10 @@ export const getProjects = token => dispatch => {
       Authorization: `Bearer ${token}`,
     },
   })
-    .then(({ data }) => dispatch(getProjectsSuccess(data.projects)))
+    .then(({ data }) => dispatch(getProjectsSuccess(data)))
     .catch(err => dispatch(errProjects(err)));
 };
-
+// придется заменить, т.к. дата проекта должна присиваиваться на сервере
 export const addProject = (title, token, history) => dispatch => {
   dispatch(fetchProject());
   return axios({
