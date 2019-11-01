@@ -6,8 +6,9 @@ const initialState = {
   project: {},
 };
 
+const renameProjectId = ({ _id: id, ...rest }) => ({ id, rest });
 const projectsListHandler = projects =>
-  projects.map(({ _id: id, ...rest }) => ({ id, ...rest }));
+  projects.map(project => renameProjectId(project));
 
 const projectsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -21,7 +22,7 @@ const projectsReducer = (state = initialState, action) => {
     case ADD_PROJECT:
       return {
         ...state,
-        projectsList: [...state.projectsList, action.project],
+        projectsList: [...state.projectsList, renameProjectId(action.project)],
         projectsAmount: state.projectsAmount + 1,
       };
 
