@@ -12,7 +12,13 @@ const bsUtilClasses = {
 };
 const btn = classNames(bsUtilClasses.btn);
 
-const Projects = ({ projectsAmount, projectsList, loading, toggleModal }) => (
+const Projects = ({
+  projectsAmount,
+  projectsList,
+  loading,
+  toggleModal,
+  history,
+}) => (
   <>
     {!loading ? (
       <>
@@ -20,6 +26,7 @@ const Projects = ({ projectsAmount, projectsList, loading, toggleModal }) => (
           <ProjectsList
             projectsList={projectsList}
             projectsAmount={projectsAmount}
+            history={history}
           />
         )}
         <ErrorContainer type="projects" />
@@ -40,6 +47,7 @@ Projects.propTypes = {
   projectsAmount: PropTypes.number.isRequired,
   loading: PropTypes.bool.isRequired,
   toggleModal: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 export default Projects;

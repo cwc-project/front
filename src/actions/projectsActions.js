@@ -7,10 +7,11 @@ import { errProjects, errProject } from './errorActions';
 export const GET_PROJECTS = 'GET_PROJECTS';
 export const ADD_PROJECT = 'ADD_PROJECT';
 
-export const gotProject = (history, id) => history.push(`/projects/${id}`);
+export const gotoProject = (history, id) => history.push(`/projects/${id}`);
 
 const getProjectsSuccess = projects => ({ type: GET_PROJECTS, ...projects });
-const addProjectSuccess = project => ({ type: ADD_PROJECT, ...project });
+// const addProjectSuccess = project => ({ type: ADD_PROJECT, ...project });
+const addProjectSuccess = () => ({ type: ADD_PROJECT });
 
 export const getProjects = token => dispatch => {
   dispatch(fetchProjects());
@@ -37,7 +38,11 @@ export const addProject = (title, token, history) => dispatch => {
       title,
     },
   })
-    .then(({ data }) => dispatch(addProjectSuccess(data)))
-    .then(({ project }) => gotProject(history, project.id))
+    .then(({ data }) => {
+      dispatch(addProjectSuccess());
+      gotoProject(history, data.insertedId);
+    })
     .catch(err => dispatch(errProject(err)));
+  // .then(({ data }) => dispatch(addProjectSuccess(data)))
+  // .then(({ project }) => gotProject(history, project.id))
 };

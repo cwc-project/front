@@ -3,6 +3,10 @@ import React, { PureComponent } from 'react';
 import {} from 'reactstrap';
 
 class Project extends PureComponent {
+  componentDidMount() {
+    // запрос project info + todos
+  }
+
   render() {
     return (
       <div>

@@ -22,21 +22,29 @@ class ProjectsContainer extends PureComponent {
 ProjectsContainer.propTypes = {
   getProjects: PropTypes.func.isRequired,
 };
-
-const mapStateToProps = ({ projects, user, fetch }) => ({
+// первым аргументом передается state, вторым - ownProps
+const mapStateToProps = ({ projects, user, fetch }, { history }) => ({
   projectsList: projects.projectsList,
   projectsAmount: projects.projectsAmount,
   loading: fetch.loading.projects,
   authToken: user.authToken,
+  history,
 });
 
 const mergeProps = (stateProps, dispatchProps) => {
-  const { projectsList, projectsAmount, loading, authToken } = stateProps;
+  const {
+    projectsList,
+    projectsAmount,
+    loading,
+    authToken,
+    history,
+  } = stateProps;
   const { dispatch } = dispatchProps;
   return {
     projectsList,
     projectsAmount,
     loading,
+    history,
     toggleModal: () => dispatch(toggleModal()),
     getProjects: () => dispatch(getProjects(authToken)),
   };

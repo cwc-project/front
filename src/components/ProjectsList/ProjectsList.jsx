@@ -10,29 +10,40 @@ import {
   Button,
 } from 'reactstrap';
 import './ProjectsList.css';
+import { gotoProject } from '../../actions';
+// компонент, т.к. нет необходимости использовать state redux
+const ProjectsList = ({ projectsList, projectsAmount, history }) => {
+  const onSubmit = e => {
+    e.preventDefault();
+    gotoProject(history, e.target.select.value);
+  };
 
-const ProjectsList = ({ projectsList, projectsAmount }) => (
-  <Form className="projects-list">
-    <InputGroup>
-      <Badge className="projects-badge">{projectsAmount}</Badge>
+  return (
+    <Form className="projects-list" onSubmit={e => onSubmit(e)}>
+      <InputGroup>
+        <Badge className="projects-badge">{projectsAmount}</Badge>
 
-      <Input className="projects-select" type="select" name="select">
-        {projectsList.map(({ id, title }) => (
-          <option key={id}>{title}</option>
-        ))}
-      </Input>
-      <InputGroupAddon addonType="append">
-        <Button color="primary">
-          <ChevronsRight />
-        </Button>
-      </InputGroupAddon>
-    </InputGroup>
-  </Form>
-);
+        <Input className="projects-select" type="select" name="select">
+          {projectsList.map(({ id, title }) => (
+            <option key={id} value={id}>
+              {title}
+            </option>
+          ))}
+        </Input>
+        <InputGroupAddon addonType="append">
+          <Button color="primary" type="submit">
+            <ChevronsRight />
+          </Button>
+        </InputGroupAddon>
+      </InputGroup>
+    </Form>
+  );
+};
 
 ProjectsList.propTypes = {
   projectsList: PropTypes.array.isRequired,
   projectsAmount: PropTypes.number.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 export default ProjectsList;
