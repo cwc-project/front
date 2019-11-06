@@ -32,17 +32,22 @@ export const reg = (input, history) => dispatch => {
     .catch(err => dispatch(regError(err)));
 };
 
+export const logout = history => dispatch => {
+  dispatch(loggedOut());
+  history.replace('/');
+};
+
 /* eslint-disable no-console */
-export const logout = (token, history) => dispatch =>
-  axios(`${server}/user/logout`, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
-    .then(() => dispatch(loggedOut()))
-    .catch(e => {
-      console.error(`Unable to logout: ${e}`);
-      return dispatch(loggedOut());
-    })
-    .finally(() => history.replace('/'));
+// export const logout = (token, history) => dispatch =>
+//   axios(`${server}/user/logout`, {
+//     method: 'POST',
+//     headers: {
+//       Authorization: `Bearer ${token}`,
+//     },
+//   })
+//     .then(() => dispatch(loggedOut()))
+//     .catch(e => {
+//       console.error(`Unable to logout: ${e}`);
+//       return dispatch(loggedOut());
+//     })
+//     .finally(() => history.replace('/'));

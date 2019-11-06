@@ -41,7 +41,7 @@ class Header extends PureComponent {
   };
 
   render() {
-    const { onToggle, loggedIn, userName, onLogout } = this.props;
+    const { onToggle, loggedIn, userName, logout } = this.props;
     const { dropdownOpen } = this.state;
     const logBtn = !loggedIn ? (
       <Button
@@ -58,7 +58,7 @@ class Header extends PureComponent {
           {userName}
         </DropdownToggle>
         <DropdownMenu right>
-          <DropdownItem onClick={onLogout}>
+          <DropdownItem onClick={logout}>
             <LogOut />
             &nbsp; Log out
           </DropdownItem>
@@ -76,7 +76,7 @@ class Header extends PureComponent {
 
 Header.propTypes = {
   onToggle: PropTypes.func.isRequired,
-  onLogout: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
   loggedIn: PropTypes.bool.isRequired,
   userName: PropTypes.string,
 };

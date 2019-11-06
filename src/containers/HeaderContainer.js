@@ -7,13 +7,14 @@ import { toggleModal, toggleTab, logout } from '../actions';
 const mapStateToProps = ({ user }) => ({ user });
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
-  const { authToken } = stateProps.user;
+  // const { authToken } = stateProps.user;
   const { dispatch } = dispatchProps;
   const { history } = ownProps;
   return {
     loggedIn: stateProps.user.loggedIn,
     userName: stateProps.user.info.name,
-    onLogout: () => dispatch(logout(authToken, history)),
+    logout: () => dispatch(logout(history)),
+    // onLogout: () => dispatch(logout(authToken, history)),
     onToggle: activeTab => {
       dispatch(toggleTab(activeTab));
       dispatch(toggleModal());
