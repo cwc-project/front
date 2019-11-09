@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
-import { toggleModal } from '../actions';
+import { toggleModalReg } from '../actions';
 import RegModal from '../components/RegModal';
 
-const mapStateToProps = ({ rsEffects }) => ({ modal: rsEffects.modal });
+const mapStateToProps = ({ rsEffects }) => ({ modalReg: rsEffects.modalReg });
 
 const mapDispatchToProps = dispatch => ({
-  toggleModal: () => dispatch(toggleModal()),
+  toggleModalReg: () => dispatch(toggleModalReg()),
 });
 
 export default connect(

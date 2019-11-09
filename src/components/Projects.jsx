@@ -16,7 +16,7 @@ const Projects = ({
   projectsAmount,
   projectsList,
   loading,
-  toggleModal,
+  toggleModalProjAdd,
   history,
 }) => (
   <>
@@ -30,7 +30,7 @@ const Projects = ({
           />
         )}
         <ErrorContainer type="projects" />
-        <Button color="primary" className={btn} onClick={toggleModal}>
+        <Button color="primary" className={btn} onClick={toggleModalProjAdd}>
           <Plus />
           &nbsp;
           {projectsAmount ? 'Add new project' : 'Create your first project'}
@@ -46,7 +46,7 @@ Projects.propTypes = {
   projectsList: PropTypes.array.isRequired,
   projectsAmount: PropTypes.number.isRequired,
   loading: PropTypes.bool.isRequired,
-  toggleModal: PropTypes.func.isRequired,
+  toggleModalProjAdd: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
 };
 

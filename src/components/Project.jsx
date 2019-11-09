@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 // import PropTypes from 'prop-types';
-import {} from 'reactstrap';
+import { Card } from 'reactstrap';
+import ProjectMenuContainer from '../containers/ProjectMenuContainer';
 
 class Project extends PureComponent {
   componentDidMount() {
@@ -9,9 +10,9 @@ class Project extends PureComponent {
 
   render() {
     return (
-      <div>
-        <h1>Project Page</h1>
-      </div>
+      <Card>
+        <ProjectMenuContainer />
+      </Card>
     );
   }
 }

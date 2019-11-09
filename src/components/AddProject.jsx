@@ -5,11 +5,16 @@ import { Modal, ModalHeader, ModalBody, Input, Form } from 'reactstrap';
 import ErrorContainer from '../containers/ErrorContainer';
 import BtnSubmitContainer from '../containers/BtnSubmitContainer';
 
-const AddProject = ({ modal, loading, toggleModal, addProject }) => {
+const AddProject = ({
+  modalProjAdd,
+  loading,
+  toggleModalProjAdd,
+  addProject,
+}) => {
   const title = React.createRef();
   return (
-    <Modal isOpen={modal} fade>
-      <ModalHeader toggle={toggleModal}>Add new project</ModalHeader>
+    <Modal isOpen={modalProjAdd} fade>
+      <ModalHeader toggle={toggleModalProjAdd}>Add new project</ModalHeader>
       <ModalBody>
         <Form
           onSubmit={e => {
@@ -33,14 +38,14 @@ const AddProject = ({ modal, loading, toggleModal, addProject }) => {
 };
 
 AddProject.propTypes = {
-  modal: PropTypes.bool,
+  modalProjAdd: PropTypes.bool,
   loading: PropTypes.bool.isRequired,
-  toggleModal: PropTypes.func.isRequired,
+  toggleModalProjAdd: PropTypes.func.isRequired,
   addProject: PropTypes.func.isRequired,
 };
 
 AddProject.defaultProps = {
-  modal: false,
+  modalProjAdd: false,
 };
 
 export default AddProject;

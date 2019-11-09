@@ -3,7 +3,8 @@ import {
   ERR_REG,
   ERR_PROJECTS,
   ERR_PROJECT,
-  TOGGLE_MODAL,
+  TOGGLE_MODAL_REG,
+  TOGGLE_MODAL_PROJ_ADD,
   LOGOUT_USER,
   NAME_FORMAT_ERR,
   EMAIL_FORMAT_ERR,
@@ -51,7 +52,10 @@ const errorReducer = (state = initialState, action) => {
     case ERR_PROJECT:
       return { err: { ...state.err, project: errorExtractor(action.err) } };
 
-    case TOGGLE_MODAL:
+    case TOGGLE_MODAL_REG:
+      return initialState;
+
+    case TOGGLE_MODAL_PROJ_ADD:
       return { err: { ...initialState.err, projects: state.err.projects } };
 
     case LOGOUT_USER:

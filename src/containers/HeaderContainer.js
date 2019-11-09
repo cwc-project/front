@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import Header from '../components/Header';
-import { toggleModal, toggleTab, logout } from '../actions';
+import { toggleModalReg, toggleTab, logout } from '../actions';
 
 const mapStateToProps = ({ user }) => ({ user });
 
@@ -17,7 +17,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     // onLogout: () => dispatch(logout(authToken, history)),
     onToggle: activeTab => {
       dispatch(toggleTab(activeTab));
-      dispatch(toggleModal());
+      dispatch(toggleModalReg());
     },
   };
 };

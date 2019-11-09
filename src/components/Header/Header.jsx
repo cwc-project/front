@@ -35,10 +35,8 @@ class Header extends PureComponent {
     };
   }
 
-  toggle = () => {
-    const { dropdownOpen } = this.state;
-    this.setState({ dropdownOpen: !dropdownOpen });
-  };
+  toggle = () =>
+    this.setState(prevState => ({ dropdownOpen: !prevState.dropdownOpen }));
 
   render() {
     const { onToggle, loggedIn, userName, logout } = this.props;

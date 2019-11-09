@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Projects from '../components/Projects';
-import { toggleModal, getProjects } from '../actions';
+import { toggleModalProjAdd, getProjects } from '../actions';
 
 class ProjectsContainer extends PureComponent {
   constructor(props) {
@@ -45,7 +45,7 @@ const mergeProps = (stateProps, dispatchProps) => {
     projectsAmount,
     loading,
     history,
-    toggleModal: () => dispatch(toggleModal()),
+    toggleModalProjAdd: () => dispatch(toggleModalProjAdd()),
     getProjects: () => dispatch(getProjects(authToken)),
   };
 };

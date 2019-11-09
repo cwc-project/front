@@ -1,22 +1,27 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { toggleModal, addProject, errProject } from '../actions';
+import {
+  // toggleModal,
+  toggleModalProjAdd,
+  addProject,
+  errProject,
+} from '../actions';
 import AddProject from '../components/AddProject';
 
 const mapStateToProps = ({ rsEffects, user, fetch }) => ({
   loading: fetch.loading.project,
-  modal: rsEffects.modal,
+  modalProjAdd: rsEffects.modalProjAdd,
   authToken: user.authToken,
 });
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
-  const { authToken, modal, loading } = stateProps;
+  const { authToken, modalProjAdd, loading } = stateProps;
   const { dispatch } = dispatchProps;
   const { history } = ownProps;
   return {
-    modal,
+    modalProjAdd,
     loading,
-    toggleModal: bindActionCreators(toggleModal, dispatch),
+    toggleModalProjAdd: bindActionCreators(toggleModalProjAdd, dispatch),
     addProject: title => {
       const titleValue = title.current.value.trim();
       if (!titleValue) return dispatch(errProject('Invalid project title'));
