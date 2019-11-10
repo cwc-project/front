@@ -1,0 +1,8 @@
+.wrapper600 {
+  max-width: 600px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  position: relative;
+}

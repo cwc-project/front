@@ -5,7 +5,7 @@ module.exports = {
     'jest --passWithNoTests --color',
   ],
   '*.{css}': [
-    'stylelint src/**/*.css --fix --ignore-path .gitignore',
+    'stylelint src/**/*.css --fix --color --ignore-path .gitignore',
     'prettier --write --ignore-path .gitignore',
     'git add',
   ],

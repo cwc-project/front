@@ -11,7 +11,7 @@ import ProjectsContainer from './containers/ProjectsContainer';
 import AddProjectContainer from './containers/AddProjectContainer';
 import PageNotFound from './components/PageNotFound';
 import PrivateRoute from './routing/PrivateRoute';
-import Project from './components/Project';
+import Project from './components/Project/Project';
 
 // использование встроенных стилей bootstrap
 const bsUtilClasses = {
@@ -27,7 +27,7 @@ export default function App() {
         <Switch>
           <Route exact path="/" component={GreetingContainer} />
           <PrivateRoute exact path="/projects" component={ProjectsContainer} />
-          <Route path="/projects/:id" component={Project} />
+          <PrivateRoute exact path="/projects/:id" component={Project} />
           <Route component={PageNotFound} />
         </Switch>
         <Route path="/projects" component={AddProjectContainer} />

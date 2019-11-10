@@ -11,6 +11,8 @@ import {
 } from 'reactstrap';
 import './ProjectsList.css';
 import { gotoProject } from '../../actions';
+import Wrapper600 from '../Wrapper600';
+
 // компонент, т.к. нет необходимости использовать state redux
 const ProjectsList = ({ projectsList, projectsAmount, history }) => {
   const onSubmit = e => {
@@ -19,24 +21,26 @@ const ProjectsList = ({ projectsList, projectsAmount, history }) => {
   };
 
   return (
-    <Form className="projects-list" onSubmit={e => onSubmit(e)}>
-      <InputGroup>
-        <Badge className="projects-badge">{projectsAmount}</Badge>
+    <Wrapper600>
+      <Form className="projects-list" onSubmit={e => onSubmit(e)}>
+        <InputGroup>
+          <Badge className="projects-badge">{projectsAmount}</Badge>
 
-        <Input className="projects-select" type="select" name="select">
-          {projectsList.map(({ id, title }) => (
-            <option key={id} value={id}>
-              {title}
-            </option>
-          ))}
-        </Input>
-        <InputGroupAddon addonType="append">
-          <Button color="primary" type="submit">
-            <ChevronsRight />
-          </Button>
-        </InputGroupAddon>
-      </InputGroup>
-    </Form>
+          <Input className="projects-select" type="select" name="select">
+            {projectsList.map(({ id, title }) => (
+              <option key={id} value={id}>
+                {title}
+              </option>
+            ))}
+          </Input>
+          <InputGroupAddon addonType="append">
+            <Button color="primary" type="submit">
+              <ChevronsRight />
+            </Button>
+          </InputGroupAddon>
+        </InputGroup>
+      </Form>
+    </Wrapper600>
   );
 };
 
