@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { toggleModalProjAdd } from '../actions';
 
-import ProjectMenu from '../components/ProjectMenu';
+import ProjectMenu from '../components/ProjectMenu/ProjectMenu';
 
 // const mapStateToProps = ({ rsEffects }) => ({
 //   // modalProjAdd: rsEffects.modalProjAdd,

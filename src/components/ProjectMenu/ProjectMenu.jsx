@@ -10,6 +10,7 @@ import {
   DropdownItem,
 } from 'reactstrap';
 import { MoreVertical } from 'react-feather';
+import './ProjectMenu.css';
 
 class ProjectMenu extends PureComponent {
   constructor(props) {
@@ -29,10 +30,10 @@ class ProjectMenu extends PureComponent {
 
     return (
       // <Card>
-      <CardBody>
+      <CardBody className="project-menu">
         <Dropdown isOpen={dropdownOpen} toggle={this.toggle}>
           <DropdownToggle tag="div" className="text-right">
-            <MoreVertical style={{ cursor: 'pointer' }} />
+            <MoreVertical className="project-menu_more-icon " />
           </DropdownToggle>
           <DropdownMenu right>
             <DropdownItem header>

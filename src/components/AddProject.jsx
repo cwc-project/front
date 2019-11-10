@@ -11,7 +11,7 @@ const AddProject = ({
   toggleModalProjAdd,
   addProject,
 }) => {
-  const title = React.createRef();
+  const projectTitle = React.createRef();
   return (
     <Modal isOpen={modalProjAdd} fade>
       <ModalHeader toggle={toggleModalProjAdd}>Add new project</ModalHeader>
@@ -19,13 +19,13 @@ const AddProject = ({
         <Form
           onSubmit={e => {
             e.preventDefault();
-            addProject(title);
+            addProject(projectTitle);
           }}
         >
           <fieldset disabled={loading}>
             <Input
               placeholder="Insert project title"
-              innerRef={title}
+              innerRef={projectTitle}
               required
             />
             <ErrorContainer type="project" />

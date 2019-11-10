@@ -28,7 +28,7 @@ class Project extends PureComponent {
       <>
         <div className={linkWrap}>
           <Link to="/projects" className={link}>
-            <ArrowLeft className="proj-arrow-icon" />
+            <ArrowLeft className="proj_arrow-icon" />
             &nbsp;projects ...
           </Link>
         </div>

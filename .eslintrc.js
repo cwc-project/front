@@ -13,7 +13,7 @@ module.exports = {
     jest: true,
   },
   extends: 'airbnb',
-  plugins: ['babel', 'prettier'],
+  plugins: ['react', 'babel', 'prettier'],
   rules: {
     // 2 - error, 1 - warning, 0 - off
     'prettier/prettier': 'error', // mark prettier definitions as error

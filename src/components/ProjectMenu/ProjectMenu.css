@@ -1,0 +1,14 @@
+.project-menu_more-icon {
+  cursor: pointer;
+}
+
+.project-menu {
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  background: rgba(248, 249, 250, 1);
+  border: 1px solid rgba(128, 128, 128, 0.42);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
