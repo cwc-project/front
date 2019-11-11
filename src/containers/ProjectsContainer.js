@@ -1,27 +1,69 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Projects from '../components/Projects';
+import classNames from 'classnames';
+import { Plus } from 'react-feather';
+import { Spinner, Button } from 'reactstrap';
+
 import { toggleModalProjAdd, getProjects } from '../actions';
+import ProjectsList from '../components/ProjectsList';
+import ErrorContainer from './ErrorContainer';
+
+// использование встроенных стилей bootstrap
+const bsUtilClasses = {
+  btn: ['mt-4'],
+};
+const btn = classNames(bsUtilClasses.btn);
 
 class ProjectsContainer extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.getProjects = props.getProjects;
-  }
-
   componentDidMount() {
-    this.getProjects();
+    const { authToken, dispatch } = this.props;
+    dispatch(getProjects(authToken));
   }
 
   render() {
-    return <Projects {...this.props} />;
+    const {
+      loading,
+      projectsAmount,
+      projectsList,
+      history,
+      dispatch,
+    } = this.props;
+    if (loading) return <Spinner color="primary" />;
+
+    return (
+      <>
+        {projectsAmount > 0 && (
+          <ProjectsList
+            projectsList={projectsList}
+            projectsAmount={projectsAmount}
+            history={history}
+          />
+        )}
+        <ErrorContainer type="projects" />
+        <Button
+          color="primary"
+          className={btn}
+          onClick={() => dispatch(toggleModalProjAdd())}
+        >
+          <Plus />
+          &nbsp;
+          {projectsAmount ? 'Add new project' : 'Create your first project'}
+        </Button>
+      </>
+    );
   }
 }
 
 ProjectsContainer.propTypes = {
-  getProjects: PropTypes.func.isRequired,
+  authToken: PropTypes.string.isRequired,
+  projectsList: PropTypes.array.isRequired,
+  projectsAmount: PropTypes.number.isRequired,
+  loading: PropTypes.bool.isRequired,
+  history: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
+
 // первым аргументом передается state, вторым - ownProps
 const mapStateToProps = ({ projects, user, fetch }, { history }) => ({
   projectsList: projects.projectsList,
@@ -31,27 +73,4 @@ const mapStateToProps = ({ projects, user, fetch }, { history }) => ({
   history,
 });
 
-const mergeProps = (stateProps, dispatchProps) => {
-  const {
-    projectsList,
-    projectsAmount,
-    loading,
-    authToken,
-    history,
-  } = stateProps;
-  const { dispatch } = dispatchProps;
-  return {
-    projectsList,
-    projectsAmount,
-    loading,
-    history,
-    toggleModalProjAdd: () => dispatch(toggleModalProjAdd()),
-    getProjects: () => dispatch(getProjects(authToken)),
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  null,
-  mergeProps,
-)(ProjectsContainer);
+export default connect(mapStateToProps)(ProjectsContainer);

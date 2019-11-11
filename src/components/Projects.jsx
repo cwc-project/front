@@ -5,7 +5,7 @@ import { Plus } from 'react-feather';
 import { Spinner, Button } from 'reactstrap';
 import ProjectsList from './ProjectsList';
 import ErrorContainer from '../containers/ErrorContainer';
-// перенести в контейнер ?
+
 // использование встроенных стилей bootstrap
 const bsUtilClasses = {
   btn: ['mt-4'],

@@ -21,6 +21,8 @@ const linkWrap = classNames(bsUtilClasses.linkWrap);
 const link = classNames(bsUtilClasses.link);
 
 const Project = ({ loading, project, toggleModalProjAdd, addTodo }) => (
+  // const nodes = error
+  // const presention =
   <>
     <div className={linkWrap}>
       <Link to="/projects" className={link}>
@@ -43,7 +45,6 @@ const Project = ({ loading, project, toggleModalProjAdd, addTodo }) => (
     )}
   </>
 );
-
 Project.propTypes = {
   loading: PropTypes.bool.isRequired,
   project: PropTypes.shape({
