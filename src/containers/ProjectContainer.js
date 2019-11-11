@@ -1,33 +1,82 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Project from '../components/Project';
-import { getProject, toggleModalProjAdd, addTodo } from '../actions';
+import classNames from 'classnames';
+import { Link } from 'react-router-dom';
+import { ArrowLeft } from 'react-feather';
+import { Card, Spinner } from 'reactstrap';
+
+// import { getProject, toggleModalProjAdd, addTodo } from '../actions';
+import * as rsEffectsActions from '../actions/rsEffectsActions';
+import * as projectActions from '../actions/projectsActions';
+import * as todosActions from '../actions/todosActions';
+import ProjectMenu from '../components/ProjectMenu';
+import ErrorContainer from './ErrorContainer';
+import AddTodoForm from '../components/AddTodoForm';
+import Wrapper600 from '../components/Wrapper600';
+
+const bsUtilClasses = {
+  linkWrap: ['text-left', 'mb-2'],
+  link: ['text-decoration-none'],
+};
+const linkWrap = classNames(bsUtilClasses.linkWrap);
+const link = classNames(bsUtilClasses.link);
 
 class ProjectContainer extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.getProject = props.getProject;
-  }
-
   componentDidMount() {
-    const { match } = this.props;
-    this.getProject(match.params.id);
+    const { getProject } = this.props;
+    getProject();
   }
 
   componentDidUpdate(prevProps) {
-    const { match } = this.props;
-    if (match.params.id !== prevProps.match.params.id) {
-      this.getProject(match.params.id);
+    const { id, getProject } = this.props;
+    if (id !== prevProps.id) {
+      getProject();
     }
   }
 
   render() {
-    return <Project {...this.props} />;
+    const {
+      loading,
+      projectErr,
+      project,
+      addTodo,
+      toggleModalProjAdd,
+    } = this.props;
+
+    const projectView = !loading ? (
+      <>
+        <Wrapper600>
+          <Card>
+            <ProjectMenu
+              title={project.title}
+              toggleModalProjAdd={toggleModalProjAdd}
+            />
+            <AddTodoForm addTodo={addTodo} />
+          </Card>
+        </Wrapper600>
+      </>
+    ) : (
+      <Spinner color="primary" />
+    );
+
+    return (
+      <>
+        <div className={linkWrap}>
+          <Link to="/projects" className={link}>
+            <ArrowLeft style={{ width: 'auto', height: '20px' }} />
+            &nbsp;projects ...
+          </Link>
+        </div>
+        {!projectErr ? projectView : <ErrorContainer type="project" />}
+      </>
+    );
   }
 }
 
 ProjectContainer.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  projectErr: PropTypes.string,
   project: PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
@@ -38,14 +87,18 @@ ProjectContainer.propTypes = {
     ]).isRequired,
     // todos: PropTypes.array.isRequired,
   }).isRequired,
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-    }),
-  }).isRequired,
+  // match: PropTypes.shape({
+  //   params: PropTypes.shape({
+  id: PropTypes.string.isRequired,
+  //   }),
+  // }).isRequired,
   getProject: PropTypes.func.isRequired,
   toggleModalProjAdd: PropTypes.func.isRequired,
   addTodo: PropTypes.func.isRequired,
+};
+
+ProjectContainer.defaultProps = {
+  projectErr: '',
 };
 // первым аргументом передается state, вторым - ownProps
 const mapStateToProps = ({ projects, user, fetch, errors }, { match }) => ({
@@ -53,21 +106,22 @@ const mapStateToProps = ({ projects, user, fetch, errors }, { match }) => ({
   projectErr: errors.err.project,
   authToken: user.authToken,
   project: projects.project,
-  match,
+  id: match.params.id,
 });
 
 const mergeProps = (stateProps, dispatchProps) => {
-  const { loading, projectErr, authToken, project, match } = stateProps;
+  const { loading, projectErr, authToken, project, id } = stateProps;
   const { dispatch } = dispatchProps;
 
   return {
-    project,
     loading,
     projectErr,
-    match,
-    getProject: id => dispatch(getProject(id, authToken)),
-    toggleModalProjAdd: () => dispatch(toggleModalProjAdd()),
-    addTodo: title => dispatch(addTodo(title, project.id, authToken)),
+    project,
+    id,
+    getProject: () => dispatch(projectActions.getProject(id, authToken)),
+    toggleModalProjAdd: () => dispatch(rsEffectsActions.toggleModalProjAdd()),
+    addTodo: title =>
+      dispatch(todosActions.addTodo(title, project.id, authToken)),
   };
 };
 
