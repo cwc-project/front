@@ -1,11 +1,6 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {
-  // toggleModal,
-  toggleModalProjAdd,
-  addProject,
-  errProject,
-} from '../actions';
+import { toggleModalProjAdd, addProject, errProject } from '../actions';
 import AddProject from '../components/AddProject';
 
 const mapStateToProps = ({ rsEffects, user, fetch }) => ({

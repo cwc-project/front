@@ -7,6 +7,7 @@ import {
   ERR_LOGIN,
   ERR_REG,
   GET_PROJECTS,
+  GET_PROJECT,
   ADD_PROJECT,
   ERR_PROJECTS,
   ERR_PROJECT,
@@ -38,6 +39,7 @@ const fetchReducer = (state = initialState, action) => {
     case ERR_LOGIN:
     case ERR_REG:
     case GET_PROJECTS:
+    case GET_PROJECT:
     case ADD_PROJECT:
     case ERR_PROJECTS:
     case ERR_PROJECT:

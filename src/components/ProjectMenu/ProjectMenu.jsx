@@ -25,11 +25,9 @@ class ProjectMenu extends PureComponent {
 
   render() {
     const { dropdownOpen } = this.state;
-    const projectTitle = 'Project';
-    const { toggleModalProjAdd } = this.props;
+    const { toggleModalProjAdd, title } = this.props;
 
     return (
-      // <Card>
       <CardBody className="project-menu">
         <Dropdown isOpen={dropdownOpen} toggle={this.toggle}>
           <DropdownToggle tag="div" className="text-right">
@@ -38,7 +36,7 @@ class ProjectMenu extends PureComponent {
           <DropdownMenu right>
             <DropdownItem header>
               current:&nbsp;
-              {projectTitle}
+              {title}
             </DropdownItem>
             <DropdownItem divider />
             <DropdownItem onClick={toggleModalProjAdd}>
@@ -50,16 +48,16 @@ class ProjectMenu extends PureComponent {
           </DropdownMenu>
         </Dropdown>
         <CardTitle className="font-weight-bold ">
-          <h4>Project</h4>
+          <h4>{title}</h4>
         </CardTitle>
       </CardBody>
-      // </Card>
     );
   }
 }
 
 ProjectMenu.propTypes = {
   toggleModalProjAdd: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default ProjectMenu;

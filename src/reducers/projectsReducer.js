@@ -1,12 +1,19 @@
 import {
   GET_PROJECTS,
+  GET_PROJECT,
   // ADD_PROJECT
 } from '../actions';
 
 const initialState = {
   projectsList: [],
   projectsAmount: 0,
-  project: {},
+  project: {
+    id: '',
+    title: '',
+    status: '',
+    dateAdded: '',
+    // todos: [],
+  },
 };
 
 const renameProjectId = ({ _id: id, ...rest }) => ({ id, ...rest });
@@ -20,6 +27,12 @@ const projectsReducer = (state = initialState, action) => {
         ...state,
         projectsList: projectsListHandler(action.projectsList),
         projectsAmount: action.projectsAmount,
+      };
+
+    case GET_PROJECT:
+      return {
+        ...state,
+        project: renameProjectId(action.project),
       };
 
     default:

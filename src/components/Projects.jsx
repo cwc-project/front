@@ -18,29 +18,27 @@ const Projects = ({
   loading,
   toggleModalProjAdd,
   history,
-}) => (
-  <>
-    {!loading ? (
-      <>
-        {projectsAmount > 0 && (
-          <ProjectsList
-            projectsList={projectsList}
-            projectsAmount={projectsAmount}
-            history={history}
-          />
-        )}
-        <ErrorContainer type="projects" />
-        <Button color="primary" className={btn} onClick={toggleModalProjAdd}>
-          <Plus />
-          &nbsp;
-          {projectsAmount ? 'Add new project' : 'Create your first project'}
-        </Button>
-      </>
-    ) : (
-      <Spinner color="primary" />
-    )}
-  </>
-);
+}) => {
+  if (loading) return <Spinner color="primary" />;
+
+  return (
+    <>
+      {projectsAmount > 0 && (
+        <ProjectsList
+          projectsList={projectsList}
+          projectsAmount={projectsAmount}
+          history={history}
+        />
+      )}
+      <ErrorContainer type="projects" />
+      <Button color="primary" className={btn} onClick={toggleModalProjAdd}>
+        <Plus />
+        &nbsp;
+        {projectsAmount ? 'Add new project' : 'Create your first project'}
+      </Button>
+    </>
+  );
+};
 
 Projects.propTypes = {
   projectsList: PropTypes.array.isRequired,
