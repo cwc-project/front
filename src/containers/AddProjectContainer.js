@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { toggleModalProjAdd, addProject, errProject } from '../actions';
 import AddProject from '../components/AddProject';
 
@@ -16,7 +15,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
   return {
     modalProjAdd,
     loading,
-    toggleModalProjAdd: bindActionCreators(toggleModalProjAdd, dispatch),
+    toggleModalProjAdd: () => dispatch(toggleModalProjAdd()),
     addProject: title => {
       const titleValue = title.current.value.trim();
       if (!titleValue) return dispatch(errProject('Invalid project title'));

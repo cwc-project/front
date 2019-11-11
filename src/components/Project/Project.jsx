@@ -20,33 +20,42 @@ const bsUtilClasses = {
 const linkWrap = classNames(bsUtilClasses.linkWrap);
 const link = classNames(bsUtilClasses.link);
 
-const Project = ({ loading, project, toggleModalProjAdd, addTodo }) => (
-  // const nodes = error
-  // const presention =
-  <>
-    <div className={linkWrap}>
-      <Link to="/projects" className={link}>
-        <ArrowLeft className="proj_arrow-icon" />
-        &nbsp;projects ...
-      </Link>
-    </div>
-    {!loading ? (
-      <>
-        <ErrorContainer type="project" />
-        <Wrapper600>
-          <Card>
-            <ProjectMenu {...project} toggleModalProjAdd={toggleModalProjAdd} />
-            <AddTodoForm addTodo={addTodo} />
-          </Card>
-        </Wrapper600>
-      </>
-    ) : (
-      <Spinner color="primary" />
-    )}
-  </>
-);
+const Project = ({
+  loading,
+  projectErr,
+  project,
+  toggleModalProjAdd,
+  addTodo,
+}) => {
+  const projectView = !loading ? (
+    <>
+      <Wrapper600>
+        <Card>
+          <ProjectMenu {...project} toggleModalProjAdd={toggleModalProjAdd} />
+          <AddTodoForm addTodo={addTodo} />
+        </Card>
+      </Wrapper600>
+    </>
+  ) : (
+    <Spinner color="primary" />
+  );
+
+  return (
+    <>
+      <div className={linkWrap}>
+        <Link to="/projects" className={link}>
+          <ArrowLeft className="proj_arrow-icon" />
+          &nbsp;projects ...
+        </Link>
+      </div>
+      {!projectErr ? projectView : <ErrorContainer type="project" />}
+    </>
+  );
+};
+
 Project.propTypes = {
   loading: PropTypes.bool.isRequired,
+  projectErr: PropTypes.string,
   project: PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
@@ -59,6 +68,10 @@ Project.propTypes = {
   }).isRequired,
   toggleModalProjAdd: PropTypes.func.isRequired,
   addTodo: PropTypes.func.isRequired,
+};
+
+Project.defaultProps = {
+  projectErr: '',
 };
 
 export default Project;

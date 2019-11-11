@@ -29,8 +29,8 @@ class ProjectsContainer extends PureComponent {
       history,
       dispatch,
     } = this.props;
-    if (loading) return <Spinner color="primary" />;
 
+    if (loading) return <Spinner color="primary" />;
     return (
       <>
         {projectsAmount > 0 && (

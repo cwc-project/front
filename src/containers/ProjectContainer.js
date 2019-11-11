@@ -48,20 +48,22 @@ ProjectContainer.propTypes = {
   addTodo: PropTypes.func.isRequired,
 };
 // первым аргументом передается state, вторым - ownProps
-const mapStateToProps = ({ projects, user, fetch }, { match }) => ({
+const mapStateToProps = ({ projects, user, fetch, errors }, { match }) => ({
   loading: fetch.loading.project,
+  projectErr: errors.err.project,
   authToken: user.authToken,
   project: projects.project,
   match,
 });
 
 const mergeProps = (stateProps, dispatchProps) => {
-  const { loading, authToken, project, match } = stateProps;
+  const { loading, projectErr, authToken, project, match } = stateProps;
   const { dispatch } = dispatchProps;
 
   return {
     project,
     loading,
+    projectErr,
     match,
     getProject: id => dispatch(getProject(id, authToken)),
     toggleModalProjAdd: () => dispatch(toggleModalProjAdd()),
