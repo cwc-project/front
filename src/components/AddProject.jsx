@@ -19,7 +19,10 @@ const AddProject = ({
         <Form
           onSubmit={e => {
             e.preventDefault();
-            addProject(projectTitle);
+            const value = projectTitle.current.value.trim();
+            if (value) {
+              addProject(value);
+            }
           }}
         >
           <fieldset disabled={loading}>

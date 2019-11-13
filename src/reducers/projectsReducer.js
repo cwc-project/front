@@ -1,8 +1,4 @@
-import {
-  GET_PROJECTS,
-  GET_PROJECT,
-  // ADD_PROJECT
-} from '../actions';
+import { GET_PROJECTS, GET_PROJECT, ADD_TASK } from '../actions';
 
 const initialState = {
   projectsList: [],
@@ -12,27 +8,38 @@ const initialState = {
     title: '',
     status: '',
     dateAdded: '',
-    // todos: [],
+    tasks: [],
   },
 };
 
-const renameProjectId = ({ _id: id, ...rest }) => ({ id, ...rest });
-const projectsListHandler = projects =>
-  projects.map(project => renameProjectId(project));
+const renameId = ({ _id: id, ...rest }) => ({ id, ...rest });
+const renameArrHandler = arr => arr.map(item => renameId(item));
 
 const projectsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_PROJECTS:
       return {
         ...state,
-        projectsList: projectsListHandler(action.projectsList),
+        projectsList: renameArrHandler(action.projectsList),
         projectsAmount: action.projectsAmount,
       };
 
     case GET_PROJECT:
       return {
         ...state,
-        project: renameProjectId(action.project),
+        project: {
+          ...renameId(action.project),
+          tasks: renameArrHandler(action.project.tasks),
+        },
+      };
+
+    case ADD_TASK:
+      return {
+        ...state,
+        project: {
+          ...state.project,
+          tasks: [...state.project.tasks, renameId(action.task)],
+        },
       };
 
     default:

@@ -23,11 +23,14 @@ const ErrorContainer = props => {
 };
 
 ErrorContainer.propTypes = {
-  type: PropTypes.oneOf(['log', 'reg', 'projects', 'project']).isRequired,
+  type: PropTypes.oneOf(['log', 'reg', 'projects', 'project', 'task'])
+    .isRequired,
   err: PropTypes.shape({
     log: PropTypes.string.isRequired,
     reg: PropTypes.string.isRequired,
     projects: PropTypes.string.isRequired,
+    project: PropTypes.string.isRequired,
+    task: PropTypes.string.isRequired,
   }).isRequired,
 };
 

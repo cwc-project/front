@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { toggleModalProjAdd, addProject, errProject } from '../actions';
+import { toggleModalProjAdd, addProject } from '../actions';
 import AddProject from '../components/AddProject';
 
 const mapStateToProps = ({ rsEffects, user, fetch }) => ({
@@ -16,11 +16,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     modalProjAdd,
     loading,
     toggleModalProjAdd: () => dispatch(toggleModalProjAdd()),
-    addProject: title => {
-      const titleValue = title.current.value.trim();
-      if (!titleValue) return dispatch(errProject('Invalid project title'));
-      return dispatch(addProject(titleValue, authToken, history));
-    },
+    addProject: title => dispatch(addProject(title, authToken, history)),
   };
 };
 

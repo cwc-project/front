@@ -4,6 +4,8 @@ import { Form, Input, Button } from 'reactstrap';
 import { Plus } from 'react-feather';
 import './AddTaskForm.css';
 
+import ErrorContainer from '../../containers/ErrorContainer';
+
 const AddTaskForm = ({ addTask }) => {
   const taskTitle = React.createRef();
 
@@ -12,7 +14,11 @@ const AddTaskForm = ({ addTask }) => {
       <Form
         onSubmit={e => {
           e.preventDefault();
-          addTask(taskTitle);
+          const value = taskTitle.current.value.trim();
+          if (value) {
+            addTask(value);
+            taskTitle.current.value = '';
+          }
         }}
         className="add-task_form"
       >
@@ -26,6 +32,7 @@ const AddTaskForm = ({ addTask }) => {
           <Plus />
         </Button>
       </Form>
+      <ErrorContainer type="task" />
     </div>
   );
 };

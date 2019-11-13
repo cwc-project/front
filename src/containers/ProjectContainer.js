@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'react-feather';
 import { Card, Spinner } from 'reactstrap';
 
-// import { getProject, toggleModalProjAdd, addTodo } from '../actions';
 import * as rsEffectsActions from '../actions/rsEffectsActions';
 import * as projectActions from '../actions/projectsActions';
 import * as tasksActions from '../actions/tasksActions';
@@ -14,6 +13,7 @@ import ProjectMenu from '../components/ProjectMenu';
 import ErrorContainer from './ErrorContainer';
 import AddTaskForm from '../components/AddTaskForm';
 import Wrapper600 from '../components/Wrapper600';
+import TasksList from '../components/TasksList';
 
 const bsUtilClasses = {
   linkWrap: ['text-left', 'mb-2'],
@@ -29,8 +29,8 @@ class ProjectContainer extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    const { id, getProject } = this.props;
-    if (id !== prevProps.id) {
+    const { paramId, getProject } = this.props;
+    if (paramId !== prevProps.paramId) {
       getProject();
     }
   }
@@ -52,6 +52,7 @@ class ProjectContainer extends PureComponent {
               title={project.title}
               toggleModalProjAdd={toggleModalProjAdd}
             />
+            <TasksList tasks={project.tasks} />
             <AddTaskForm addTask={addTask} />
           </Card>
         </Wrapper600>
@@ -85,9 +86,9 @@ ProjectContainer.propTypes = {
       PropTypes.string,
       PropTypes.instanceOf(Date),
     ]).isRequired,
-    // todos: PropTypes.array.isRequired,
+    tasks: PropTypes.array.isRequired,
   }).isRequired,
-  id: PropTypes.string.isRequired,
+  paramId: PropTypes.string.isRequired,
   getProject: PropTypes.func.isRequired,
   toggleModalProjAdd: PropTypes.func.isRequired,
   addTask: PropTypes.func.isRequired,
@@ -102,25 +103,22 @@ const mapStateToProps = ({ projects, user, fetch, errors }, { match }) => ({
   projectErr: errors.err.project,
   authToken: user.authToken,
   project: projects.project,
-  id: match.params.id,
+  paramId: match.params.id,
 });
 
 const mergeProps = (stateProps, dispatchProps) => {
-  const { loading, projectErr, authToken, project, id } = stateProps;
+  const { loading, projectErr, authToken, project, paramId } = stateProps;
   const { dispatch } = dispatchProps;
 
   return {
     loading,
     projectErr,
     project,
-    id,
-    getProject: () => dispatch(projectActions.getProject(id, authToken)),
+    paramId,
+    getProject: () => dispatch(projectActions.getProject(paramId, authToken)),
     toggleModalProjAdd: () => dispatch(rsEffectsActions.toggleModalProjAdd()),
-    addTask: title => {
-      const titleValue = title.current.value.trim();
-      if (!titleValue) return;
-      dispatch(tasksActions.addTask(titleValue, project.id, authToken));
-    },
+    addTask: title =>
+      dispatch(tasksActions.addTask(title, project.id, authToken)),
   };
 };
 

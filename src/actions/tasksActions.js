@@ -1,15 +1,13 @@
 import axios from 'axios';
 
 import { server } from '../constants';
-// import { fetchProjects, fetchProject } from './fetchActions';
-// import { errProjects, errProject } from './errorActions';
+import { errTask } from './errorActions';
 
 export const ADD_TASK = 'ADD_TASK';
 
-// const addTodoSuccess = () => ({ type: ADD_TODO });
+const addTaskSuccess = task => ({ type: ADD_TASK, ...task });
 
-export const addTask = (title, taskId, token) => () =>
-  // dispatch(fetchProject());
+export const addTask = (title, taskId, token) => dispatch =>
   axios({
     url: `${server}/tasks`,
     method: 'POST',
@@ -21,5 +19,5 @@ export const addTask = (title, taskId, token) => () =>
       title,
     },
   })
-    .then(({ data }) => console.log(data))
-    .catch(err => console.log(err));
+    .then(({ data }) => dispatch(addTaskSuccess(data)))
+    .catch(err => dispatch(errTask(err)));
