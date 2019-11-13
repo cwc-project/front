@@ -4,20 +4,20 @@ import { server } from '../constants';
 // import { fetchProjects, fetchProject } from './fetchActions';
 // import { errProjects, errProject } from './errorActions';
 
-export const ADD_TODO = 'ADD_TODO';
+export const ADD_TASK = 'ADD_TASK';
 
 // const addTodoSuccess = () => ({ type: ADD_TODO });
 
-export const addTodo = (title, todoId, token) => () =>
+export const addTask = (title, taskId, token) => () =>
   // dispatch(fetchProject());
   axios({
-    url: `${server}/todos`,
+    url: `${server}/tasks`,
     method: 'POST',
     headers: {
       Authorization: `Bearer ${token}`,
     },
     data: {
-      todoId,
+      taskId,
       title,
     },
   })

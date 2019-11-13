@@ -1,4 +1,4 @@
-.add-todo {
+.add-task {
   margin-top: 0.05rem; /* нет аналога */
   padding: 0.75rem 1.25rem;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
@@ -10,46 +10,46 @@
   z-index: 1;
 }
 
-.add-todo_form {
+.add-task_form {
   display: flex;
 
   /* align-items: center;  */
 }
 
-.add-todo_btn {
+.add-task_btn {
   margin-left: 1.25rem;
 }
 
-.add-todo_btn > svg {
+.add-task_btn > svg {
   stroke-width: 3;
 }
 
-.add-todo_input {
+.add-task_input {
   font-size: 1.25rem;
   font-weight: 500;
 }
 
-.add-todo_input::placeholder {
+.aadd-task_input::placeholder {
   color: rgb(170, 170, 170);
   font-weight: normal;
 }
 
-.add-todo_input::-webkit-input-placeholder {
+.add-task_input::-webkit-input-placeholder {
   color: rgb(170, 170, 170);
   font-weight: normal;
 }
 
-.add-todo_input::-moz-placeholder {
+.add-task_input::-moz-placeholder {
   color: rgb(170, 170, 170);
   font-weight: normal;
 }
 
-.add-todo_input:-moz-placeholder {
+.add-task_input:-moz-placeholder {
   color: rgb(170, 170, 170);
   font-weight: normal;
 }
 
-.add-todo_input:-ms-input-placeholder {
+.add-task_input:-ms-input-placeholder {
   color: rgb(170, 170, 170);
   font-weight: normal;
 }

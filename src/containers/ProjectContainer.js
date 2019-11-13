@@ -9,10 +9,10 @@ import { Card, Spinner } from 'reactstrap';
 // import { getProject, toggleModalProjAdd, addTodo } from '../actions';
 import * as rsEffectsActions from '../actions/rsEffectsActions';
 import * as projectActions from '../actions/projectsActions';
-import * as todosActions from '../actions/todosActions';
+import * as tasksActions from '../actions/tasksActions';
 import ProjectMenu from '../components/ProjectMenu';
 import ErrorContainer from './ErrorContainer';
-import AddTodoForm from '../components/AddTodoForm';
+import AddTaskForm from '../components/AddTaskForm';
 import Wrapper600 from '../components/Wrapper600';
 
 const bsUtilClasses = {
@@ -40,7 +40,7 @@ class ProjectContainer extends PureComponent {
       loading,
       projectErr,
       project,
-      addTodo,
+      addTask,
       toggleModalProjAdd,
     } = this.props;
 
@@ -52,7 +52,7 @@ class ProjectContainer extends PureComponent {
               title={project.title}
               toggleModalProjAdd={toggleModalProjAdd}
             />
-            <AddTodoForm addTodo={addTodo} />
+            <AddTaskForm addTask={addTask} />
           </Card>
         </Wrapper600>
       </>
@@ -87,14 +87,10 @@ ProjectContainer.propTypes = {
     ]).isRequired,
     // todos: PropTypes.array.isRequired,
   }).isRequired,
-  // match: PropTypes.shape({
-  //   params: PropTypes.shape({
   id: PropTypes.string.isRequired,
-  //   }),
-  // }).isRequired,
   getProject: PropTypes.func.isRequired,
   toggleModalProjAdd: PropTypes.func.isRequired,
-  addTodo: PropTypes.func.isRequired,
+  addTask: PropTypes.func.isRequired,
 };
 
 ProjectContainer.defaultProps = {
@@ -120,8 +116,11 @@ const mergeProps = (stateProps, dispatchProps) => {
     id,
     getProject: () => dispatch(projectActions.getProject(id, authToken)),
     toggleModalProjAdd: () => dispatch(rsEffectsActions.toggleModalProjAdd()),
-    addTodo: title =>
-      dispatch(todosActions.addTodo(title, project.id, authToken)),
+    addTask: title => {
+      const titleValue = title.current.value.trim();
+      if (!titleValue) return;
+      dispatch(tasksActions.addTask(titleValue, project.id, authToken));
+    },
   };
 };
 
