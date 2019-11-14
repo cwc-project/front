@@ -29,7 +29,7 @@
   font-weight: 500;
 }
 
-.aadd-task_input::placeholder {
+.add-task_input::placeholder {
   color: rgb(170, 170, 170);
   font-weight: normal;
 }

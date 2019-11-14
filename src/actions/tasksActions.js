@@ -7,7 +7,7 @@ export const ADD_TASK = 'ADD_TASK';
 
 const addTaskSuccess = task => ({ type: ADD_TASK, ...task });
 
-export const addTask = (title, taskId, token) => dispatch =>
+export const addTask = (title, projectId, token) => dispatch =>
   axios({
     url: `${server}/tasks`,
     method: 'POST',
@@ -15,7 +15,7 @@ export const addTask = (title, taskId, token) => dispatch =>
       Authorization: `Bearer ${token}`,
     },
     data: {
-      taskId,
+      projectId,
       title,
     },
   })
