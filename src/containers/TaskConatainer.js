@@ -14,21 +14,27 @@ class TaskContainer extends PureComponent {
 
   onEdit = () => this.setState({ edit: true });
 
+  onDelete = () => {
+    const { deleteTask, id } = this.props;
+    deleteTask(id);
+  };
+
   renderTask() {
     const { edit } = this.state;
     const { title } = this.props;
-    if (edit) return <TaskEdit title={title} />;
-    return <Task onEdit={this.onEdit} title={title} />;
+    if (edit) return <TaskEdit title={title} onDelete={this.onDelete} />;
+    return <Task title={title} onEdit={this.onEdit} />;
   }
 
   render() {
-    // const { title } = this.props;
     return this.renderTask();
   }
 }
 
 TaskContainer.propTypes = {
   title: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  deleteTask: PropTypes.func.isRequired,
 };
 
 export default TaskContainer;

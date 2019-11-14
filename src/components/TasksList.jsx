@@ -14,16 +14,17 @@ import TaskContainer from '../containers/TaskConatainer';
 // const hr = classNames(bsUtilClasses.hr);
 // const copy = classNames(bsUtilClasses.copy);
 
-const TasksList = ({ tasks }) => (
+const TasksList = ({ tasks, deleteTask }) => (
   <div>
     {tasks.map(task => (
-      <TaskContainer key={task.id} {...task} />
+      <TaskContainer key={task.id} {...task} deleteTask={deleteTask} />
     ))}
   </div>
 );
 
 TasksList.propTypes = {
   tasks: PropTypes.array.isRequired,
+  deleteTask: PropTypes.func.isRequired,
 };
 
 export default TasksList;

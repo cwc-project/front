@@ -11,10 +11,10 @@ const bsUtilClasses = {
 };
 const form = classNames(bsUtilClasses.form);
 
-const TaskEdit = ({ title }) => (
+const TaskEdit = ({ title, onDelete }) => (
   <ListGroupItem tag="div">
     <Form className={form}>
-      <Button color="danger" type="button">
+      <Button color="danger" type="button" onClick={onDelete}>
         <Trash2 />
       </Button>
       <Input className="task-edit_input" defaultValue={title} autoFocus />
@@ -27,6 +27,7 @@ const TaskEdit = ({ title }) => (
 
 TaskEdit.propTypes = {
   title: PropTypes.string.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
 
 export default TaskEdit;

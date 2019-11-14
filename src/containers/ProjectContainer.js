@@ -41,6 +41,7 @@ class ProjectContainer extends PureComponent {
       projectErr,
       project,
       addTask,
+      deleteTask,
       toggleModalProjAdd,
     } = this.props;
 
@@ -52,7 +53,7 @@ class ProjectContainer extends PureComponent {
               title={project.title}
               toggleModalProjAdd={toggleModalProjAdd}
             />
-            <TasksList tasks={project.tasks} />
+            <TasksList tasks={project.tasks} deleteTask={deleteTask} />
             <AddTaskForm addTask={addTask} />
           </Card>
         </Wrapper600>
@@ -92,6 +93,7 @@ ProjectContainer.propTypes = {
   getProject: PropTypes.func.isRequired,
   toggleModalProjAdd: PropTypes.func.isRequired,
   addTask: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
 };
 
 ProjectContainer.defaultProps = {
@@ -119,6 +121,8 @@ const mergeProps = (stateProps, dispatchProps) => {
     toggleModalProjAdd: () => dispatch(rsEffectsActions.toggleModalProjAdd()),
     addTask: title =>
       dispatch(tasksActions.addTask(title, project.id, authToken)),
+    deleteTask: taskId =>
+      dispatch(tasksActions.deleteTask(taskId, project.id, authToken)),
   };
 };
 

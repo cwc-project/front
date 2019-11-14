@@ -1,4 +1,4 @@
-import { GET_PROJECTS, GET_PROJECT, ADD_TASK } from '../actions';
+import { GET_PROJECTS, GET_PROJECT, ADD_TASK, DELETE_TASK } from '../actions';
 
 const initialState = {
   projectsList: [],
@@ -39,6 +39,15 @@ const projectsReducer = (state = initialState, action) => {
         project: {
           ...state.project,
           tasks: [...state.project.tasks, renameId(action.task)],
+        },
+      };
+
+    case DELETE_TASK:
+      return {
+        ...state,
+        project: {
+          ...state.project,
+          tasks: state.project.tasks.filter(task => task.id !== action.id),
         },
       };
 
