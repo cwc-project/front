@@ -11,23 +11,41 @@ const bsUtilClasses = {
 };
 const form = classNames(bsUtilClasses.form);
 
-const TaskEdit = ({ title, onDelete }) => (
-  <ListGroupItem tag="div">
-    <Form className={form}>
-      <Button color="danger" type="button" onClick={onDelete}>
-        <Trash2 />
-      </Button>
-      <Input className="task-edit_input" defaultValue={title} autoFocus />
-      <Button color="light" type="button">
-        <Save />
-      </Button>
-    </Form>
-  </ListGroupItem>
-);
+const TaskEdit = ({ title, onDelete, onEdit }) => {
+  const taskInput = React.createRef();
+  return (
+    <ListGroupItem tag="div">
+      <Form className={form}>
+        <Button color="danger" type="button" onClick={onDelete}>
+          <Trash2 />
+        </Button>
+        <Input
+          className="task-edit_input"
+          defaultValue={title}
+          innerRef={taskInput}
+          autoFocus
+        />
+        <Button
+          color="light"
+          type="button"
+          onClick={() => {
+            const value = taskInput.current.value.trim();
+            if (value && value !== title) {
+              onEdit({ title: value });
+            }
+          }}
+        >
+          <Save />
+        </Button>
+      </Form>
+    </ListGroupItem>
+  );
+};
 
 TaskEdit.propTypes = {
   title: PropTypes.string.isRequired,
   onDelete: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired,
 };
 
 export default TaskEdit;

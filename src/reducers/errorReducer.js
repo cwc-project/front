@@ -10,6 +10,7 @@ import {
   GET_PROJECT,
   ADD_TASK,
   DELETE_TASK,
+  EDIT_TASK,
   NAME_FORMAT_ERR,
   EMAIL_FORMAT_ERR,
   PASS_FORMAT_ERR,
@@ -64,6 +65,7 @@ const errorReducer = (state = initialState, action) => {
     case TOGGLE_MODAL_REG:
     case ADD_TASK:
     case DELETE_TASK:
+    case EDIT_TASK:
       return initialState;
 
     case TOGGLE_MODAL_PROJ_ADD:

@@ -14,13 +14,13 @@ const taskWrapper = classNames(bsUtilClasses.taskWrapper);
 const taskHeader = classNames(bsUtilClasses.taskHeader);
 const editBtn = classNames(bsUtilClasses.editBtn);
 
-const Task = ({ title, onEdit }) => (
+const Task = ({ title, editToggle }) => (
   <ListGroupItem tag="div">
     <div className={taskWrapper}>
       <ListGroupItemHeading className={taskHeader}>
         {title}
       </ListGroupItemHeading>
-      <Button color="light" className={editBtn} onClick={onEdit}>
+      <Button color="light" className={editBtn} onClick={editToggle}>
         <Edit2 />
       </Button>
     </div>
@@ -29,7 +29,7 @@ const Task = ({ title, onEdit }) => (
 
 Task.propTypes = {
   title: PropTypes.string.isRequired,
-  onEdit: PropTypes.func.isRequired,
+  editToggle: PropTypes.func.isRequired,
 };
 
 export default Task;
