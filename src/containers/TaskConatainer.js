@@ -12,7 +12,7 @@ class TaskContainer extends PureComponent {
     };
   }
 
-  editToggle = () => this.setState({ edit: true });
+  toggleForm = () => this.setState(prevState => ({ edit: !prevState.edit }));
 
   onDelete = () => {
     const { deleteTask, id } = this.props;
@@ -23,20 +23,40 @@ class TaskContainer extends PureComponent {
     if (typeof taskKey === 'object') {
       const { editTask, id } = this.props;
       editTask(taskKey, id);
-      this.setState({ edit: false });
     }
+  };
+
+  toggleComplete = () => {
+    const { editTask, id, completed } = this.props;
+    const taskKey = {
+      completed: !completed,
+    };
+    editTask(taskKey, id);
   };
 
   renderTask() {
     const { edit } = this.state;
-    const { title } = this.props;
+    const { title, completed } = this.props;
+
     if (edit) {
       return (
-        <TaskEdit title={title} onDelete={this.onDelete} onEdit={this.onEdit} />
+        <TaskEdit
+          title={title}
+          onDelete={this.onDelete}
+          toggleForm={this.toggleForm}
+          onEdit={this.onEdit}
+        />
       );
     }
+
     return (
-      <Task title={title} editToggle={this.editToggle} onEdit={this.onEdit} />
+      <Task
+        title={title}
+        completed={completed}
+        toggleForm={this.toggleForm}
+        toggleComplete={this.toggleComplete}
+        onEdit={this.onEdit}
+      />
     );
   }
 
@@ -46,8 +66,9 @@ class TaskContainer extends PureComponent {
 }
 
 TaskContainer.propTypes = {
-  title: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  completed: PropTypes.bool.isRequired,
   deleteTask: PropTypes.func.isRequired,
   editTask: PropTypes.func.isRequired,
 };

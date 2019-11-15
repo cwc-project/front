@@ -1,2 +1,5 @@
-/* .tst { }
- */
+.task.completed * {
+  color: rgb(213, 213, 213);
+  text-decoration: line-through;
+  transition: color 0.2s;
+}

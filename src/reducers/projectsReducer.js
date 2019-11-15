@@ -1,4 +1,10 @@
-import { GET_PROJECTS, GET_PROJECT, ADD_TASK, DELETE_TASK } from '../actions';
+import {
+  GET_PROJECTS,
+  GET_PROJECT,
+  ADD_TASK,
+  DELETE_TASK,
+  EDIT_TASK,
+} from '../actions';
 
 const initialState = {
   projectsList: [],
@@ -14,6 +20,12 @@ const initialState = {
 
 const renameId = ({ _id: id, ...rest }) => ({ id, ...rest });
 const renameArrHandler = arr => arr.map(item => renameId(item));
+
+const taskReducer = (state = {}, action) => {
+  const task = renameId(action.task);
+  if (state.id !== task.id) return state;
+  return task;
+};
 
 const projectsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -48,6 +60,15 @@ const projectsReducer = (state = initialState, action) => {
         project: {
           ...state.project,
           tasks: state.project.tasks.filter(task => task.id !== action.id),
+        },
+      };
+
+    case EDIT_TASK:
+      return {
+        ...state,
+        project: {
+          ...state.project,
+          tasks: state.project.tasks.map(task => taskReducer(task, action)),
         },
       };
 

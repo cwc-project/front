@@ -11,11 +11,11 @@ const bsUtilClasses = {
 };
 const form = classNames(bsUtilClasses.form);
 
-const TaskEdit = ({ title, onDelete, onEdit }) => {
+const TaskEdit = ({ title, toggleForm, onDelete, onEdit }) => {
   const taskInput = React.createRef();
   return (
     <ListGroupItem tag="div">
-      <Form className={form}>
+      <Form className={form} onSubmit={e => e.preventDefault()}>
         <Button color="danger" type="button" onClick={onDelete}>
           <Trash2 />
         </Button>
@@ -33,6 +33,7 @@ const TaskEdit = ({ title, onDelete, onEdit }) => {
             if (value && value !== title) {
               onEdit({ title: value });
             }
+            toggleForm();
           }}
         >
           <Save />
@@ -44,6 +45,7 @@ const TaskEdit = ({ title, onDelete, onEdit }) => {
 
 TaskEdit.propTypes = {
   title: PropTypes.string.isRequired,
+  toggleForm: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
   onEdit: PropTypes.func.isRequired,
 };
