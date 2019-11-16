@@ -1,18 +1,24 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
+import { TASK, TASK_EDIT_FORM, TASK_TIMER_FORM } from '../constants';
 import Task from '../components/Task';
 import TaskEdit from '../components/TaskEdit';
+import TaskTimerForm from '../components/TaskTimerForm';
 
 class TaskContainer extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      edit: false,
+      component: TASK,
     };
   }
 
-  toggleForm = () => this.setState(prevState => ({ edit: !prevState.edit }));
+  toggleTask = () => this.setState({ component: TASK });
+
+  toggleEditForm = () => this.setState({ component: TASK_EDIT_FORM });
+
+  toggleTimerForm = () => this.setState({ component: TASK_TIMER_FORM });
 
   onDelete = () => {
     const { deleteTask, id } = this.props;
@@ -35,29 +41,40 @@ class TaskContainer extends PureComponent {
   };
 
   renderTask() {
-    const { edit } = this.state;
+    const { component } = this.state;
     const { title, completed } = this.props;
 
-    if (edit) {
-      return (
-        <TaskEdit
-          title={title}
-          onDelete={this.onDelete}
-          toggleForm={this.toggleForm}
-          onEdit={this.onEdit}
-        />
-      );
-    }
-
-    return (
+    const task = (
       <Task
         title={title}
         completed={completed}
-        toggleForm={this.toggleForm}
+        toggleEditForm={this.toggleEditForm}
+        toggleTimerForm={this.toggleTimerForm}
         toggleComplete={this.toggleComplete}
         onEdit={this.onEdit}
       />
     );
+
+    switch (component) {
+      case TASK:
+        return task;
+
+      case TASK_EDIT_FORM:
+        return (
+          <TaskEdit
+            title={title}
+            onDelete={this.onDelete}
+            toggleTask={this.toggleTask}
+            onEdit={this.onEdit}
+          />
+        );
+
+      case TASK_TIMER_FORM:
+        return <TaskTimerForm toggleTask={this.toggleTask} />;
+
+      default:
+        return task;
+    }
   }
 
   render() {

@@ -1,9 +1,15 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { Edit2, Square, CheckSquare } from 'react-feather';
+import {
+  // Edit2,
+  Square,
+  CheckSquare,
+} from 'react-feather';
 import { ListGroupItem, ListGroupItemHeading, Button } from 'reactstrap';
 import './Task.css';
+
+import Timer from '../Timer';
 // использование встроенных стилей bootstrap
 const bsUtilClasses = {
   taskWrapper: ['d-flex', 'justify-content-between', 'align-items-center'],
@@ -13,10 +19,16 @@ const bsUtilClasses = {
 };
 const taskWrapper = classNames(bsUtilClasses.taskWrapper);
 const taskHeader = classNames(bsUtilClasses.taskHeader);
-const editBtn = classNames(bsUtilClasses.editBtn);
+// const editBtn = classNames(bsUtilClasses.editBtn);
 const complBtn = classNames(bsUtilClasses.complBtn);
 
-const Task = ({ title, completed, toggleForm, toggleComplete }) => {
+const Task = ({
+  title,
+  completed,
+  toggleEditForm,
+  toggleTimerForm,
+  toggleComplete,
+}) => {
   const task = classNames('task', completed && 'completed');
 
   return (
@@ -25,12 +37,16 @@ const Task = ({ title, completed, toggleForm, toggleComplete }) => {
         <Button color="light" className={complBtn} onClick={toggleComplete}>
           {completed ? <CheckSquare /> : <Square />}
         </Button>
-        <ListGroupItemHeading className={taskHeader}>
+        <ListGroupItemHeading
+          className={taskHeader}
+          onDoubleClick={toggleEditForm}
+        >
           {title}
         </ListGroupItemHeading>
-        <Button color="light" className={editBtn} onClick={toggleForm}>
+        <Timer toggleTimerForm={toggleTimerForm} />
+        {/* <Button color="light" className={editBtn} onClick={toggleForm}>
           <Edit2 />
-        </Button>
+        </Button> */}
       </div>
     </ListGroupItem>
   );
@@ -39,7 +55,8 @@ const Task = ({ title, completed, toggleForm, toggleComplete }) => {
 Task.propTypes = {
   title: PropTypes.string.isRequired,
   completed: PropTypes.bool.isRequired,
-  toggleForm: PropTypes.func.isRequired,
+  toggleEditForm: PropTypes.func.isRequired,
+  toggleTimerForm: PropTypes.func.isRequired,
   toggleComplete: PropTypes.func.isRequired,
 };
 
