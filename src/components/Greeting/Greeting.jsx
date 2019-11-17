@@ -21,6 +21,9 @@ class Greeting extends PureComponent {
       <main>
         <>
           <h1 className="heading-greeting">CWC2</h1>
+          <form>
+            <input />
+          </form>
           <div>
             <p>
               Todo based application. Built with ReactJS, NodeJS/Express,
