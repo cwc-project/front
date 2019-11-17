@@ -1,11 +1,18 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Form, Input } from 'reactstrap';
+import { Button, Form, Input, Modal, ModalBody } from 'reactstrap';
 import './Greeting.css';
 
 import RegModalContainer from '../../containers/RegModalContainer';
 
 class Greeting extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      modal: false,
+    };
+  }
+
   componentDidMount() {
     const { history, loggedIn } = this.props;
     if (loggedIn) {
@@ -14,16 +21,24 @@ class Greeting extends PureComponent {
     return null;
   }
 
+  handle = () => this.setState(prevState => ({ modal: !prevState.modal }));
+
   render() {
     const { onToggle } = this.props;
+    const { modal } = this.state;
 
     return (
       <main>
         <>
           <h1 className="heading-greeting">CWC2</h1>
-          <Form>
-            <Input />
-          </Form>
+          <Modal isOpen={modal}>
+            <ModalBody>
+              <Form>
+                <Input />
+              </Form>
+            </ModalBody>
+          </Modal>
+          <Button onClick={this.handle}>modal open</Button>
           <div>
             <p>
               Todo based application. Built with ReactJS, NodeJS/Express,
