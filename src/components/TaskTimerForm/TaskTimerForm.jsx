@@ -1,33 +1,36 @@
 import React, { PureComponent } from 'react';
 // import classNames from 'classnames';
 import PropTypes from 'prop-types';
+// import {
+// Watch,
+// Calendar,
+// X,
+// Check,
+// Clock,
+// } from 'react-feather';
 import {
-  // Watch,
-  // Calendar,
-  // X,
-  Check,
-  Clock,
-} from 'react-feather';
-import {
-  ListGroupItem,
-  // Form,
   Input,
   // InputGroup,
   // InputGroupAddon,
   // InputGroupText,
   Button,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
 } from 'reactstrap';
 import DatePicker from 'react-datepicker';
 // import { addYears } from 'date-fns';
 import 'react-datepicker/dist/react-datepicker.css';
+import './TaskTimerForm.css';
 
-class TaskTimerForm extends PureComponent {
+class TimerModal extends PureComponent {
   constructor() {
     super();
     this.state = {
-      startDate: new Date(),
+      date: new Date(),
+      modal: true,
     };
-    this.handleChange = this.handleChange.bind(this);
   }
 
   onReset = () => {
@@ -35,55 +38,52 @@ class TaskTimerForm extends PureComponent {
     toggleTask();
   };
 
-  handleChange(date) {
-    this.setState({
-      startDate: date,
-    });
-  }
+  toggleModal = () => this.setState(prevState => ({ modal: !prevState.modal }));
+
+  timeSelect = date => this.setState({ date });
 
   render() {
     // const { toggleTask } = this.props;
-    const { startDate } = this.state;
+    const { date, modal } = this.state;
 
     return (
-      <ListGroupItem tag="div">
-        <Button color="danger" onClick={this.onReset}>
-          <Clock />
-          &nbsp; Reset
-        </Button>
-        <DatePicker
-          selected={startDate}
-          onChange={this.handleChange}
-          dateFormat="MMMM d, yyyy h:mm aa"
-          minDate={new Date()}
-          // maxDate={addYears(new Date(), 5)}
-          showTimeSelect
-          timeFormat="HH:mm"
-          timeIntervals={60}
-          customInput={<Input />}
-          // withPortal
-          // inline
-          // showTimeInput
-          // isClearable
-        />
-
-        <Button color="light">
-          <Check />
-        </Button>
-        {/* <Button color="light" onClick={toggleTask}>
-          <X />
-        </Button> */}
-      </ListGroupItem>
+      <Modal isOpen={modal}>
+        <ModalHeader toggle={this.toggleModal}>Title tiel</ModalHeader>
+        <ModalBody>
+          <DatePicker
+            selected={date}
+            onChange={this.timeSelect}
+            dateFormat="MMMM d, yyyy h:mm aa"
+            minDate={new Date()}
+            // maxDate={addYears(new Date(), 5)}
+            showTimeSelect
+            timeFormat="HH:mm"
+            timeIntervals={60}
+            customInput={<Input className="bbb" />}
+            calendarClassName="aaa"
+          />
+        </ModalBody>
+        <ModalFooter>
+          <Button>Cances</Button>
+        </ModalFooter>
+      </Modal>
     );
   }
 }
 
-TaskTimerForm.propTypes = {
+TimerModal.propTypes = {
   toggleTask: PropTypes.func.isRequired,
 };
 
-export default TaskTimerForm;
+export default TimerModal;
 
+// // <Button color="light">
+// //   <Check />
+// // </Button>
+// <Button color="light" onClick={toggleTask}>
+//   <X />
+// </Button> */}
+// </ListGroupItem>
 /* <Form onSubmit={e => e.preventDefault()} inline>
         <InputGroup>
           <Input type="number" min="0" max="23" name="hours" />
@@ -111,3 +111,9 @@ export default TaskTimerForm;
           <X />
         </Button>
       </Form> */
+
+// <ListGroupItem tag="div">
+//   <Button color="danger" onClick={this.onReset}>
+//     <Clock />
+//     &nbsp; Reset
+//   </Button>
