@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, Input } from 'reactstrap';
 import './RegModal.css';
 
 import RegTabsContainer from '../../containers/RegTabsContainer';
@@ -20,6 +20,7 @@ const RegModal = ({ modalReg, toggleModalReg }) => (
       <ModalHeader className={modalHeader} toggle={toggleModalReg} />
       <ModalBody className={modalBody}>
         <RegTabsContainer />
+        <Input />
       </ModalBody>
     </Modal>
   </div>
