@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'reactstrap';
+import { Button, Form, Input } from 'reactstrap';
 import './Greeting.css';
 
 import RegModalContainer from '../../containers/RegModalContainer';
@@ -21,9 +21,9 @@ class Greeting extends PureComponent {
       <main>
         <>
           <h1 className="heading-greeting">CWC2</h1>
-          <form>
-            <input />
-          </form>
+          <Form>
+            <Input />
+          </Form>
           <div>
             <p>
               Todo based application. Built with ReactJS, NodeJS/Express,
