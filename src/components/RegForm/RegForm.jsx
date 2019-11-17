@@ -66,6 +66,7 @@ const RegForm = props => {
 
   return (
     <Form className={form} onSubmit={handleSubmit}>
+      <Input />
       <fieldset disabled={loading}>
         {optionFileds === 'name' ? (
           <FormGroup className={formGroup}>
