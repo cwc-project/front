@@ -1,18 +1,9 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 // import classNames from 'classnames';
 import PropTypes from 'prop-types';
-// import {
-// Watch,
-// Calendar,
-// X,
-// Check,
-// Clock,
-// } from 'react-feather';
+
 import {
   Input,
-  // InputGroup,
-  // InputGroupAddon,
-  // InputGroupText,
   Button,
   Modal,
   ModalBody,
@@ -22,57 +13,51 @@ import {
 import DatePicker from 'react-datepicker';
 // import { addYears } from 'date-fns';
 import 'react-datepicker/dist/react-datepicker.css';
-import './TaskTimerForm.css';
+import './TimerModal.css';
 
-class TimerModal extends PureComponent {
-  constructor() {
-    super();
-    this.state = {
-      date: new Date(),
-      modal: true,
-    };
-  }
-
-  onReset = () => {
-    const { toggleTask } = this.props;
-    toggleTask();
-  };
-
-  toggleModal = () => this.setState(prevState => ({ modal: !prevState.modal }));
-
-  timeSelect = date => this.setState({ date });
-
-  render() {
-    // const { toggleTask } = this.props;
-    const { date, modal } = this.state;
-
-    return (
-      <Modal isOpen={modal}>
-        <ModalHeader toggle={this.toggleModal}>Title tiel</ModalHeader>
-        <ModalBody>
-          <DatePicker
-            selected={date}
-            onChange={this.timeSelect}
-            dateFormat="MMMM d, yyyy h:mm aa"
-            minDate={new Date()}
-            // maxDate={addYears(new Date(), 5)}
-            showTimeSelect
-            timeFormat="HH:mm"
-            timeIntervals={60}
-            customInput={<Input className="bbb" />}
-            calendarClassName="aaa"
-          />
-        </ModalBody>
-        <ModalFooter>
-          <Button>Cances</Button>
-        </ModalFooter>
-      </Modal>
-    );
-  }
-}
+const TimerModal = ({
+  modal,
+  toggleModal,
+  date,
+  timePick,
+  minDate,
+  maxDate,
+  minTime,
+  maxTime,
+}) => (
+  <Modal isOpen={modal}>
+    <ModalHeader toggle={toggleModal}>Set deadline for your task!</ModalHeader>
+    <ModalBody>
+      <DatePicker
+        selected={date}
+        onChange={timePick}
+        dateFormat="MMMM d, yyyy h:mm aa"
+        minDate={minDate} // + 15min
+        maxDate={maxDate}
+        minTime={minTime}
+        maxTime={maxTime}
+        showTimeSelect
+        timeFormat="HH:mm"
+        timeIntervals={15}
+        customInput={<Input className="timer_input" />}
+        calendarClassName="timer_datepicker"
+      />
+    </ModalBody>
+    <ModalFooter>
+      <Button onClick={toggleModal}>Cancel</Button>
+    </ModalFooter>
+  </Modal>
+);
 
 TimerModal.propTypes = {
-  toggleTask: PropTypes.func.isRequired,
+  modal: PropTypes.bool.isRequired,
+  date: PropTypes.instanceOf(Date).isRequired,
+  minDate: PropTypes.number.isRequired,
+  maxDate: PropTypes.instanceOf(Date).isRequired,
+  minTime: PropTypes.instanceOf(Date).isRequired,
+  maxTime: PropTypes.instanceOf(Date).isRequired,
+  timePick: PropTypes.func.isRequired,
+  toggleModal: PropTypes.func.isRequired,
 };
 
 export default TimerModal;

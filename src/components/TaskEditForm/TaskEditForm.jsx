@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { Save, Trash2 } from 'react-feather';
 import { ListGroupItem, Form, Input, Button } from 'reactstrap';
-import './TaskEdit.css';
+import './TaskEditForm.css';
 
 // использование встроенных стилей bootstrap
 const bsUtilClasses = {
@@ -11,7 +11,7 @@ const bsUtilClasses = {
 };
 const form = classNames(bsUtilClasses.form);
 
-const TaskEdit = ({ title, toggleTask, onDelete, onEdit }) => {
+const TaskEdit = ({ title, toggleEdit, onDelete, onEdit }) => {
   const taskInput = React.createRef();
   return (
     <ListGroupItem tag="div">
@@ -33,7 +33,7 @@ const TaskEdit = ({ title, toggleTask, onDelete, onEdit }) => {
             if (value && value !== title) {
               onEdit({ title: value });
             }
-            toggleTask();
+            toggleEdit();
           }}
         >
           <Save />
@@ -45,7 +45,7 @@ const TaskEdit = ({ title, toggleTask, onDelete, onEdit }) => {
 
 TaskEdit.propTypes = {
   title: PropTypes.string.isRequired,
-  toggleTask: PropTypes.func.isRequired,
+  toggleEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
   onEdit: PropTypes.func.isRequired,
 };

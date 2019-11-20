@@ -9,7 +9,7 @@ import {
 import { ListGroupItem, ListGroupItemHeading, Button } from 'reactstrap';
 import './Task.css';
 
-import Timer from '../Timer';
+import TimerContainer from '../../containers/TimerContainer';
 // использование встроенных стилей bootstrap
 const bsUtilClasses = {
   taskWrapper: ['d-flex', 'justify-content-between', 'align-items-center'],
@@ -25,9 +25,10 @@ const complBtn = classNames(bsUtilClasses.complBtn);
 const Task = ({
   title,
   completed,
-  toggleEditForm,
-  toggleTimerForm,
+  // modalTimer,
+  toggleEdit,
   toggleComplete,
+  // toggleTimer,
 }) => {
   const task = classNames('task', completed && 'completed');
 
@@ -37,13 +38,10 @@ const Task = ({
         <Button color="light" className={complBtn} onClick={toggleComplete}>
           {completed ? <CheckSquare /> : <Square />}
         </Button>
-        <ListGroupItemHeading
-          className={taskHeader}
-          onDoubleClick={toggleEditForm}
-        >
+        <ListGroupItemHeading className={taskHeader} onDoubleClick={toggleEdit}>
           {title}
         </ListGroupItemHeading>
-        <Timer toggleTimerForm={toggleTimerForm} />
+        <TimerContainer />
         {/* <Button color="light" className={editBtn} onClick={toggleForm}>
           <Edit2 />
         </Button> */}
@@ -55,8 +53,9 @@ const Task = ({
 Task.propTypes = {
   title: PropTypes.string.isRequired,
   completed: PropTypes.bool.isRequired,
-  toggleEditForm: PropTypes.func.isRequired,
-  toggleTimerForm: PropTypes.func.isRequired,
+  // modalTimer: PropTypes.bool.isRequired,
+  toggleEdit: PropTypes.func.isRequired,
+  // toggleTimer: PropTypes.func.isRequired,
   toggleComplete: PropTypes.func.isRequired,
 };
 

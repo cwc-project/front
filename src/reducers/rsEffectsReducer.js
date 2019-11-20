@@ -1,7 +1,7 @@
 import {
   TOGGLE_MODAL_REG,
   TOGGLE_MODAL_PROJ_ADD,
-  TOGGLE_MODAL_TIMER,
+  // TOGGLE_MODAL_TIMER,
   TOGGLE_TAB,
   LOGIN_USER,
   ADD_PROJECT,
@@ -10,7 +10,7 @@ import {
 export const initialState = {
   modalReg: false,
   modalProjAdd: false,
-  modalTimer: false,
+  // modalTimer: false,
   activeTab: '1',
 };
 
@@ -21,9 +21,6 @@ const rsEffectsReducer = (state = initialState, action) => {
 
     case TOGGLE_MODAL_PROJ_ADD:
       return { ...initialState, modalProjAdd: !state.modalProjAdd };
-
-    case TOGGLE_MODAL_TIMER:
-      return { ...initialState, modalProjAdd: !state.modalTimer };
 
     case TOGGLE_TAB:
       return { ...state, activeTab: action.activeTab };
@@ -40,3 +37,6 @@ const rsEffectsReducer = (state = initialState, action) => {
 export default rsEffectsReducer;
 // case ADD_PROJECT:
 //   return initialState;
+
+// case TOGGLE_MODAL_TIMER:
+//   return { ...initialState, modalProjAdd: !state.modalTimer };

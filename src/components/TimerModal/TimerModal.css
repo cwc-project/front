@@ -4,22 +4,21 @@
   transition: color 0.2s;
 }
 
-.bbb {
+.timer_input {
   font-size: 1.1rem;
   font-weight: 500;
-  width: 105%;
+  width: 110%;
+  padding-right: 1rem;
 }
 
 /* mobile */
 @media (max-width: 359px) {
-  .aaa {
+  .timer_datepicker {
     margin-left: -1.5rem;
   }
 
   .react-datepicker__time-container,
-  .react-datepicker__time-container
-    .react-datepicker__time
-    .react-datepicker__time-box {
+  .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box {
     width: 76px;
   }
 }
