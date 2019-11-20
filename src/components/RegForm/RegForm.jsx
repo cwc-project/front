@@ -11,6 +11,7 @@ import {
   Input,
   InputGroup,
   InputGroupAddon,
+  // Button
 } from 'reactstrap';
 import './RegForm.css';
 import ErrorContainer from '../../containers/ErrorContainer';
@@ -45,7 +46,7 @@ const RegForm = props => {
       emailInfo,
       loading,
     },
-    state: { name, email, pass },
+    state: { name, email, pass, hidePass },
     handleChange,
     passToggle,
     handleSubmit,
@@ -66,9 +67,8 @@ const RegForm = props => {
 
   return (
     <Form className={form} onSubmit={handleSubmit}>
-      <Input />
       <fieldset disabled={loading}>
-        {optionFileds === 'name' ? (
+        {optionFileds === 'name' && (
           <FormGroup className={formGroup}>
             <Label for={`${id}name`}>Name*</Label>
             <InputGroup>
@@ -93,8 +93,6 @@ const RegForm = props => {
               )}
             </InputGroup>
           </FormGroup>
-        ) : (
-          ''
         )}
         <FormGroup className={formGroup}>
           <Label for={`${id}Email`}>E-mail*</Label>
@@ -123,7 +121,7 @@ const RegForm = props => {
           <Label for={`${id}Pass`}>Password*</Label>
           <InputGroup>
             <Input
-              type={pass.hide ? 'password' : 'text'}
+              type={hidePass ? 'password' : 'text'}
               className={passCheck}
               id={`${id}Pass`}
               name="pass"
@@ -139,7 +137,7 @@ const RegForm = props => {
                   onClick={passToggle}
                   className={passToggleBtn}
                 >
-                  {pass.hide ? (
+                  {hidePass ? (
                     <EyeOff className="input-addon-icon" />
                   ) : (
                     <Eye className="input-addon-icon" />
@@ -152,6 +150,7 @@ const RegForm = props => {
         </FormGroup>
         <ErrorContainer type={type} />
         <BtnSubmitContainer btnValue={btnValue} type="user" />
+        {/* <Button type="submit">Submit</Button> */}
       </fieldset>
     </Form>
   );
@@ -182,8 +181,9 @@ RegForm.propTypes = {
     pass: PropTypes.shape({
       value: PropTypes.string.isRequired,
       valid: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
-      hide: PropTypes.bool.isRequired,
+      // hide: PropTypes.bool.isRequired,
     }).isRequired,
+    hidePass: PropTypes.bool.isRequired,
   }).isRequired,
   handleChange: PropTypes.func.isRequired,
   passToggle: PropTypes.func.isRequired,

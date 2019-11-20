@@ -22,8 +22,8 @@ class RegFormContainer extends PureComponent {
       pass: {
         value: '',
         valid: '',
-        hide: true,
       },
+      hidePass: true,
     };
 
     this.regExps = {
@@ -33,42 +33,60 @@ class RegFormContainer extends PureComponent {
     };
   }
 
+  // handleChange = ({ target: { name, value } }) => { // проблема в trimStart()
+  //   const { ...state } = this.state;
+  //   const { validation } = this.props;
+  //   const trimVal = value.trimStart();
+  //   if (state[name]) {
+  //     this.setState(prevState => ({
+  //       ...prevState,
+  //       [name]: {
+  //         ...prevState[name],
+  //         value: trimVal,
+  //         valid: validation ? this.handleCheck(name, trimVal) : true,// проблема в этой ф-ции
+  //       },
+  //     }));
+  //   }
+  // };
+
   handleChange = ({ target: { name, value } }) => {
-    const { ...state } = this.state;
     const { validation } = this.props;
-    const trimVal = value.trimStart();
-    if (state[name]) {
-      this.setState(prevState => ({
-        ...prevState,
-        [name]: {
-          ...prevState[name],
-          value: trimVal,
-          valid: validation ? this.handleCheck(name, trimVal) : true,
-        },
-      }));
-    }
+    // возможность ввести имя и отчество через пробел
+    const trimVal = name !== 'name' ? value.trim() : value;
+
+    this.setState({
+      [name]: {
+        value,
+        valid: validation ? this.handleCheck(name, trimVal) : true,
+      },
+    });
   };
 
-  passToggle = event => {
-    const { pass } = this.state;
-    this.setState({ pass: { ...pass, hide: !pass.hide } });
-    event.preventDefault();
-  };
+  // passToggle = event => {
+  //   const { pass } = this.state;
+  //   this.setState({ pass: { ...pass, hide: !pass.hide } });
+  //   event.preventDefault();
+  // };
+
+  passToggle = () =>
+    this.setState(prevState => ({ hidePass: !prevState.hidePass }));
 
   handleSubmit = event => {
     event.preventDefault();
     const { name, email, pass } = this.state;
+
     const {
       type,
       userActions: { login, reg },
     } = this.props;
+
     if (!email.valid || !pass.valid || (!name.valid && type === 'reg')) {
       return;
     }
 
     let input = {
-      email: email.value.toLowerCase(),
-      pass: pass.value,
+      email: email.value.toLowerCase().trim(),
+      pass: pass.value.trim(),
     };
 
     if (type === 'log') {
@@ -77,7 +95,7 @@ class RegFormContainer extends PureComponent {
     }
 
     if (type === 'reg') {
-      input = { ...input, name: name.value.trimEnd() };
+      input = { ...input, name: name.value.trim() };
       this.submitAction(reg, input);
     }
   };
@@ -87,7 +105,7 @@ class RegFormContainer extends PureComponent {
     action(data, history);
   };
 
-  handleCheck = (name, value) => this.regExps[name].test(value);
+  handleCheck = (name, value) => this.regExps[name].test(value.trim());
 
   render() {
     return (

@@ -26,7 +26,7 @@ const AddTaskForm = ({ addTask }) => {
           className="add-task_input"
           placeholder="New task"
           innerRef={taskTitle}
-          autoFocus
+          // autoFocus // плохо смотриться на мобильном
         />
         <Button color="primary" className="add-task_btn">
           <Plus />
