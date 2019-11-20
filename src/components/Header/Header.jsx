@@ -20,9 +20,9 @@ const bsUtilClasses = {
     'bg-light',
     'border-bottom',
     'shadow-sm',
-    'mb-5',
-    'py-3',
-    'px-5',
+    // 'mb-5',
+    // 'py-3',
+    // 'px-5',
   ],
 };
 const header = classNames(bsUtilClasses.header, 'header');
@@ -52,9 +52,13 @@ class Header extends PureComponent {
       </Button>
     ) : (
       <ButtonDropdown isOpen={dropdownOpen} toggle={this.toggle}>
-        <DropdownToggle color="link" className="text-decoration-none" caret>
+        <Button id="caret" color="link" className="user-btn">
           {userName}
-        </DropdownToggle>
+        </Button>
+        <DropdownToggle caret color="link" className="pl-1" />
+        {/* <DropdownToggle color="link" className="ttt" caret>
+          {userName}
+        </DropdownToggle> */}
         <DropdownMenu right>
           <DropdownItem onClick={logout}>
             <LogOut />

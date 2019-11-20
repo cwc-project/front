@@ -12,8 +12,10 @@ import ErrorContainer from './ErrorContainer';
 // использование встроенных стилей bootstrap
 const bsUtilClasses = {
   btn: ['mt-4'],
+  projects: ['mt-5'],
 };
 const btn = classNames(bsUtilClasses.btn);
+const projectsStyle = classNames(bsUtilClasses.projects);
 
 class ProjectsContainer extends PureComponent {
   componentDidMount() {
@@ -32,7 +34,7 @@ class ProjectsContainer extends PureComponent {
 
     if (loading) return <Spinner color="primary" />;
     return (
-      <>
+      <div className={projectsStyle}>
         {projectsAmount > 0 && (
           <ProjectsList
             projectsList={projectsList}
@@ -50,7 +52,7 @@ class ProjectsContainer extends PureComponent {
           &nbsp;
           {projectsAmount ? 'Add new project' : 'Create your first project'}
         </Button>
-      </>
+      </div>
     );
   }
 }

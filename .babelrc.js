@@ -1,5 +1,5 @@
 const presets = [
-  [
+  
     '@babel/preset-env',
     {
       targets: {

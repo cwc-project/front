@@ -18,7 +18,7 @@ const bsUtilClasses = {
   complBtn: ['mr-3', 'shadow-none'],
 };
 const taskWrapper = classNames(bsUtilClasses.taskWrapper);
-const taskHeader = classNames(bsUtilClasses.taskHeader);
+const taskHeader = classNames(bsUtilClasses.taskHeader, 'task_header');
 // const editBtn = classNames(bsUtilClasses.editBtn);
 const complBtn = classNames(bsUtilClasses.complBtn);
 

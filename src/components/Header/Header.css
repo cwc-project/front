@@ -1,5 +1,28 @@
 .header {
-  padding: 1rem 2rem;
+  padding: 1rem;
+}
 
-  /* background-color:whitesmoke; */
+.user-btn {
+  max-width: 5rem;
+  overflow: hidden;
+  text-decoration: none;
+  padding-right: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* wide-screen mobile */
+@media (min-width: 360px) {
+  .header {
+    padding: 1rem 2rem;
+  }
+
+  .user-btn {
+    max-width: 8rem;
+    overflow: hidden;
+    text-decoration: none;
+    padding-right: 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 }

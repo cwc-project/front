@@ -1,9 +1,15 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { Button } from 'reactstrap';
 import './Greeting.css';
 
 import RegModalContainer from '../../containers/RegModalContainer';
+
+const bsUtilClasses = {
+  greeting: ['mt-5'],
+};
+const greeting = classNames(bsUtilClasses.greeting, 'greeting');
 
 class Greeting extends PureComponent {
   componentDidMount() {
@@ -18,13 +24,13 @@ class Greeting extends PureComponent {
     const { onToggle } = this.props;
 
     return (
-      <main>
+      <main className={greeting}>
         <>
           <h1 className="heading-greeting">CWC2</h1>
           <div>
             <p>
-              Todo based application. Built with ReactJS, NodeJS/Express,
-              MongoDb.
+              Todo based application built with MERN stack (MongoDB, ExpressJS,
+              ReactJS, NodeJS).
             </p>
             <p>
               For using please&nbsp;
@@ -45,6 +51,29 @@ class Greeting extends PureComponent {
               </Button>
               .
             </p>
+            {/* <div className="text-left">
+              <h6>Info:</h6>
+              <ul>
+                <li>User registration</li>
+                <li>Email notification</li>
+                <li>
+                  CRUD for projects:
+                  <ul>
+                    <li>Get Projects</li>
+                    <li>Add project</li>
+                  </ul>
+                </li>
+                <li>
+                  CRUD for tasks:
+                  <ul>
+                    <li>Get Tasks</li>
+                    <li>Add task</li>
+                    <li>Edit task(on doubleClick)</li>
+                    <li>Delete task(on doubleClick)</li>
+                  </ul>
+                </li>
+              </ul>
+            </div> */}
           </div>
           <RegModalContainer />
         </>
