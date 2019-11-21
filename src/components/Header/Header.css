@@ -4,10 +4,6 @@
 
 .user-btn {
   max-width: 5rem;
-  overflow: hidden;
-  text-decoration: none;
-  padding-right: 0;
-  white-space: nowrap;
   text-overflow: ellipsis;
 }
 
@@ -19,10 +15,5 @@
 
   .user-btn {
     max-width: 8rem;
-    overflow: hidden;
-    text-decoration: none;
-    padding-right: 0;
-    white-space: nowrap;
-    text-overflow: ellipsis;
   }
 }

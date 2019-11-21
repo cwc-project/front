@@ -20,12 +20,11 @@ const bsUtilClasses = {
     'bg-light',
     'border-bottom',
     'shadow-sm',
-    // 'mb-5',
-    // 'py-3',
-    // 'px-5',
   ],
+  userBtn: ['pr-0', 'text-decoration-none', 'overflow-hidden', 'text-nowrap'],
 };
 const header = classNames(bsUtilClasses.header, 'header');
+const userBtn = classNames(bsUtilClasses.userBtn, 'user-btn');
 
 class Header extends PureComponent {
   constructor(props) {
@@ -52,7 +51,7 @@ class Header extends PureComponent {
       </Button>
     ) : (
       <ButtonDropdown isOpen={dropdownOpen} toggle={this.toggle}>
-        <Button id="caret" color="link" className="user-btn">
+        <Button id="caret" color="link" className={userBtn}>
           {userName}
         </Button>
         <DropdownToggle caret color="link" className="pl-1" />
