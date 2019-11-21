@@ -22,14 +22,7 @@ const taskHeader = classNames(bsUtilClasses.taskHeader, 'task_header');
 // const editBtn = classNames(bsUtilClasses.editBtn);
 const complBtn = classNames(bsUtilClasses.complBtn);
 
-const Task = ({
-  title,
-  completed,
-  // modalTimer,
-  toggleEdit,
-  toggleComplete,
-  // toggleTimer,
-}) => {
+const Task = ({ title, completed, dblTapHandler, toggleComplete }) => {
   const task = classNames('task', completed && 'completed');
 
   return (
@@ -38,7 +31,7 @@ const Task = ({
         <Button color="light" className={complBtn} onClick={toggleComplete}>
           {completed ? <CheckSquare /> : <Square />}
         </Button>
-        <ListGroupItemHeading className={taskHeader} onDoubleClick={toggleEdit}>
+        <ListGroupItemHeading className={taskHeader} onClick={dblTapHandler}>
           {title}
         </ListGroupItemHeading>
         <TimerContainer />
@@ -53,9 +46,7 @@ const Task = ({
 Task.propTypes = {
   title: PropTypes.string.isRequired,
   completed: PropTypes.bool.isRequired,
-  // modalTimer: PropTypes.bool.isRequired,
-  toggleEdit: PropTypes.func.isRequired,
-  // toggleTimer: PropTypes.func.isRequired,
+  dblTapHandler: PropTypes.func.isRequired,
   toggleComplete: PropTypes.func.isRequired,
 };
 

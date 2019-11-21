@@ -1,27 +1,29 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-// import { connect } from 'react-redux';
 
-// import { TASK, TASK_EDIT_FORM, TASK_TIMER_FORM } from '../constants';
-// import * as rsEffetcsActions from '../actions/rsEffectsActions';
 import Task from '../components/Task';
 import TaskEditForm from '../components/TaskEditForm';
-// import TaskTimerForm from '../components/TaskTimerForm';
 
 class TaskContainer extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       editForm: false,
-      // modalTimer: false,
     };
+    this.tappedTwice = false;
   }
 
-  // toggleTask = () => this.setState({ component: TASK });
-
-  // toggleEditForm = () => this.setState({ component: TASK_EDIT_FORM });
-
-  // toggleTimerForm = () => this.setState({ component: TASK_TIMER_FORM });
+  dblTapHandler = event => {
+    event.preventDefault();
+    if (!this.tappedTwice) {
+      this.tappedTwice = true;
+      setTimeout(() => {
+        this.tappedTwice = false;
+      }, 300);
+      return;
+    }
+    this.toggleEdit();
+  };
 
   toggleEdit = () =>
     this.setState(prevState => ({ editForm: !prevState.editForm }));
@@ -67,35 +69,12 @@ class TaskContainer extends PureComponent {
       <Task
         title={title}
         completed={completed}
-        // modalTimer={modalTimer}
-        // toggleTimer={this.toggleTimer}
         toggleComplete={this.toggleComplete}
-        toggleEdit={this.toggleEdit}
-        onEdit={this.onEdit}
+        dblTapHandler={this.dblTapHandler}
       />
     );
 
     return task;
-    // switch (component) {
-    //   case TASK:
-    //     return task;
-
-    //   case TASK_EDIT_FORM:
-    //     return (
-    //       <TaskEdit
-    //         title={title}
-    //         onDelete={this.onDelete}
-    //         toggleTask={this.toggleTask}
-    //         onEdit={this.onEdit}
-    //       />
-    //     );
-
-    //   case TASK_TIMER_FORM:
-    //     return <TaskTimerForm toggleTask={this.toggleTask} />;
-
-    //   default:
-    //     return task;
-    // }
   }
 
   render() {
@@ -107,21 +86,8 @@ TaskContainer.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   completed: PropTypes.bool.isRequired,
-  // modalTimer: PropTypes.bool.isRequired,
   deleteTask: PropTypes.func.isRequired,
   editTask: PropTypes.func.isRequired,
 };
 
 export default TaskContainer;
-// const mapStateToProps = ({ rsEffects }) => ({
-//   modalTimer: rsEffects.modalTimer,
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//   toggleModalTimer: () => dispatch(rsEffetcsActions.toggleModalTimer()),
-// });
-
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps,
-// )(TaskContainer);
