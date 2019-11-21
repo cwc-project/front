@@ -1,4 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'react-datepicker/dist/react-datepicker.min.css'; // Раблтает
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { Container } from 'reactstrap';

@@ -1,3 +1,4 @@
+import 'react-datepicker/dist/react-datepicker.min.css'; // Раблтает
 import React from 'react';
 // import classNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -11,8 +12,6 @@ import {
   ModalHeader,
 } from 'reactstrap';
 import DatePicker from 'react-datepicker';
-// import { addYears } from 'date-fns';
-import 'react-datepicker/dist/react-datepicker.css';
 import './TimerModal.css';
 
 const TimerModal = ({
