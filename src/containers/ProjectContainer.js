@@ -71,7 +71,7 @@ class ProjectContainer extends PureComponent {
       <>
         <div className={linkWrap}>
           <Link to="/projects" className={link}>
-            <ArrowLeft style={{ width: 'auto', height: '20px' }} />
+            <ArrowLeft style={{ width: '20px', height: '20px' }} />
             &nbsp;projects ...
           </Link>
         </div>

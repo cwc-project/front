@@ -12,7 +12,7 @@ module.exports = (env, argv) => {
   const devMode = argv.mode === 'development';
   return {
     entry: {
-      app: './src/index.js',
+      app: ['core-js/stable', './src/index.js'],
     },
     output: {
       path: path.resolve(__dirname, 'dist'),

@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>CWC-project</title>
     <script>
-      (function({ origin, search, hash }) {
+      (function returnUrl({ origin, search, hash }) {
         // ограничиваем scope с помощью iffe
         if (search) {
           const firstQueryKey = search.split('=')[0];
