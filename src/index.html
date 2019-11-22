@@ -14,10 +14,11 @@
           const slashAppear = l.search.indexOf('/') !== -1;
           if (firstQueryKey === '?p' && slashAppear) {
             const searchValue = l.search.slice(3); //exclude ?p= from search string
+            // prettier-ignore
             window.history.replaceState(
               null,
               null,
-              l.origin + searchValue + l.hash, //no trailing commas for IE
+              l.origin + searchValue + l.hash //no trailing commas for IE
             );
           }
         }

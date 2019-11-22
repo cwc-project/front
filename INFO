@@ -91,7 +91,7 @@ tasks:
 - увеличить все шрифты
 + не работает doubleClick на ipad // замена doubleClick ф-цией
 + при нажатии не таймер удаляется задача
-- при обновлении страницы project на ipad и iphone возвращается страница projects
+- при обновлении страницы project на ipad и iphone и IE возвращается страница projects //trailing commas - вызывают ошибку в ie и старых сафари (в файле index.html)
 на андройд все ок
 + не работают запросы к api в IE // add promise полифил
 + session Storage не работает в ie для localhost, только для удаленных url
