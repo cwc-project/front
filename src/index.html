@@ -7,17 +7,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>CWC-project</title>
     <script>
-      (function returnUrl({ origin, search, hash }) {
+      (function(l) {
         // ограничиваем scope с помощью iffe
-        if (search) {
-          const firstQueryKey = search.split('=')[0];
-          const slashAppear = search.indexOf('/') !== -1;
+        if (l.search) {
+          const firstQueryKey = l.search.split('=')[0];
+          const slashAppear = l.search.indexOf('/') !== -1;
           if (firstQueryKey === '?p' && slashAppear) {
-            const searchValue = search.slice(3); //exclude ?p= from search string
+            const searchValue = l.search.slice(3); //exclude ?p= from search string
             window.history.replaceState(
               null,
               null,
-              origin + searchValue + hash,
+              l.origin + searchValue + l.hash, //no trailing commas for IE
             );
           }
         }
