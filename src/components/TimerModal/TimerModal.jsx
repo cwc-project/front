@@ -6,18 +6,31 @@ import PropTypes from 'prop-types';
 import {
   Input,
   Button,
+  Form,
+  FormFeedback,
   Modal,
   ModalBody,
   ModalFooter,
   ModalHeader,
+  // ButtonDropdown,
+  // DropdownToggle,
+  // DropdownMenu,
+  // DropdownItem,
 } from 'reactstrap';
+import { Check, X } from 'react-feather';
+
 import DatePicker from 'react-datepicker';
 import './TimerModal.css';
 
+const timerWarning = 'deadline should not be less than 15 minutes, and not exceed 5 years'; // prettier-ignore
+
 const TimerModal = ({
   modal,
-  toggleModal,
+  invalidDate,
   date,
+  toggleModal,
+  setTimer,
+  resetTimer,
   timePick,
   minDate,
   maxDate,
@@ -26,36 +39,67 @@ const TimerModal = ({
 }) => (
   <Modal isOpen={modal}>
     <ModalHeader toggle={toggleModal}>Set deadline for your task!</ModalHeader>
-    <ModalBody>
-      <DatePicker
-        selected={date}
-        onChange={timePick}
-        dateFormat="MMMM d, yyyy h:mm aa"
-        minDate={minDate} // + 15min
-        maxDate={maxDate}
-        minTime={minTime}
-        maxTime={maxTime}
-        showTimeSelect
-        timeFormat="HH:mm"
-        timeIntervals={15}
-        customInput={<Input className="timer_input" />}
-        calendarClassName="timer_datepicker"
-      />
-    </ModalBody>
-    <ModalFooter>
-      <Button onClick={toggleModal}>Cancel</Button>
-    </ModalFooter>
+    <Form onSubmit={e => e.preventDefault()}>
+      <ModalBody>
+        <DatePicker
+          selected={date}
+          onChange={timePick}
+          dateFormat="MMMM d, yyyy h:mm aa"
+          minDate={minDate}
+          maxDate={maxDate}
+          minTime={minTime}
+          maxTime={maxTime}
+          showTimeSelect
+          // showMonthDropdown
+          // showYearDropdown
+          timeFormat="HH:mm"
+          timeIntervals={15}
+          customInput={<Input className="timer_input" invalid={invalidDate} />}
+          calendarClassName="timer_datepicker"
+        />
+        <FormFeedback className="d-block">
+          {invalidDate && timerWarning}
+        </FormFeedback>
+      </ModalBody>
+      <ModalFooter className="border-0">
+        <Button color="danger" onClick={resetTimer}>
+          <X />
+          Reset timer
+        </Button>
+        <Button color="primary" outline onClick={setTimer}>
+          <Check />
+          Set timer
+        </Button>
+        {/* <Button onClick={toggleModal}>Cancel</Button>
+   <ButtonDropdown color="primary" isOpen={false}>
+
+     <DropdownToggle color="primary" caret className="timer_set-toggle" />
+          <DropdownMenu>
+            <DropdownItem header>Advanced options</DropdownItem>
+                                <DropdownItem divider />
+        <DropdownItem>
+              <X />
+              Reset timer
+            </DropdownItem>
+          </DropdownMenu>
+        </ButtonDropdown>
+       */}
+      </ModalFooter>
+    </Form>
   </Modal>
 );
 
 TimerModal.propTypes = {
   modal: PropTypes.bool.isRequired,
   date: PropTypes.instanceOf(Date).isRequired,
+  invalidDate: PropTypes.bool.isRequired,
   minDate: PropTypes.number.isRequired,
-  maxDate: PropTypes.instanceOf(Date).isRequired,
+  maxDate: PropTypes.number.isRequired,
   minTime: PropTypes.instanceOf(Date).isRequired,
   maxTime: PropTypes.instanceOf(Date).isRequired,
   timePick: PropTypes.func.isRequired,
+  setTimer: PropTypes.func.isRequired,
+  resetTimer: PropTypes.func.isRequired,
   toggleModal: PropTypes.func.isRequired,
 };
 

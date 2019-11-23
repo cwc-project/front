@@ -7,8 +7,21 @@
 .timer_input {
   font-size: 1.1rem;
   font-weight: 500;
-  width: 110%;
   padding-right: 1rem;
+}
+
+/* width: 110%; */
+
+.react-datepicker-wrapper {
+  display: block;
+}
+
+.timer_set-btn {
+  border-right: 0.4px dotted #fff;
+}
+
+.timer_set-toggle {
+  border-left: 0.4px dotted #fff;
 }
 
 /* mobile */
@@ -18,7 +31,9 @@
   }
 
   .react-datepicker__time-container,
-  .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box {
+  .react-datepicker__time-container
+    .react-datepicker__time
+    .react-datepicker__time-box {
     width: 76px;
   }
 }

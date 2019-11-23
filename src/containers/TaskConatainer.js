@@ -53,7 +53,7 @@ class TaskContainer extends PureComponent {
 
   renderTask() {
     const { editForm } = this.state;
-    const { title, completed } = this.props;
+    const { title, completed, deadline } = this.props;
     if (editForm) {
       return (
         <TaskEditForm
@@ -69,6 +69,8 @@ class TaskContainer extends PureComponent {
       <Task
         title={title}
         completed={completed}
+        deadline={deadline}
+        onEdit={this.onEdit}
         toggleComplete={this.toggleComplete}
         dblTapHandler={this.dblTapHandler}
       />
@@ -86,8 +88,13 @@ TaskContainer.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   completed: PropTypes.bool.isRequired,
+  deadline: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]).isRequired,
   deleteTask: PropTypes.func.isRequired,
   editTask: PropTypes.func.isRequired,
 };
+
+// TaskContainer.defaultProps = {
+//   deadline: false,
+// };
 
 export default TaskContainer;
