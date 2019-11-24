@@ -14,7 +14,8 @@ class TimerContainer extends PureComponent {
       modal: false,
       date: new Date(),
       invalidDate: false,
-      secRemain: null,
+      secRemain: 0,
+      // overdue: false,
     };
   }
 
@@ -38,24 +39,28 @@ class TimerContainer extends PureComponent {
   }
 
   tick = () => {
-    const { secRemain } = this.state;
+    // const { secRemain } = this.state;
     // console.log('UPDATE', secRemain);
-    if (secRemain !== 0) {
-      this.interval = setInterval(() => {
-        console.log('tick');
-        this.elapsedTimeCounter();
-      }, 1000);
-    }
+
+    // if (secRemain !== 0) {
+    this.interval = setInterval(() => {
+      console.log('tick');
+      this.elapsedTimeCounter();
+    }, 1000);
+    // }
+    // if (secRemain === 0) {
+    //   clearInterval(this.interval);
+    // }
   };
 
   elapsedTimeCounter = () => {
     const { deadline } = this.props;
-    const secRemain = Math.floor(
-      (new Date(deadline).getTime() - Date.now()) / 1000,
-    );
-
+    const secRemain = Math.floor((deadline.getTime() - Date.now()) / 1000);
     console.log(secRemain);
-
+    if (secRemain < 0) {
+      clearInterval(this.interval);
+      return;
+    }
     this.setState({ secRemain });
   };
 
@@ -65,15 +70,15 @@ class TimerContainer extends PureComponent {
   setTimer = () => {
     const { onEdit } = this.props;
     const { date } = this.state;
-    if (this.dateValidation(date)) {
-      onEdit({ deadline: date });
-      this.toggleModal();
-    }
+    // if (this.dateValidation(date)) {
+    onEdit({ deadline: date });
+    this.toggleModal();
+    // }
   };
 
   resetTimer = () => {
     const { onEdit } = this.props;
-    onEdit({ deadline: '' });
+    onEdit({ deadline: false });
     this.toggleModal();
   };
 
@@ -91,7 +96,7 @@ class TimerContainer extends PureComponent {
   timePick = date => this.setState({ date });
 
   render() {
-    const { modal, date, invalidDate } = this.state;
+    const { modal, date, invalidDate, secRemain } = this.state;
     // минимальные дата и время ниже используются только для графического
     // оформления react-datepicker
     const now = new Date();
@@ -109,6 +114,7 @@ class TimerContainer extends PureComponent {
           modal={modal}
           date={date}
           invalidDate={invalidDate}
+          secRemain={secRemain}
           minDate={minDate}
           maxDate={this.maxDate}
           minTime={minTime}
@@ -126,7 +132,8 @@ class TimerContainer extends PureComponent {
 TimerContainer.propTypes = {
   onEdit: PropTypes.func.isRequired,
   completed: PropTypes.bool.isRequired,
-  deadline: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]).isRequired,
+  deadline: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.bool])
+    .isRequired,
 };
 
 export default TimerContainer;

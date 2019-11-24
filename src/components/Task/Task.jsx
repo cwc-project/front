@@ -57,7 +57,8 @@ const Task = ({
 Task.propTypes = {
   title: PropTypes.string.isRequired,
   completed: PropTypes.bool.isRequired,
-  deadline: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]).isRequired,
+  deadline: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.bool])
+    .isRequired,
   dblTapHandler: PropTypes.func.isRequired,
   toggleComplete: PropTypes.func.isRequired,
   onEdit: PropTypes.func.isRequired,

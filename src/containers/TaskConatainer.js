@@ -88,13 +88,10 @@ TaskContainer.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   completed: PropTypes.bool.isRequired,
-  deadline: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]).isRequired,
+  deadline: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.bool])
+    .isRequired,
   deleteTask: PropTypes.func.isRequired,
   editTask: PropTypes.func.isRequired,
 };
-
-// TaskContainer.defaultProps = {
-//   deadline: false,
-// };
 
 export default TaskContainer;
