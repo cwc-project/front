@@ -1,0 +1,17 @@
+.timer-display {
+  white-space: nowrap;
+  border: none;
+  background-color: transparent;
+  outline: none !important;
+}
+
+.timer-display_icon {
+  width: 16px;
+  height: 16px;
+  margin-left: 3px;
+  margin-bottom: 3px;
+}
+
+.timer-display.timer-display__warning {
+  color: rgba(220, 53, 69, 1);
+}

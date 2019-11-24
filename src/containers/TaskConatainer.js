@@ -51,6 +51,15 @@ class TaskContainer extends PureComponent {
     editTask(taskKey, id);
   };
 
+  deadlineString() {
+    const { deadline } = this.props;
+    if (deadline) {
+      const arr = deadline.toString().split(':');
+      return `${arr[0]}:${arr[1]}`;
+    }
+    return '';
+  }
+
   renderTask() {
     const { editForm } = this.state;
     const { title, completed, deadline } = this.props;
@@ -73,6 +82,7 @@ class TaskContainer extends PureComponent {
         onEdit={this.onEdit}
         toggleComplete={this.toggleComplete}
         dblTapHandler={this.dblTapHandler}
+        deadlineString={this.deadlineString()}
       />
     );
 

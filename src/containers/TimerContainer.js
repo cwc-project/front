@@ -5,6 +5,7 @@ import { Button } from 'reactstrap';
 import { addYears, setHours, setMinutes } from 'date-fns';
 
 import TimerModal from '../components/TimerModal';
+import TimerDisplay from '../components/TimerDisplay/TimerDisplay';
 
 class TimerContainer extends PureComponent {
   constructor(props) {
@@ -39,24 +40,15 @@ class TimerContainer extends PureComponent {
   }
 
   tick = () => {
-    // const { secRemain } = this.state;
-    // console.log('UPDATE', secRemain);
-
-    // if (secRemain !== 0) {
     this.interval = setInterval(() => {
-      console.log('tick');
+      // console.log('tick');
       this.elapsedTimeCounter();
     }, 1000);
-    // }
-    // if (secRemain === 0) {
-    //   clearInterval(this.interval);
-    // }
   };
 
   elapsedTimeCounter = () => {
     const { deadline } = this.props;
     const secRemain = Math.floor((deadline.getTime() - Date.now()) / 1000);
-    console.log(secRemain);
     if (secRemain < 0) {
       clearInterval(this.interval);
       return;
@@ -64,8 +56,20 @@ class TimerContainer extends PureComponent {
     this.setState({ secRemain });
   };
 
-  toggleModal = () =>
-    this.setState(prevState => ({ modal: !prevState.modal, date: new Date() }));
+  timerDisplay = () => {
+    const { secRemain } = this.state;
+    const days = Math.floor(secRemain / (60 * 60 * 24));
+    const hours = Math.floor((secRemain % (60 * 60 * 24)) / (60 * 60));
+    const minutes = Math.floor((secRemain % (60 * 60)) / 60);
+    const secondsCount = Math.floor(secRemain % 60);
+    const seconds = secondsCount > 9 ? secondsCount : `0${secondsCount}`;
+
+    if (days) return `${days}d ${hours}h`;
+    if (hours) return `${hours}h ${minutes}m`;
+    return `${minutes}:${seconds}`;
+  };
+
+  toggleModal = () => this.setState(prevState => ({ modal: !prevState.modal }));
 
   setTimer = () => {
     const { onEdit } = this.props;
@@ -97,6 +101,7 @@ class TimerContainer extends PureComponent {
 
   render() {
     const { modal, date, invalidDate, secRemain } = this.state;
+    const { deadline, completed } = this.props;
     // минимальные дата и время ниже используются только для графического
     // оформления react-datepicker
     const now = new Date();
@@ -107,14 +112,21 @@ class TimerContainer extends PureComponent {
     const maxTime = setHours(setMinutes(new Date(), 45), 23);
     return (
       <>
-        <Button color="light" onClick={this.toggleModal}>
-          <Clock />
-        </Button>
+        {deadline && !completed ? (
+          <TimerDisplay
+            toggleModal={this.toggleModal}
+            timerDisplay={this.timerDisplay()}
+            secRemain={secRemain}
+          />
+        ) : (
+          <Button color="light" onClick={this.toggleModal} disabled={completed}>
+            <Clock />
+          </Button>
+        )}
         <TimerModal
           modal={modal}
           date={date}
           invalidDate={invalidDate}
-          secRemain={secRemain}
           minDate={minDate}
           maxDate={this.maxDate}
           minTime={minTime}

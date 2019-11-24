@@ -26,6 +26,7 @@ const Task = ({
   title,
   completed,
   deadline,
+  deadlineString,
   dblTapHandler,
   toggleComplete,
   onEdit,
@@ -34,6 +35,7 @@ const Task = ({
 
   return (
     <ListGroupItem tag="div" className={task}>
+      <div className="task_deadline">{deadlineString}</div>
       <div className={taskWrapper}>
         <Button color="light" className={complBtn} onClick={toggleComplete}>
           {completed ? <CheckSquare /> : <Square />}
@@ -57,11 +59,16 @@ const Task = ({
 Task.propTypes = {
   title: PropTypes.string.isRequired,
   completed: PropTypes.bool.isRequired,
+  deadlineString: PropTypes.string,
   deadline: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.bool])
     .isRequired,
   dblTapHandler: PropTypes.func.isRequired,
   toggleComplete: PropTypes.func.isRequired,
   onEdit: PropTypes.func.isRequired,
+};
+
+Task.defaultProps = {
+  deadlineString: '',
 };
 
 export default Task;

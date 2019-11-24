@@ -4,6 +4,17 @@
   transition: color 0.2s;
 }
 
+.task.overdue * {
+  color: #dc3545;
+}
+
 .task_header {
   cursor: pointer;
+}
+
+.task_deadline {
+  font-size: 0.7rem;
+  line-height: 1;
+  margin-top: -0.5rem;
+  font-style: italic;
 }
