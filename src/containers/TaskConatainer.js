@@ -10,7 +10,7 @@ class TaskContainer extends PureComponent {
     super(props);
     this.state = {
       editForm: false,
-      secRemain: 0,
+      secRemain: null,
     };
     this.tappedTwice = false;
   }
@@ -85,6 +85,7 @@ class TaskContainer extends PureComponent {
         title={title}
         completed={completed}
         deadline={deadline}
+        secRemain={secRemain}
         onEdit={this.onEdit}
         toggleComplete={this.toggleComplete}
         dblTapHandler={this.dblTapHandler}

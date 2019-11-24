@@ -15,7 +15,6 @@ class TimerContainer extends PureComponent {
       modal: false,
       date: new Date(),
       invalidDate: false,
-      // secRemain: 0,
     };
   }
 
@@ -50,6 +49,7 @@ class TimerContainer extends PureComponent {
     const secRemain = Math.floor((deadline.getTime() - Date.now()) / 1000);
     if (secRemain < 0) {
       clearInterval(this.interval);
+      timerUpdate(0);
       return;
     }
     timerUpdate(secRemain);
@@ -57,6 +57,7 @@ class TimerContainer extends PureComponent {
 
   timerDisplay = () => {
     const { secRemain } = this.props;
+    if (secRemain === null) return '--:--';
     const days = Math.floor(secRemain / (60 * 60 * 24));
     const hours = Math.floor((secRemain % (60 * 60 * 24)) / (60 * 60));
     const minutes = Math.floor((secRemain % (60 * 60)) / 60);
@@ -68,21 +69,36 @@ class TimerContainer extends PureComponent {
     return `${minutes}:${seconds}`;
   };
 
-  toggleModal = () => this.setState(prevState => ({ modal: !prevState.modal }));
+  timerModalOpen = () => {
+    const { secRemain } = this.props;
+    const actualDate = secRemain
+      ? new Date(Date.now() + secRemain * 1000)
+      : new Date();
+
+    this.setState({
+      modal: true,
+      date: actualDate,
+    });
+  };
+
+  timerModalClose = () => {
+    this.setState({ modal: false });
+  };
 
   setTimer = () => {
     const { onEdit } = this.props;
     const { date } = this.state;
-    // if (this.dateValidation(date)) {
-    onEdit({ deadline: date });
-    this.toggleModal();
-    // }
+
+    if (this.dateValidation(date)) {
+      onEdit({ deadline: date });
+      this.timerModalClose();
+    }
   };
 
   resetTimer = () => {
     const { onEdit } = this.props;
     onEdit({ deadline: false });
-    this.toggleModal();
+    this.timerModalClose();
   };
 
   dateValidation = date => {
@@ -113,12 +129,16 @@ class TimerContainer extends PureComponent {
       <>
         {deadline && !completed ? (
           <TimerDisplay
-            toggleModal={this.toggleModal}
+            timerModalOpen={this.timerModalOpen}
             timerDisplay={this.timerDisplay()}
             secRemain={secRemain}
           />
         ) : (
-          <Button color="light" onClick={this.toggleModal} disabled={completed}>
+          <Button
+            color="light"
+            onClick={this.timerModalOpen}
+            disabled={completed}
+          >
             <Clock />
           </Button>
         )}
@@ -130,7 +150,7 @@ class TimerContainer extends PureComponent {
           maxDate={this.maxDate}
           minTime={minTime}
           maxTime={maxTime}
-          toggleModal={this.toggleModal}
+          timerModalClose={this.timerModalClose}
           timePick={this.timePick}
           setTimer={this.setTimer}
           resetTimer={this.resetTimer}
@@ -145,8 +165,12 @@ TimerContainer.propTypes = {
   completed: PropTypes.bool.isRequired,
   deadline: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.bool])
     .isRequired,
-  secRemain: PropTypes.number.isRequired,
+  secRemain: PropTypes.number,
   timerUpdate: PropTypes.func.isRequired,
+};
+
+TimerContainer.defaultProps = {
+  secRemain: null,
 };
 
 export default TimerContainer;

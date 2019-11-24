@@ -4,14 +4,18 @@ import { AlertCircle } from 'react-feather';
 import classNames from 'classnames';
 import './TimerDisplay.css';
 
-const TimerDisplay = ({ timerDisplay, toggleModal, secRemain }) => {
+const TimerDisplay = ({ timerDisplay, timerModalOpen, secRemain }) => {
   const timerDisplayStyle = classNames(
     'timer-display',
-    secRemain < 3600 && 'timer-display__warning',
+    secRemain < 3600 && secRemain !== null && 'timer-display__warning',
   );
 
   return (
-    <button type="button" className={timerDisplayStyle} onClick={toggleModal}>
+    <button
+      type="button"
+      className={timerDisplayStyle}
+      onClick={timerModalOpen}
+    >
       {timerDisplay}
       {secRemain === 0 && <AlertCircle className="timer-display_icon" />}
     </button>
@@ -19,9 +23,13 @@ const TimerDisplay = ({ timerDisplay, toggleModal, secRemain }) => {
 };
 
 TimerDisplay.propTypes = {
-  secRemain: PropTypes.number.isRequired,
+  secRemain: PropTypes.number,
   timerDisplay: PropTypes.string.isRequired,
-  toggleModal: PropTypes.func.isRequired,
+  timerModalOpen: PropTypes.func.isRequired,
+};
+
+TimerDisplay.defaultProps = {
+  secRemain: null,
 };
 
 export default TimerDisplay;

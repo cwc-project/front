@@ -23,7 +23,7 @@ const TimerModal = ({
   modal,
   invalidDate,
   date,
-  toggleModal,
+  timerModalClose,
   setTimer,
   resetTimer,
   timePick,
@@ -33,7 +33,9 @@ const TimerModal = ({
   maxTime,
 }) => (
   <Modal isOpen={modal}>
-    <ModalHeader toggle={toggleModal}>Set deadline for your task!</ModalHeader>
+    <ModalHeader toggle={timerModalClose}>
+      Set deadline for your task!
+    </ModalHeader>
     <Form onSubmit={e => e.preventDefault()}>
       <ModalBody>
         <DatePicker
@@ -81,7 +83,7 @@ TimerModal.propTypes = {
   timePick: PropTypes.func.isRequired,
   setTimer: PropTypes.func.isRequired,
   resetTimer: PropTypes.func.isRequired,
-  toggleModal: PropTypes.func.isRequired,
+  timerModalClose: PropTypes.func.isRequired,
 };
 
 export default TimerModal;
