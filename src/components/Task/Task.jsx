@@ -1,15 +1,11 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import {
-  // Edit2,
-  Square,
-  CheckSquare,
-} from 'react-feather';
+import { Square, CheckSquare } from 'react-feather';
 import { ListGroupItem, ListGroupItemHeading, Button } from 'reactstrap';
 import './Task.css';
 
-import TimerContainer from '../../containers/TimerContainer';
+// import TimerContainer from '../../containers/TimerContainer';
 // использование встроенных стилей bootstrap
 const bsUtilClasses = {
   taskWrapper: ['d-flex', 'justify-content-between', 'align-items-center'],
@@ -19,17 +15,18 @@ const bsUtilClasses = {
 };
 const taskWrapper = classNames(bsUtilClasses.taskWrapper);
 const taskHeader = classNames(bsUtilClasses.taskHeader, 'task_header');
-// const editBtn = classNames(bsUtilClasses.editBtn);
+
 const complBtn = classNames(bsUtilClasses.complBtn);
 
 const Task = ({
+  children,
   title,
   completed,
-  deadline,
+  // deadline,
   deadlineString,
   dblTapHandler,
   toggleComplete,
-  onEdit,
+  // onEdit,
 }) => {
   const task = classNames('task', completed && 'completed');
 
@@ -43,28 +40,27 @@ const Task = ({
         <ListGroupItemHeading className={taskHeader} onClick={dblTapHandler}>
           {title}
         </ListGroupItemHeading>
-        <TimerContainer
+        {children}
+        {/* <TimerContainer
           onEdit={onEdit}
           completed={completed}
           deadline={deadline}
-        />
-        {/* <Button color="light" className={editBtn} onClick={toggleForm}>
-          <Edit2 />
-        </Button> */}
+        /> */}
       </div>
     </ListGroupItem>
   );
 };
 
 Task.propTypes = {
+  children: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
   completed: PropTypes.bool.isRequired,
   deadlineString: PropTypes.string,
-  deadline: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.bool])
-    .isRequired,
+  // deadline: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.bool])
+  //   .isRequired,
   dblTapHandler: PropTypes.func.isRequired,
   toggleComplete: PropTypes.func.isRequired,
-  onEdit: PropTypes.func.isRequired,
+  // onEdit: PropTypes.func.isRequired,
 };
 
 Task.defaultProps = {

@@ -15,8 +15,7 @@ class TimerContainer extends PureComponent {
       modal: false,
       date: new Date(),
       invalidDate: false,
-      secRemain: 0,
-      // overdue: false,
+      // secRemain: 0,
     };
   }
 
@@ -47,17 +46,17 @@ class TimerContainer extends PureComponent {
   };
 
   elapsedTimeCounter = () => {
-    const { deadline } = this.props;
+    const { deadline, timerUpdate } = this.props;
     const secRemain = Math.floor((deadline.getTime() - Date.now()) / 1000);
     if (secRemain < 0) {
       clearInterval(this.interval);
       return;
     }
-    this.setState({ secRemain });
+    timerUpdate(secRemain);
   };
 
   timerDisplay = () => {
-    const { secRemain } = this.state;
+    const { secRemain } = this.props;
     const days = Math.floor(secRemain / (60 * 60 * 24));
     const hours = Math.floor((secRemain % (60 * 60 * 24)) / (60 * 60));
     const minutes = Math.floor((secRemain % (60 * 60)) / 60);
@@ -100,8 +99,8 @@ class TimerContainer extends PureComponent {
   timePick = date => this.setState({ date });
 
   render() {
-    const { modal, date, invalidDate, secRemain } = this.state;
-    const { deadline, completed } = this.props;
+    const { modal, date, invalidDate } = this.state;
+    const { deadline, completed, secRemain } = this.props;
     // минимальные дата и время ниже используются только для графического
     // оформления react-datepicker
     const now = new Date();
@@ -146,6 +145,8 @@ TimerContainer.propTypes = {
   completed: PropTypes.bool.isRequired,
   deadline: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.bool])
     .isRequired,
+  secRemain: PropTypes.number.isRequired,
+  timerUpdate: PropTypes.func.isRequired,
 };
 
 export default TimerContainer;

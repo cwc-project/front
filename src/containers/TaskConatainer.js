@@ -3,15 +3,21 @@ import PropTypes from 'prop-types';
 
 import Task from '../components/Task';
 import TaskEditForm from '../components/TaskEditForm';
+import TimerContainer from './TimerContainer';
 
 class TaskContainer extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       editForm: false,
+      secRemain: 0,
     };
     this.tappedTwice = false;
   }
+
+  timerUpdate = secRemain => {
+    this.setState({ secRemain });
+  };
 
   dblTapHandler = event => {
     event.preventDefault();
@@ -61,7 +67,7 @@ class TaskContainer extends PureComponent {
   }
 
   renderTask() {
-    const { editForm } = this.state;
+    const { editForm, secRemain } = this.state;
     const { title, completed, deadline } = this.props;
     if (editForm) {
       return (
@@ -83,7 +89,15 @@ class TaskContainer extends PureComponent {
         toggleComplete={this.toggleComplete}
         dblTapHandler={this.dblTapHandler}
         deadlineString={this.deadlineString()}
-      />
+      >
+        <TimerContainer
+          onEdit={this.onEdit}
+          completed={completed}
+          deadline={deadline}
+          secRemain={secRemain}
+          timerUpdate={this.timerUpdate}
+        />
+      </Task>
     );
 
     return task;

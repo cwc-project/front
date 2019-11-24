@@ -1,6 +1,5 @@
-import 'react-datepicker/dist/react-datepicker.min.css'; // Раблтает
+import 'react-datepicker/dist/react-datepicker.min.css';
 import React from 'react';
-// import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 import {
@@ -12,10 +11,6 @@ import {
   ModalBody,
   ModalFooter,
   ModalHeader,
-  // ButtonDropdown,
-  // DropdownToggle,
-  // DropdownMenu,
-  // DropdownItem,
 } from 'reactstrap';
 import { Check, X } from 'react-feather';
 
@@ -70,20 +65,6 @@ const TimerModal = ({
           <Check />
           Set timer
         </Button>
-        {/* <Button onClick={toggleModal}>Cancel</Button>
-   <ButtonDropdown color="primary" isOpen={false}>
-
-     <DropdownToggle color="primary" caret className="timer_set-toggle" />
-          <DropdownMenu>
-            <DropdownItem header>Advanced options</DropdownItem>
-                                <DropdownItem divider />
-        <DropdownItem>
-              <X />
-              Reset timer
-            </DropdownItem>
-          </DropdownMenu>
-        </ButtonDropdown>
-       */}
       </ModalFooter>
     </Form>
   </Modal>
@@ -104,44 +85,3 @@ TimerModal.propTypes = {
 };
 
 export default TimerModal;
-
-// // <Button color="light">
-// //   <Check />
-// // </Button>
-// <Button color="light" onClick={toggleTask}>
-//   <X />
-// </Button> */}
-// </ListGroupItem>
-/* <Form onSubmit={e => e.preventDefault()} inline>
-        <InputGroup>
-          <Input type="number" min="0" max="23" name="hours" />
-          <Input type="number" min="0" max="59" name="minutes" />
-          <InputGroupAddon addonType="append">
-            <InputGroupText>
-              <Watch />
-            </InputGroupText>
-          </InputGroupAddon>
-        </InputGroup>
-        <InputGroup>
-          <Input type="number" min="1" max="31" name="day" />
-          <Input type="number" min="1" max="12" name="month" />
-          <Input type="number" min="2019" max="12" name="month" />
-          <InputGroupAddon addonType="append">
-            <InputGroupText>
-              <Watch />
-            </InputGroupText>
-          </InputGroupAddon>
-        </InputGroup>
-        <Button color="light">
-          <Check />
-        </Button>
-        <Button color="light" onClick={toggleTask}>
-          <X />
-        </Button>
-      </Form> */
-
-// <ListGroupItem tag="div">
-//   <Button color="danger" onClick={this.onReset}>
-//     <Clock />
-//     &nbsp; Reset
-//   </Button>
