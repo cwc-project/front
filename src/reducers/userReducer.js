@@ -1,4 +1,4 @@
-import { LOGIN_USER, LOGOUT_USER } from '../actions';
+import { LOGIN_USER, LOGOUT_USER } from '../constants/actionTypes';
 import { loadStorageToState } from '../middleware/sessionStorage';
 
 const initialState = {

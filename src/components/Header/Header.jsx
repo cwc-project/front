@@ -78,7 +78,11 @@ Header.propTypes = {
   onToggle: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
   loggedIn: PropTypes.bool.isRequired,
-  userName: PropTypes.string.isRequired,
+  userName: PropTypes.string,
+};
+
+Header.defaultProps = {
+  userName: 'user_name',
 };
 
 export default Header;

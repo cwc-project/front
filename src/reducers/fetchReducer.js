@@ -11,7 +11,7 @@ import {
   ADD_PROJECT,
   ERR_PROJECTS,
   ERR_PROJECT,
-} from '../actions';
+} from '../constants/actionTypes';
 
 // в один момент времени может быть только 1 fetch запрос
 

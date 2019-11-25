@@ -1,14 +1,12 @@
 import axios from 'axios';
-import { server } from '../constants';
+
+import * as types from '../constants/actionTypes';
+import server from '../constants/server';
 import { fetchUser } from './fetchActions';
 import { loginError, regError } from './errorActions';
 
-export const REG_USER = 'REG_USER';
-export const LOGIN_USER = 'LOGIN_USER';
-export const LOGOUT_USER = 'LOGOUT_USER';
-
-const loginSuccess = data => ({ type: LOGIN_USER, user: data });
-const loggedOut = () => ({ type: LOGOUT_USER });
+const loginSuccess = data => ({ type: types.LOGIN_USER, user: data });
+const loggedOut = () => ({ type: types.LOGOUT_USER });
 
 export const login = (input, history) => dispatch => {
   dispatch(fetchUser());

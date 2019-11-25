@@ -11,10 +11,12 @@ import {
   ADD_TASK,
   DELETE_TASK,
   EDIT_TASK,
+} from '../constants/actionTypes';
+import {
   NAME_FORMAT_ERR,
   EMAIL_FORMAT_ERR,
   PASS_FORMAT_ERR,
-} from '../actions';
+} from '../constants/errors';
 
 const initialState = {
   err: {

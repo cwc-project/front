@@ -1,18 +1,18 @@
 import axios from 'axios';
 
-import { server } from '../constants';
+import * as types from '../constants/actionTypes';
+import server from '../constants/server';
 import { fetchProjects, fetchProject } from './fetchActions';
 import { errProjects, errProject } from './errorActions';
 
-export const GET_PROJECTS = 'GET_PROJECTS';
-export const GET_PROJECT = 'GET_PROJECT';
-export const ADD_PROJECT = 'ADD_PROJECT';
-
 export const gotoProject = (history, id) => history.push(`/projects/${id}`);
 
-const getProjectsSuccess = projects => ({ type: GET_PROJECTS, ...projects });
-const getProjectSuccess = project => ({ type: GET_PROJECT, ...project });
-const addProjectSuccess = () => ({ type: ADD_PROJECT });
+const getProjectsSuccess = projects => ({
+  type: types.GET_PROJECTS,
+  ...projects,
+});
+const getProjectSuccess = project => ({ type: types.GET_PROJECT, ...project });
+const addProjectSuccess = () => ({ type: types.ADD_PROJECT });
 
 export const getProjects = token => dispatch => {
   dispatch(fetchProjects());
