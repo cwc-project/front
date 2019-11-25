@@ -1,0 +1,10 @@
+.project {
+  margin-top: 2rem;
+}
+
+/* mobile */
+@media (max-width: 414px) {
+  .project {
+    margin-top: 1rem;
+  }
+}

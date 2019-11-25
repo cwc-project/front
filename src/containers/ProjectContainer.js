@@ -6,6 +6,7 @@ import { Card, Spinner } from 'reactstrap';
 import * as rsEffectsActions from '../actions/rsEffectsActions';
 import * as projectActions from '../actions/projectsActions';
 import * as tasksActions from '../actions/tasksActions';
+import Project from '../components/Project';
 import ProjectMenu from '../components/ProjectMenu';
 import ErrorContainer from './ErrorContainer';
 import AddTaskForm from '../components/AddTaskForm';
@@ -57,8 +58,11 @@ class ProjectContainer extends PureComponent {
       <Spinner color="primary" />
     );
 
-    if (!projectErr) return projectView;
-    return <ErrorContainer type="project" />;
+    return (
+      <Project>
+        {!projectErr ? projectView : <ErrorContainer type="project" />}
+      </Project>
+    );
   }
 }
 
