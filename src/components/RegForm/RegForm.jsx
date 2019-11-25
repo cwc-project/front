@@ -150,7 +150,6 @@ const RegForm = props => {
         </FormGroup>
         <ErrorContainer type={type} />
         <BtnSubmitContainer btnValue={btnValue} type="user" />
-        {/* <Button type="submit">Submit</Button> */}
       </fieldset>
     </Form>
   );
@@ -181,7 +180,6 @@ RegForm.propTypes = {
     pass: PropTypes.shape({
       value: PropTypes.string.isRequired,
       valid: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
-      // hide: PropTypes.bool.isRequired,
     }).isRequired,
     hidePass: PropTypes.bool.isRequired,
   }).isRequired,

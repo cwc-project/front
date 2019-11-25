@@ -42,9 +42,8 @@ class ProjectMenu extends PureComponent {
             <DropdownItem onClick={toggleModalProjAdd}>
               Add new project
             </DropdownItem>
-            <DropdownItem>Edit current project</DropdownItem>
             <DropdownItem divider />
-            <DropdownItem>Delete current project</DropdownItem>
+            <DropdownItem disabled>Delete current project</DropdownItem>
           </DropdownMenu>
         </Dropdown>
         <CardTitle className="font-weight-bold ">

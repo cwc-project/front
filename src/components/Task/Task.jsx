@@ -46,11 +46,6 @@ const Task = ({
           {title}
         </ListGroupItemHeading>
         {children}
-        {/* <TimerContainer
-          onEdit={onEdit}
-          completed={completed}
-          deadline={deadline}
-        /> */}
       </div>
     </ListGroupItem>
   );
