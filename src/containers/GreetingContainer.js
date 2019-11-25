@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { toggleModalReg, toggleTab } from '../actions';
+import { toggleModalReg, toggleTab } from '../actions/rsEffectsActions';
 import Greeting from '../components/Greeting';
 
 const mapStateToProps = ({ user }) => ({ loggedIn: user.loggedIn });

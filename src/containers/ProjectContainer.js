@@ -44,6 +44,7 @@ class ProjectContainer extends PureComponent {
             <ProjectMenu
               title={project.title}
               toggleModalProjAdd={toggleModalProjAdd}
+              tasksAmount={project.tasks.length}
             />
             <TasksList
               tasks={project.tasks}

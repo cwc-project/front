@@ -9,8 +9,13 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
+  Badge,
 } from 'reactstrap';
-import { MoreVertical, CornerDownLeft } from 'react-feather';
+import {
+  MoreVertical,
+  CornerDownLeft,
+  // Lock, Unlock
+} from 'react-feather';
 import './ProjectMenu.css';
 
 // использование встроенных стилей bootstrap
@@ -36,7 +41,7 @@ class ProjectMenu extends PureComponent {
 
   render() {
     const { dropdownOpen } = this.state;
-    const { toggleModalProjAdd, title } = this.props;
+    const { toggleModalProjAdd, title, tasksAmount } = this.props;
 
     return (
       <CardBody className="project-menu">
@@ -59,12 +64,19 @@ class ProjectMenu extends PureComponent {
                 Add new project
               </DropdownItem>
               <DropdownItem divider />
-              <DropdownItem disabled>Delete current project</DropdownItem>
+              <DropdownItem disabled>
+                Delete current project
+                {/* <button type="button"><Lock /></button> */}
+              </DropdownItem>
             </DropdownMenu>
           </Dropdown>
         </div>
         <CardTitle className={cardTitle}>
-          <h4>{title}</h4>
+          <h4>
+            {title}
+            &nbsp;
+            <Badge className="project-menu_badge">{tasksAmount}</Badge>
+          </h4>
         </CardTitle>
       </CardBody>
     );
@@ -74,6 +86,7 @@ class ProjectMenu extends PureComponent {
 ProjectMenu.propTypes = {
   toggleModalProjAdd: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
+  tasksAmount: PropTypes.number.isRequired,
 };
 
 export default ProjectMenu;

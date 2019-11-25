@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { toggleModalReg } from '../actions';
+import { toggleModalReg } from '../actions/rsEffectsActions';
 import RegModal from '../components/RegModal';
 
 const mapStateToProps = ({ rsEffects }) => ({ modalReg: rsEffects.modalReg });

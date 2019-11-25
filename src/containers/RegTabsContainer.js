@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { toggleTab } from '../actions';
+import { toggleTab } from '../actions/rsEffectsActions';
 import RegTabs from '../components/RegTabs';
 
 const mapStateToProps = ({ rsEffects }) => ({ activeTab: rsEffects.activeTab });

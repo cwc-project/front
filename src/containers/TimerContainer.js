@@ -1,7 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-// import { Clock } from 'react-feather';
-// import { Button } from 'reactstrap';
 import { addYears, setHours, setMinutes } from 'date-fns';
 
 import TimerModal from '../components/TimerModal';
