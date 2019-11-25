@@ -24,6 +24,6 @@
 @media (max-width: 414px) {
   .project-menu {
     position: initial;
-    padding: 0.8rem 0.5rem;
+    padding: 0.8rem;
   }
 }
