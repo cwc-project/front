@@ -14,7 +14,7 @@
 
 .task_complete-btn {
   margin-right: 1rem;
-  width: 50px;
+  width: 60px; /* for ios9 */
 }
 
 .task_deadline {

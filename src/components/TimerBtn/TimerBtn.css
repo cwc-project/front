@@ -1,5 +1,6 @@
 .timer-btn {
   margin-left: 1rem;
+  width: 60px; /* for ios9 */
 }
 
 /* mobile */

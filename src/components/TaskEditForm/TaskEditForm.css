@@ -4,6 +4,10 @@
   margin: 0 0.5rem;
 }
 
+.task-edit_btn {
+  width: 60px; /* for ios9 */
+}
+
 /* mobile */
 @media (max-width: 414px) {
   .task-edit {

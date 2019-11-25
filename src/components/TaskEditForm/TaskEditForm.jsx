@@ -26,7 +26,12 @@ const TaskEdit = ({ title, toggleEdit, onDelete, onEdit }) => {
           toggleEdit();
         }}
       >
-        <Button color="danger" type="button" onClick={onDelete}>
+        <Button
+          color="danger"
+          type="button"
+          className="task-edit_btn"
+          onClick={onDelete}
+        >
           <Trash2 />
         </Button>
         <Input
@@ -35,7 +40,7 @@ const TaskEdit = ({ title, toggleEdit, onDelete, onEdit }) => {
           innerRef={taskInput}
           // autoFocus - автофокус плохо смотриться на мобиле
         />
-        <Button color="light" type="submit">
+        <Button color="light" type="submit" className="task-edit_btn">
           <Save />
         </Button>
       </Form>
