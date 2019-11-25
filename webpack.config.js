@@ -13,8 +13,8 @@ module.exports = (env, argv) => {
   return {
     entry: {
       app: [
-        'core-js/features/promise',
-        'core-js/stable/object/assign',
+        'core-js/features/promise', // compatibility with IE11
+        'core-js/stable/object/assign', // compatibility with IE11
         './src/index.js',
       ],
     },
@@ -43,8 +43,8 @@ module.exports = (env, argv) => {
       extensions: ['.js', '.jsx'],
     },
     performance: {
-      // hints: false,
-      maxEntrypointSize: 512000,
+      hints: false, // в дальнейшем произвести оптимизацию
+      // maxEntrypointSize: 512000,
       // maxAssetSize: 512000,
     },
     devtool: devMode ? 'inline-source-map' : false,

@@ -1,11 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Clock } from 'react-feather';
-import { Button } from 'reactstrap';
+// import { Clock } from 'react-feather';
+// import { Button } from 'reactstrap';
 import { addYears, setHours, setMinutes } from 'date-fns';
 
 import TimerModal from '../components/TimerModal';
-import TimerDisplay from '../components/TimerDisplay/TimerDisplay';
+import TimerDisplay from '../components/TimerDisplay';
+import TimerBtn from '../components/TimerBtn';
 
 class TimerContainer extends PureComponent {
   constructor(props) {
@@ -103,7 +104,7 @@ class TimerContainer extends PureComponent {
 
   dateValidation = date => {
     // deadline д.б. на 15 минут больше текущего времени
-    const dateMs = date.getTime(); // для ускорения процесса
+    const dateMs = date.getTime(); // для ускорения процесса расчет в миллисекундах
     if (dateMs >= Date.now() + 15 * 60 * 1000 || dateMs > this.maxDate) {
       this.setState({ invalidDate: false });
       return true;
@@ -122,7 +123,6 @@ class TimerContainer extends PureComponent {
     const now = new Date();
     const check = date.getTime() - Date.now() > (60 * 60 * 24 - 60 * 15) * 1000;
     const minDate = now.setSeconds(15 * 60); // + 15min
-    // const maxDate = addYears(new Date(), 5);
     const minTime = check ? setHours(setMinutes(new Date(), 0), 0) : now;
     const maxTime = setHours(setMinutes(new Date(), 45), 23);
     return (
@@ -134,13 +134,7 @@ class TimerContainer extends PureComponent {
             secRemain={secRemain}
           />
         ) : (
-          <Button
-            color="light"
-            onClick={this.timerModalOpen}
-            disabled={completed}
-          >
-            <Clock />
-          </Button>
+          <TimerBtn onClick={this.timerModalOpen} disabled={completed} />
         )}
         <TimerModal
           modal={modal}

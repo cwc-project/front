@@ -1,7 +1,7 @@
 import 'react-datepicker/dist/react-datepicker.min.css';
 import React from 'react';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
-
 import {
   Input,
   Button,
@@ -13,9 +13,16 @@ import {
   ModalHeader,
 } from 'reactstrap';
 import { Check, X } from 'react-feather';
-
 import DatePicker from 'react-datepicker';
 import './TimerModal.css';
+
+// использование встроенных стилей bootstrap
+const bsUtilClasses = {
+  modalFooter: ['border-0'],
+  formFeedback: ['d-block'],
+};
+const modalFooter = classNames(bsUtilClasses.modalFooter);
+const formFeedback = classNames(bsUtilClasses.formFeedback);
 
 const timerWarning = 'deadline should not be less than 15 minutes, and not exceed 5 years'; // prettier-ignore
 
@@ -51,14 +58,16 @@ const TimerModal = ({
           // showYearDropdown
           timeFormat="HH:mm"
           timeIntervals={15}
-          customInput={<Input className="timer_input" invalid={invalidDate} />}
-          calendarClassName="timer_datepicker"
+          customInput={
+            <Input className="timer-modal_input" invalid={invalidDate} />
+          }
+          calendarClassName="timer-modal_datepicker"
         />
-        <FormFeedback className="d-block">
+        <FormFeedback className={formFeedback}>
           {invalidDate && timerWarning}
         </FormFeedback>
       </ModalBody>
-      <ModalFooter className="border-0">
+      <ModalFooter className={modalFooter}>
         <Button color="danger" onClick={resetTimer}>
           <X />
           Reset timer

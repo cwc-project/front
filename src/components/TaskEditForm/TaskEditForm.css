@@ -3,3 +3,11 @@
   font-weight: 500;
   margin: 0 0.5rem;
 }
+
+/* mobile */
+@media (max-width: 414px) {
+  .task-edit {
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+  }
+}

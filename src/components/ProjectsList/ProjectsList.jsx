@@ -25,7 +25,6 @@ const ProjectsList = ({ projectsList, projectsAmount, history }) => {
       <Form className="projects-list" onSubmit={e => onSubmit(e)}>
         <InputGroup>
           <Badge className="projects-badge">{projectsAmount}</Badge>
-
           <Input className="projects-select" type="select" name="select">
             {projectsList.map(({ id, title }) => (
               <option key={id} value={id}>

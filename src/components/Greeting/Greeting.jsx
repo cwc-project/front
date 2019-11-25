@@ -26,7 +26,7 @@ class Greeting extends PureComponent {
     return (
       <main className={greeting}>
         <>
-          <h1 className="heading-greeting">CWC2</h1>
+          <h1 className="greeting_heading">CWC2</h1>
           <div>
             <p>
               Todo based application built with MERN stack (MongoDB, ExpressJS,
@@ -51,7 +51,23 @@ class Greeting extends PureComponent {
               </Button>
               .
             </p>
-            {/* <div className="text-left">
+          </div>
+          <RegModalContainer />
+        </>
+      </main>
+    );
+  }
+}
+
+Greeting.propTypes = {
+  loggedIn: PropTypes.bool.isRequired,
+  history: PropTypes.object.isRequired,
+  onToggle: PropTypes.func.isRequired,
+};
+
+export default Greeting;
+
+/* <div className="text-left">
               <h6>Info:</h6>
               <ul>
                 <li>User registration</li>
@@ -73,19 +89,4 @@ class Greeting extends PureComponent {
                   </ul>
                 </li>
               </ul>
-            </div> */}
-          </div>
-          <RegModalContainer />
-        </>
-      </main>
-    );
-  }
-}
-
-Greeting.propTypes = {
-  loggedIn: PropTypes.bool.isRequired,
-  history: PropTypes.object.isRequired,
-  onToggle: PropTypes.func.isRequired,
-};
-
-export default Greeting;
+            </div> */

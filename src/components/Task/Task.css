@@ -12,9 +12,28 @@
   cursor: pointer;
 }
 
+.task_complete-btn {
+  margin-right: 1rem;
+}
+
 .task_deadline {
   font-size: 0.7rem;
   line-height: 1;
-  margin-top: -0.5rem;
   font-style: italic;
+  position: absolute;
+  top: 2px;
+  right: 0;
+  left: 0;
+}
+
+/* mobile */
+@media (max-width: 414px) {
+  .task {
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+  }
+
+  .task_complete-btn {
+    margin-right: 0.4rem;
+  }
 }

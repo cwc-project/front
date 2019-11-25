@@ -1,0 +1,10 @@
+.timer-btn {
+  margin-left: 1rem;
+}
+
+/* mobile */
+@media (max-width: 414px) {
+  .timer-btn {
+    margin-left: 0.4rem;
+  }
+}

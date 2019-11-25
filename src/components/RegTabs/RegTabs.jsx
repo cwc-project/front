@@ -18,7 +18,7 @@ const bsUtilClasses = {
   icons: ['pb-1', 'pl-1'],
 };
 const icons = classNames(bsUtilClasses.icons);
-const navLink = classNames(bsUtilClasses.navLink, 'reg-link');
+const navLink = classNames(bsUtilClasses.navLink, 'reg-tabs_link');
 
 const RegTabs = ({ activeTab, toggleTab }) => (
   <div>

@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+
 import { toggleTab } from '../actions';
 import RegTabs from '../components/RegTabs';
 

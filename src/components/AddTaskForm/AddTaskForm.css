@@ -1,5 +1,5 @@
 .add-task {
-  margin-top: 0.05rem; /* нет аналога */
+  margin-top: 0.05rem;
   padding: 0.75rem 1.25rem;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   border: 1.1px solid rgba(0, 0, 0, 0.125);
@@ -12,8 +12,6 @@
 
 .add-task_form {
   display: flex;
-
-  /* align-items: center;  */
 }
 
 .add-task_btn {
@@ -52,4 +50,15 @@
 .add-task_input:-ms-input-placeholder {
   color: rgb(170, 170, 170);
   font-weight: normal;
+}
+
+/* mobile */
+@media (max-width: 414px) {
+  .add-task {
+    padding: 0.5rem;
+  }
+
+  .add-task_btn {
+    margin-left: 0.4rem;
+  }
 }

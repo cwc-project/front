@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Plus } from 'react-feather';
 import { Spinner, Button } from 'reactstrap';

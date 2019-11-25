@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { AlertCircle } from 'react-feather';
 import classNames from 'classnames';
+import { AlertCircle } from 'react-feather';
 import './TimerDisplay.css';
 
 const TimerDisplay = ({ timerDisplay, timerModalOpen, secRemain }) => {

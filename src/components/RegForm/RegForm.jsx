@@ -11,11 +11,11 @@ import {
   Input,
   InputGroup,
   InputGroupAddon,
-  // Button
 } from 'reactstrap';
 import './RegForm.css';
 import ErrorContainer from '../../containers/ErrorContainer';
 import BtnSubmitContainer from '../../containers/BtnSubmitContainer';
+
 // использование встроенных стилей bootstrap
 const bsUtilClasses = {
   form: ['p-1'],
@@ -81,16 +81,12 @@ const RegForm = props => {
                 onChange={handleChange}
                 required
               />
-              <InputGroupAddon addonType="append" className="append">
+              <InputGroupAddon addonType="append" className="reg-form_append">
                 <span className={nameIconWrap}>
-                  <User className="input-addon-icon" />
+                  <User className="reg-form_input-addon-icon" />
                 </span>
               </InputGroupAddon>
-              {nameFeedback ? (
-                <FormFeedback>{nameFeedback}</FormFeedback>
-              ) : (
-                false
-              )}
+              <FormFeedback>{nameFeedback}</FormFeedback>
             </InputGroup>
           </FormGroup>
         )}
@@ -106,14 +102,10 @@ const RegForm = props => {
               onChange={handleChange}
               required
             />
-            <InputGroupAddon addonType="append" className="append">
+            <InputGroupAddon addonType="append" className="reg-form_append">
               @
             </InputGroupAddon>
-            {emailFeedback ? (
-              <FormFeedback>{emailFeedback}</FormFeedback>
-            ) : (
-              false
-            )}
+            <FormFeedback>{emailFeedback}</FormFeedback>
           </InputGroup>
           {emailInfo ? <FormText>{emailInfo}</FormText> : false}
         </FormGroup>
@@ -129,7 +121,7 @@ const RegForm = props => {
               onChange={handleChange}
               required
             />
-            <InputGroupAddon addonType="append" className="append">
+            <InputGroupAddon addonType="append" className="reg-form_append">
               <span className={passIconWrap}>
                 <button
                   color="link"
@@ -138,14 +130,14 @@ const RegForm = props => {
                   className={passToggleBtn}
                 >
                   {hidePass ? (
-                    <EyeOff className="input-addon-icon" />
+                    <EyeOff className="reg-form_input-addon-icon" />
                   ) : (
-                    <Eye className="input-addon-icon" />
+                    <Eye className="reg-form_input-addon-icon" />
                   )}
                 </button>
               </span>
             </InputGroupAddon>
-            {passFeedback ? <FormFeedback>{passFeedback}</FormFeedback> : false}
+            <FormFeedback>{passFeedback}</FormFeedback>
           </InputGroup>
         </FormGroup>
         <ErrorContainer type={type} />

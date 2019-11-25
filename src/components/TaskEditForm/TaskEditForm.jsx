@@ -1,6 +1,6 @@
 import React from 'react';
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { Save, Trash2 } from 'react-feather';
 import { ListGroupItem, Form, Input, Button } from 'reactstrap';
 import './TaskEditForm.css';
@@ -14,8 +14,18 @@ const form = classNames(bsUtilClasses.form);
 const TaskEdit = ({ title, toggleEdit, onDelete, onEdit }) => {
   const taskInput = React.createRef();
   return (
-    <ListGroupItem tag="div">
-      <Form className={form} onSubmit={e => e.preventDefault()}>
+    <ListGroupItem tag="div" className="task-edit">
+      <Form
+        className={form}
+        onSubmit={e => {
+          e.preventDefault();
+          const value = taskInput.current.value.trim();
+          if (value && value !== title) {
+            onEdit({ title: value });
+          }
+          toggleEdit();
+        }}
+      >
         <Button color="danger" type="button" onClick={onDelete}>
           <Trash2 />
         </Button>
@@ -23,19 +33,9 @@ const TaskEdit = ({ title, toggleEdit, onDelete, onEdit }) => {
           className="task-edit_input"
           defaultValue={title}
           innerRef={taskInput}
-          autoFocus
+          // autoFocus - автофокус плохо смотриться на мобиле
         />
-        <Button
-          color="light"
-          type="button"
-          onClick={() => {
-            const value = taskInput.current.value.trim();
-            if (value && value !== title) {
-              onEdit({ title: value });
-            }
-            toggleEdit();
-          }}
-        >
+        <Button color="light" type="submit">
           <Save />
         </Button>
       </Form>

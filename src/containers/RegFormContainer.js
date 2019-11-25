@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import * as userActions from '../actions/userActions';
 
+import * as userActions from '../actions/userActions';
 import RegForm from '../components/RegForm';
 
 class RegFormContainer extends PureComponent {
@@ -33,22 +33,6 @@ class RegFormContainer extends PureComponent {
     };
   }
 
-  // handleChange = ({ target: { name, value } }) => { // проблема в trimStart()
-  //   const { ...state } = this.state;
-  //   const { validation } = this.props;
-  //   const trimVal = value.trimStart();
-  //   if (state[name]) {
-  //     this.setState(prevState => ({
-  //       ...prevState,
-  //       [name]: {
-  //         ...prevState[name],
-  //         value: trimVal,
-  //         valid: validation ? this.handleCheck(name, trimVal) : true,// проблема в этой ф-ции
-  //       },
-  //     }));
-  //   }
-  // };
-
   handleChange = ({ target: { name, value } }) => {
     const { validation } = this.props;
     // возможность ввести имя и отчество через пробел
@@ -61,12 +45,6 @@ class RegFormContainer extends PureComponent {
       },
     });
   };
-
-  // passToggle = event => {
-  //   const { pass } = this.state;
-  //   this.setState({ pass: { ...pass, hide: !pass.hide } });
-  //   event.preventDefault();
-  // };
 
   passToggle = () =>
     this.setState(prevState => ({ hidePass: !prevState.hidePass }));
