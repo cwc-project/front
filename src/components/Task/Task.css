@@ -14,6 +14,7 @@
 
 .task_complete-btn {
   margin-right: 1rem;
+  width: 50px;
 }
 
 .task_deadline {
@@ -24,11 +25,6 @@
   top: 2px;
   right: 0;
   left: 0;
-}
-
-.task_complete-btn > svg {
-  margin: 0;
-  padding: 0;
 }
 
 /* mobile */
