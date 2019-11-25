@@ -1,9 +1,6 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import classNames from 'classnames';
-import { Link } from 'react-router-dom';
-import { ArrowLeft } from 'react-feather';
+import PropTypes from 'prop-types';
 import { Card, Spinner } from 'reactstrap';
 
 import * as rsEffectsActions from '../actions/rsEffectsActions';
@@ -14,13 +11,6 @@ import ErrorContainer from './ErrorContainer';
 import AddTaskForm from '../components/AddTaskForm';
 import Wrapper600 from '../components/Wrapper600';
 import TasksList from '../components/TasksList';
-
-const bsUtilClasses = {
-  linkWrap: ['text-left', 'mb-2'],
-  link: ['text-decoration-none'],
-};
-const linkWrap = classNames(bsUtilClasses.linkWrap);
-const link = classNames(bsUtilClasses.link);
 
 class ProjectContainer extends PureComponent {
   componentDidMount() {
@@ -47,7 +37,7 @@ class ProjectContainer extends PureComponent {
     } = this.props;
 
     const projectView = !loading ? (
-      <>
+      <div>
         <Wrapper600>
           <Card>
             <ProjectMenu
@@ -62,22 +52,13 @@ class ProjectContainer extends PureComponent {
             <AddTaskForm addTask={addTask} />
           </Card>
         </Wrapper600>
-      </>
+      </div>
     ) : (
       <Spinner color="primary" />
     );
 
-    return (
-      <>
-        <div className={linkWrap}>
-          <Link to="/projects" className={link}>
-            <ArrowLeft style={{ width: '20px', height: '20px' }} />
-            &nbsp;projects ...
-          </Link>
-        </div>
-        {!projectErr ? projectView : <ErrorContainer type="project" />}
-      </>
-    );
+    if (!projectErr) return projectView;
+    return <ErrorContainer type="project" />;
   }
 }
 

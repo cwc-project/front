@@ -57,6 +57,4 @@ export const addProject = (title, token, history) => dispatch => {
       gotoProject(history, data.insertedId);
     })
     .catch(err => dispatch(errProject(err)));
-  // .then(({ data }) => dispatch(addProjectSuccess(data)))
-  // .then(({ project }) => gotProject(history, project.id))
 };

@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import {
-  // Card,
   CardBody,
   CardTitle,
   Dropdown,
@@ -9,8 +10,18 @@ import {
   DropdownMenu,
   DropdownItem,
 } from 'reactstrap';
-import { MoreVertical } from 'react-feather';
+import { MoreVertical, CornerDownLeft } from 'react-feather';
 import './ProjectMenu.css';
+
+// использование встроенных стилей bootstrap
+const bsUtilClasses = {
+  link: ['text-decoration-none', 'text-dark'],
+  menuAddons: ['d-flex', 'justify-content-between'],
+  cardTitle: ['font-weight-bold'],
+};
+const link = classNames(bsUtilClasses.link);
+const menuAddons = classNames(bsUtilClasses.menuAddons);
+const cardTitle = classNames(bsUtilClasses.cardTitle);
 
 class ProjectMenu extends PureComponent {
   constructor(props) {
@@ -29,24 +40,30 @@ class ProjectMenu extends PureComponent {
 
     return (
       <CardBody className="project-menu">
-        <Dropdown isOpen={dropdownOpen} toggle={this.toggle}>
-          <DropdownToggle tag="div" className="text-right">
-            <MoreVertical className="project-menu_more-icon " />
-          </DropdownToggle>
-          <DropdownMenu right>
-            <DropdownItem header>
-              current:&nbsp;
-              {title}
-            </DropdownItem>
-            <DropdownItem divider />
-            <DropdownItem onClick={toggleModalProjAdd}>
-              Add new project
-            </DropdownItem>
-            <DropdownItem divider />
-            <DropdownItem disabled>Delete current project</DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
-        <CardTitle className="font-weight-bold ">
+        <div className={menuAddons}>
+          <Link to="/projects" className={link}>
+            <CornerDownLeft className="project-menu_return-icon" />
+            &nbsp;projects ...
+          </Link>
+          <Dropdown isOpen={dropdownOpen} toggle={this.toggle} size="sm">
+            <DropdownToggle color="white">
+              <MoreVertical className="project-menu_more-icon " />
+            </DropdownToggle>
+            <DropdownMenu right>
+              <DropdownItem header>
+                current:&nbsp;
+                {title}
+              </DropdownItem>
+              <DropdownItem divider />
+              <DropdownItem onClick={toggleModalProjAdd}>
+                Add new project
+              </DropdownItem>
+              <DropdownItem divider />
+              <DropdownItem disabled>Delete current project</DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+        </div>
+        <CardTitle className={cardTitle}>
           <h4>{title}</h4>
         </CardTitle>
       </CardBody>

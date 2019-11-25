@@ -21,10 +21,16 @@ const bsUtilClasses = {
     'border-bottom',
     'shadow-sm',
   ],
+  heading: ['font-weight-normal', 'mb-0'],
+  loginBtn: ['text-decoration-none'],
   userBtn: ['pr-0', 'text-decoration-none', 'overflow-hidden', 'text-nowrap'],
+  ddCaret: ['pl-1'],
 };
 const header = classNames(bsUtilClasses.header, 'header');
-const userBtn = classNames(bsUtilClasses.userBtn, 'user-btn');
+const heading = classNames(bsUtilClasses.heading);
+const loginBtn = classNames(bsUtilClasses.loginBtn);
+const userBtn = classNames(bsUtilClasses.userBtn, 'header_user-btn');
+const ddCaret = classNames(bsUtilClasses.ddCaret);
 
 class Header extends PureComponent {
   constructor(props) {
@@ -41,11 +47,7 @@ class Header extends PureComponent {
     const { onToggle, loggedIn, userName, logout } = this.props;
     const { dropdownOpen } = this.state;
     const logBtn = !loggedIn ? (
-      <Button
-        color="link"
-        className="text-decoration-none"
-        onClick={() => onToggle()}
-      >
+      <Button color="link" className={loginBtn} onClick={() => onToggle()}>
         Log in&nbsp;
         <LogIn />
       </Button>
@@ -54,10 +56,7 @@ class Header extends PureComponent {
         <Button id="caret" color="link" className={userBtn}>
           {userName}
         </Button>
-        <DropdownToggle caret color="link" className="pl-1" />
-        {/* <DropdownToggle color="link" className="ttt" caret>
-          {userName}
-        </DropdownToggle> */}
+        <DropdownToggle caret color="link" className={ddCaret} />
         <DropdownMenu right>
           <DropdownItem onClick={logout}>
             <LogOut />
@@ -68,7 +67,7 @@ class Header extends PureComponent {
     );
     return (
       <header className={header}>
-        <h5 className="font-weight-normal mb-0">CWC-project v. 2.0</h5>
+        <h5 className={heading}>CWC-project v. 2.0</h5>
         {logBtn}
       </header>
     );
@@ -79,11 +78,7 @@ Header.propTypes = {
   onToggle: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
   loggedIn: PropTypes.bool.isRequired,
-  userName: PropTypes.string,
-};
-
-Header.defaultProps = {
-  userName: 'user_name',
+  userName: PropTypes.string.isRequired,
 };
 
 export default Header;

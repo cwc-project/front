@@ -84,10 +84,3 @@ const projectsReducer = (state = initialState, action) => {
 };
 
 export default projectsReducer;
-
-// case ADD_PROJECT:
-//   return {
-//     ...state,
-//     projectsList: [...state.projectsList, renameProjectId(action.project)],
-//     projectsAmount: state.projectsAmount + 1,
-//   };

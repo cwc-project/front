@@ -8,8 +8,10 @@ import RegModalContainer from '../../containers/RegModalContainer';
 
 const bsUtilClasses = {
   greeting: ['mt-5'],
+  toggleBtn: ['p-0', 'align-baseline'],
 };
 const greeting = classNames(bsUtilClasses.greeting, 'greeting');
+const toggleBtn = classNames(bsUtilClasses.toggleBtn);
 
 class Greeting extends PureComponent {
   componentDidMount() {
@@ -36,7 +38,7 @@ class Greeting extends PureComponent {
               For using please&nbsp;
               <Button
                 color="link"
-                className="p-0 align-baseline"
+                className={toggleBtn}
                 onClick={() => onToggle()}
               >
                 sign in
@@ -44,7 +46,7 @@ class Greeting extends PureComponent {
               &nbsp;or&nbsp;
               <Button
                 color="link"
-                className="p-0 align-baseline"
+                className={toggleBtn}
                 onClick={() => onToggle('2')}
               >
                 register
