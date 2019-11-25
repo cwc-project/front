@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+
 import { toggleModalProjAdd, addProject } from '../actions';
 import AddProject from '../components/AddProject';
 

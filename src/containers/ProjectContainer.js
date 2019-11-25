@@ -114,25 +114,23 @@ const mapStateToProps = ({ projects, user, fetch, errors }, { match }) => ({
   paramId: match.params.id,
 });
 
-const mergeProps = (stateProps, dispatchProps) => {
-  const { loading, projectErr, authToken, project, paramId } = stateProps;
-  const { dispatch } = dispatchProps;
-
-  return {
-    loading,
-    projectErr,
-    project,
-    paramId,
-    getProject: () => dispatch(projectActions.getProject(paramId, authToken)),
-    toggleModalProjAdd: () => dispatch(rsEffectsActions.toggleModalProjAdd()),
-    addTask: title =>
-      dispatch(tasksActions.addTask(title, project.id, authToken)),
-    deleteTask: taskId =>
-      dispatch(tasksActions.deleteTask(taskId, project.id, authToken)),
-    editTask: (taskKey, taskId) =>
-      dispatch(tasksActions.editTask(taskKey, taskId, project.id, authToken)),
-  };
-};
+const mergeProps = (
+  { loading, projectErr, authToken, project, paramId }, // stateProps
+  { dispatch }, // dispatchProps
+) => ({
+  loading,
+  projectErr,
+  project,
+  paramId,
+  getProject: () => dispatch(projectActions.getProject(paramId, authToken)),
+  toggleModalProjAdd: () => dispatch(rsEffectsActions.toggleModalProjAdd()),
+  addTask: title =>
+    dispatch(tasksActions.addTask(title, project.id, authToken)),
+  deleteTask: taskId =>
+    dispatch(tasksActions.deleteTask(taskId, project.id, authToken)),
+  editTask: (taskKey, taskId) =>
+    dispatch(tasksActions.editTask(taskKey, taskId, project.id, authToken)),
+});
 
 export default connect(
   mapStateToProps,
