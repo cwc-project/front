@@ -8,17 +8,16 @@ const mapStateToProps = ({ rsEffects, user, fetch }) => ({
   authToken: user.authToken,
 });
 
-const mergeProps = (stateProps, dispatchProps, ownProps) => {
-  const { authToken, modalProjAdd, loading } = stateProps;
-  const { dispatch } = dispatchProps;
-  const { history } = ownProps;
-  return {
-    modalProjAdd,
-    loading,
-    toggleModalProjAdd: () => dispatch(toggleModalProjAdd()),
-    addProject: title => dispatch(addProject(title, authToken, history)),
-  };
-};
+const mergeProps = (
+  { authToken, modalProjAdd, loading }, // stateProps
+  { dispatch }, // dispatchProps
+  { history }, // ownProps
+) => ({
+  modalProjAdd,
+  loading,
+  toggleModalProjAdd: () => dispatch(toggleModalProjAdd()),
+  addProject: title => dispatch(addProject(title, authToken, history)),
+});
 
 export default connect(
   mapStateToProps,
