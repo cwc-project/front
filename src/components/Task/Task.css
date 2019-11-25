@@ -26,6 +26,11 @@
   left: 0;
 }
 
+.task_complete-btn > svg {
+  margin: 0;
+  padding: 0;
+}
+
 /* mobile */
 @media (max-width: 414px) {
   .task {
@@ -34,7 +39,6 @@
   }
 
   .task_complete-btn {
-    /* margin-right: 0.4rem; */
-    margin-right: 0;
+    margin-right: 0.4rem;
   }
 }
