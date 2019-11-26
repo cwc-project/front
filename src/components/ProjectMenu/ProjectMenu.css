@@ -13,8 +13,9 @@
 .project-menu_badge {
   font-size: 0.6rem;
   vertical-align: super;
-  font-weight: 400;
 }
+
+/* font-weight: 400; */
 
 .project-menu_more-icon {
   cursor: pointer;
