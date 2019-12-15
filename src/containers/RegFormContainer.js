@@ -34,16 +34,16 @@ class RegFormContainer extends PureComponent {
   }
 
   handleChange = ({ target: { name, value } }) => {
-    const { validation } = this.props;
+    // const { validation } = this.props;
     // возможность ввести имя и отчество через пробел
     const trimVal = name !== 'name' ? value.trim() : value;
 
-    this.setState({
+    this.setState((state, props) => ({
       [name]: {
         value,
-        valid: validation ? this.handleCheck(name, trimVal) : true,
+        valid: props.validation ? this.handleCheck(name, trimVal) : true,
       },
-    });
+    }));
   };
 
   passToggle = () =>
