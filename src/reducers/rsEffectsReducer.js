@@ -9,7 +9,6 @@ import {
 export const initialState = {
   modalReg: false,
   modalProjAdd: false,
-
   activeTab: '1',
 };
 
@@ -22,7 +21,7 @@ const rsEffectsReducer = (state = initialState, action) => {
       return { ...initialState, modalProjAdd: !state.modalProjAdd };
 
     case TOGGLE_TAB:
-      return { ...state, activeTab: action.activeTab };
+      return { ...state, activeTab: action.activeTab || '1' };
 
     case LOGIN_USER:
     case ADD_PROJECT:

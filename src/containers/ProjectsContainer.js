@@ -23,13 +23,18 @@ class ProjectsContainer extends PureComponent {
     dispatch(getProjects(authToken));
   }
 
+  toggleModal = () => {
+    const { dispatch } = this.props;
+    dispatch(toggleModalProjAdd());
+  };
+
   render() {
     const {
       loading,
       projectsAmount,
       projectsList,
       history,
-      dispatch,
+      // dispatch,
     } = this.props;
 
     if (loading) return <Spinner color="primary" />;
@@ -46,7 +51,9 @@ class ProjectsContainer extends PureComponent {
         <Button
           color="primary"
           className={btn}
-          onClick={() => dispatch(toggleModalProjAdd())}
+          onClick={this.toggleModal}
+          // плохая практика, при каждом ререндере создается новая ф-ция
+          // onClick={() => dispatch(toggleModalProjAdd())}
         >
           <Plus />
           &nbsp;

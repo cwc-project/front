@@ -12,8 +12,8 @@ const mapStateToProps = ({ user }) => ({
 // history из ownProps
 const mapDispatchToProps = (dispatch, { history }) => ({
   logout: () => dispatch(logout(history)),
-  onToggle: activeTab => {
-    dispatch(toggleTab(activeTab));
+  onToggle: () => {
+    dispatch(toggleTab());
     dispatch(toggleModalReg());
   },
 });

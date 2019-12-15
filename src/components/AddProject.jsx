@@ -12,19 +12,18 @@ const AddProject = ({
   addProject,
 }) => {
   const projectTitle = React.createRef();
+  const onSubmit = e => {
+    e.preventDefault();
+    const value = projectTitle.current.value.trim();
+    if (value) {
+      addProject(value);
+    }
+  };
   return (
     <Modal isOpen={modalProjAdd} fade>
       <ModalHeader toggle={toggleModalProjAdd}>Add new project</ModalHeader>
       <ModalBody>
-        <Form
-          onSubmit={e => {
-            e.preventDefault();
-            const value = projectTitle.current.value.trim();
-            if (value) {
-              addProject(value);
-            }
-          }}
-        >
+        <Form onSubmit={onSubmit}>
           <fieldset disabled={loading}>
             <Input
               placeholder="Insert project title"

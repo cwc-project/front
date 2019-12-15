@@ -13,19 +13,17 @@ const form = classNames(bsUtilClasses.form);
 
 const TaskEdit = ({ title, toggleEdit, onDelete, onEdit }) => {
   const taskInput = React.createRef();
+  const onSubmit = e => {
+    e.preventDefault();
+    const value = taskInput.current.value.trim();
+    if (value && value !== title) {
+      onEdit({ title: value });
+    }
+    toggleEdit();
+  };
   return (
     <ListGroupItem tag="div" className="task-edit">
-      <Form
-        className={form}
-        onSubmit={e => {
-          e.preventDefault();
-          const value = taskInput.current.value.trim();
-          if (value && value !== title) {
-            onEdit({ title: value });
-          }
-          toggleEdit();
-        }}
-      >
+      <Form className={form} onSubmit={onSubmit}>
         <Button
           color="danger"
           type="button"

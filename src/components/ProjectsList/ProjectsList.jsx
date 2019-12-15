@@ -22,7 +22,7 @@ const ProjectsList = ({ projectsList, projectsAmount, history }) => {
 
   return (
     <Wrapper600>
-      <Form className="projects-list" onSubmit={e => onSubmit(e)}>
+      <Form className="projects-list" onSubmit={onSubmit}>
         <InputGroup>
           <Badge className="projects-badge">{projectsAmount}</Badge>
           <Input className="projects-select" type="select" name="select">

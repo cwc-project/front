@@ -39,7 +39,7 @@ class Greeting extends PureComponent {
               <Button
                 color="link"
                 className={toggleBtn}
-                onClick={() => onToggle()}
+                onClick={() => onToggle('1')}
               >
                 sign in
               </Button>

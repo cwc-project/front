@@ -47,7 +47,7 @@ class Header extends PureComponent {
     const { onToggle, loggedIn, userName, logout } = this.props;
     const { dropdownOpen } = this.state;
     const logBtn = !loggedIn ? (
-      <Button color="link" className={loginBtn} onClick={() => onToggle()}>
+      <Button color="link" className={loginBtn} onClick={onToggle}>
         Log in&nbsp;
         <LogIn />
       </Button>
