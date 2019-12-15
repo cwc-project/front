@@ -13,12 +13,12 @@ const alert = classNames(bsUtilClasses.alert);
 const ErrorContainer = props => {
   const { err, type } = props;
   const error = err[type];
-  return error ? (
-    <Alert color="danger" className={alert}>
-      {error}
-    </Alert>
-  ) : (
-    ''
+  return (
+    error && (
+      <Alert color="danger" className={alert}>
+        {error}
+      </Alert>
+    )
   );
 };
 
