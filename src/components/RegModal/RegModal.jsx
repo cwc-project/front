@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
@@ -30,4 +30,4 @@ RegModal.propTypes = {
   toggleModalReg: PropTypes.func.isRequired,
 };
 
-export default RegModal;
+export default memo(RegModal);

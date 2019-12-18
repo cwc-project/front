@@ -9,5 +9,5 @@ const Wrapper600 = ({ children }) => (
 Wrapper600.propTypes = {
   children: PropTypes.object.isRequired,
 };
-
+// т.к. children стабильное св-во, которое не изменятся, необходимости в memo нет
 export default Wrapper600;

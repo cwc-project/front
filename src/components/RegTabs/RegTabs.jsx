@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { User, UserPlus } from 'react-feather';
@@ -68,4 +68,4 @@ RegTabs.propTypes = {
   toggleTab: PropTypes.func.isRequired,
 };
 
-export default RegTabs;
+export default memo(RegTabs);

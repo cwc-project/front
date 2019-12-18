@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { ChevronsRight } from 'react-feather';
 import {
@@ -49,4 +49,4 @@ ProjectsList.propTypes = {
   history: PropTypes.object.isRequired,
 };
 
-export default ProjectsList;
+export default memo(ProjectsList);

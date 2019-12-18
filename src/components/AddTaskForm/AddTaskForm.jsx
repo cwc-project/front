@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Input, Button } from 'reactstrap';
 import { Plus } from 'react-feather';
@@ -41,4 +41,4 @@ AddTaskForm.propTypes = {
   addTask: PropTypes.func.isRequired,
 };
 
-export default AddTaskForm;
+export default memo(AddTaskForm);

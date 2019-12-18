@@ -17,5 +17,5 @@ const Footer = () => (
     <p className={copy}>&copy; 2018-2019 CWC-project</p>
   </footer>
 );
-
+// т.к. нет props, необходимости в memo нет
 export default Footer;

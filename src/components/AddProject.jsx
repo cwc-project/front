@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Modal, ModalHeader, ModalBody, Input, Form } from 'reactstrap';
 
@@ -50,4 +50,4 @@ AddProject.defaultProps = {
   modalProjAdd: false,
 };
 
-export default AddProject;
+export default memo(AddProject);

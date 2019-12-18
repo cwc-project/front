@@ -19,5 +19,5 @@ const PageNotFound = () => (
     <RegModalContainer />
   </>
 );
-
+// т.к. нет props, необходимости в memo нет
 export default PageNotFound;

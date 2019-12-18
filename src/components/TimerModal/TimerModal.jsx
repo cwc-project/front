@@ -1,5 +1,5 @@
 import 'react-datepicker/dist/react-datepicker.min.css';
-import React from 'react';
+import React, { memo } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import {
@@ -95,4 +95,4 @@ TimerModal.propTypes = {
   timerModalClose: PropTypes.func.isRequired,
 };
 
-export default TimerModal;
+export default memo(TimerModal);

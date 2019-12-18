@@ -5,5 +5,8 @@
   "eslint.autoFixOnSave": false,
   "files.eol": "\n",
   "files.autoSave": "afterDelay",
-  "files.autoSaveDelay": 1000
+  "files.autoSaveDelay": 1000,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": false
+  }
 }

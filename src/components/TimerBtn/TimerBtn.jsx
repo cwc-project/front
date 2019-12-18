@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Clock } from 'react-feather';
 import { Button } from 'reactstrap';
 import './TimerBtn.css';
@@ -9,4 +9,4 @@ const TimerBtn = ({ ...props }) => (
   </Button>
 );
 
-export default TimerBtn;
+export default memo(TimerBtn);

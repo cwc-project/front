@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { Square, CheckSquare } from 'react-feather';
@@ -67,4 +67,4 @@ Task.defaultProps = {
   secRemain: null,
 };
 
-export default Task;
+export default memo(Task);

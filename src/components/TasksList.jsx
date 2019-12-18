@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
 import TaskContainer from '../containers/TaskConatainer';
@@ -22,4 +22,4 @@ TasksList.propTypes = {
   editTask: PropTypes.func.isRequired,
 };
 
-export default TasksList;
+export default memo(TasksList);

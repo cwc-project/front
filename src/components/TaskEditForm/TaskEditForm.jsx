@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Save, Trash2 } from 'react-feather';
@@ -53,4 +53,4 @@ TaskEdit.propTypes = {
   onEdit: PropTypes.func.isRequired,
 };
 
-export default TaskEdit;
+export default memo(TaskEdit);
